@@ -4,10 +4,7 @@ import DashboardHeader from "../../components/DashboardHeader";
 const Reviews = () => {
   return (
     <>
-      <DashboardHeader
-        title="Manage Reviews"
-        desc="Oversee and manage reviews"
-      />
+      <DashboardHeader title="Reviews" desc="Oversee and manage reviews" />
       <section></section>
     </>
   );

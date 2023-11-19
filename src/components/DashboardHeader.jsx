@@ -16,12 +16,12 @@ const DashboardHeader = ({ title, desc }) => {
         <p className="text-sm font-light text-gray-400">{desc}</p>
       </div>
       <Link to="../profile" className="group flex items-center gap-2">
-        <div className="h-11 w-11 overflow-hidden rounded-lg bg-gray-100">
+        <div className="aspect-square w-11 overflow-hidden rounded-full bg-gray-100">
           <img
             src={
               photo
                 ? photo
-                : "https://icons.veryicon.com/png/o/miscellaneous/user-avatar/user-avatar-male-5.png"
+                : "https://www.sketchappsources.com/resources/source-image/profile-illustration-gunaldi-yunus.png"
             }
             className="h-full w-full object-cover"
             alt={name}
@@ -31,7 +31,7 @@ const DashboardHeader = ({ title, desc }) => {
           <h4 className="font-medium leading-tight text-[#1d1d1d]">
             {name.split(" ")[0]}
           </h4>
-          <p className="text-primary text-xs group-hover:underline">
+          <p className="text-xs text-primary group-hover:underline">
             Visit Profile
           </p>
         </div>

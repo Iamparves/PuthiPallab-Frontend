@@ -107,7 +107,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="bg-primary mt-6 block w-full rounded-lg p-4 text-center font-semibold text-white"
+            className="bg-primary mt-6 block w-full rounded-lg p-4 text-center font-semibold text-white duration-300"
           >
             Log In
           </button>

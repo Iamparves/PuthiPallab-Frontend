@@ -1,10 +1,13 @@
 import React from "react";
+import toast from "react-hot-toast";
 import { FiUser, FiUsers } from "react-icons/fi";
 import { LuFileClock } from "react-icons/lu";
 import { MdDashboard, MdOutlineReviews } from "react-icons/md";
 import { TbBookOff, TbBookUpload, TbBooks, TbLogout2 } from "react-icons/tb";
 import { TfiLayoutListThumb, TfiList } from "react-icons/tfi";
 import { Link, useLocation } from "react-router-dom";
+import { useStore } from "../store";
+import { logout } from "../utils/apiRequest";
 
 const menuItems = [
   {
@@ -13,12 +16,12 @@ const menuItems = [
     icon: <MdDashboard />,
   },
   {
-    title: "Manage Books",
+    title: "Books",
     path: "books",
     icon: <TbBooks />,
   },
   {
-    title: "Manage Genres",
+    title: "Genres",
     path: "genres",
     icon: <TfiList />,
   },
@@ -38,7 +41,7 @@ const menuItems = [
     icon: <TfiLayoutListThumb />,
   },
   {
-    title: "Manage Users",
+    title: "Users",
     path: "users",
     icon: <FiUsers />,
   },
@@ -48,7 +51,7 @@ const menuItems = [
     icon: <LuFileClock />,
   },
   {
-    title: "Manage Reviews",
+    title: "Reviews",
     path: "reviews",
     icon: <MdOutlineReviews />,
   },
@@ -57,9 +60,9 @@ const menuItems = [
 const MenuLink = ({ path, title, icon, isActive }) => (
   <Link
     to={`../${path}`}
-    className={`dashboardMenu flex items-center gap-3 border-r-4 px-8 py-3.5 font-light ${
+    className={`dashboardMenu flex items-center gap-3 px-8 py-3.5 font-light ${
       isActive
-        ? "text-primary border-primary bg-[#FEF2E2]"
+        ? "text-primary border-primary border-r-4 bg-[#FEF2E2]"
         : "hover:text-primary border-white text-[#808080] duration-300 hover:bg-[#FEF2E2]"
     }`}
   >
@@ -70,6 +73,18 @@ const MenuLink = ({ path, title, icon, isActive }) => (
 
 const DashboardSidebar = () => {
   const { pathname } = useLocation();
+  const setUser = useStore((state) => state.setUser);
+
+  const handleLogout = async () => {
+    const result = await logout();
+
+    if (result?.status === "success") {
+      toast.success(result.message);
+      return setUser(null);
+    }
+
+    toast.error("Logout failed! Please try again.");
+  };
 
   return (
     <aside className="h-full border-r border-[#eee]/70 bg-white">
@@ -105,12 +120,12 @@ const DashboardSidebar = () => {
 
           <button
             className="hover:text-primary flex items-center gap-3 px-8 py-3 text-[#808080] duration-300"
-            onClick={() => {}}
+            onClick={handleLogout}
           >
             <span className="text-xl">
               <TbLogout2 />
             </span>
-            <div className="text-sm">Logout</div>
+            <span className="text-sm duration-300">Logout</span>
           </button>
         </nav>
       </div>

@@ -27,7 +27,7 @@ export const login = async (credentials) => {
 export const logout = async () => {
   const res = await api.get("/users/logout");
 
-  return res;
+  return res.data;
 };
 
 export const getMe = async () => {
@@ -101,6 +101,24 @@ export const updateGenre = async ({ genreId, data }) => {
 export const deleteGenre = async (genreId) => {
   try {
     const res = await api.delete(`/genres/${genreId}`);
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
+export const getAllUsers = async () => {
+  try {
+    const res = await api.get(`/users`);
+    return res.data.data.users;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
+export const updateUserRole = async (userId, data) => {
+  try {
+    const res = await api.patch(`/users/roles/${userId}`, data);
     return res.data;
   } catch (error) {
     return error.response?.data;
