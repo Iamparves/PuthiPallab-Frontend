@@ -98,7 +98,7 @@ const Login = () => {
           <div className="text-right">
             <Link
               to="/forgot-password"
-              className="text-xs font-medium text-[#F59115] hover:underline"
+              className="text-primary text-xs font-medium hover:underline"
               href="#"
             >
               Forgot Password?
@@ -107,7 +107,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="mt-6 block w-full rounded-lg bg-[#F59115] p-4 text-center font-semibold text-white"
+            className="bg-primary mt-6 block w-full rounded-lg p-4 text-center font-semibold text-white"
           >
             Log In
           </button>
@@ -115,7 +115,7 @@ const Login = () => {
 
         <p className="mt-8 text-center text-xs font-medium text-[#898989]">
           Don't have an account?{" "}
-          <Link to="/signup" className="text-[#F59115] hover:underline">
+          <Link to="/signup" className="text-primary hover:underline">
             Sign up
           </Link>
         </p>

@@ -1,10 +1,6 @@
 import React from "react";
 
-const Spinner = ({
-  width = "h-10",
-  height = "10",
-  color = "fill-[#F59115]",
-}) => {
+const Spinner = ({ width = "h-10", height = "10", color = "fill-primary" }) => {
   return (
     <svg
       aria-hidden="true"

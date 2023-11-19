@@ -146,7 +146,7 @@ const DashGenreForm = ({ updateId, setUpdateId }) => {
         </div>
         <button
           type="submit"
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#F59115] p-3 font-semibold text-white duration-300 disabled:opacity-70"
+          className="bg-primary flex w-full items-center justify-center gap-2 rounded-lg p-3 font-semibold text-white duration-300 disabled:opacity-70"
           disabled={isUploading}
         >
           {isUploading || mutation.isPending || updateMutation.isPending ? (

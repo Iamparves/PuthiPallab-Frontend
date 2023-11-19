@@ -2,7 +2,7 @@ import React from "react";
 import { FiUser, FiUsers } from "react-icons/fi";
 import { LuFileClock } from "react-icons/lu";
 import { MdDashboard, MdOutlineReviews } from "react-icons/md";
-import { TbBookOff, TbBookUpload, TbBooks } from "react-icons/tb";
+import { TbBookOff, TbBookUpload, TbBooks, TbLogout2 } from "react-icons/tb";
 import { TfiLayoutListThumb, TfiList } from "react-icons/tfi";
 import { Link, useLocation } from "react-router-dom";
 
@@ -52,12 +52,21 @@ const menuItems = [
     path: "reviews",
     icon: <MdOutlineReviews />,
   },
-  {
-    title: "Profile",
-    path: "profile",
-    icon: <FiUser />,
-  },
 ];
+
+const MenuLink = ({ path, title, icon, isActive }) => (
+  <Link
+    to={`../${path}`}
+    className={`dashboardMenu flex items-center gap-3 border-r-4 px-8 py-3.5 font-light ${
+      isActive
+        ? "text-primary border-primary bg-[#FEF2E2]"
+        : "hover:text-primary border-white text-[#808080] duration-300 hover:bg-[#FEF2E2]"
+    }`}
+  >
+    <span className="text-xl">{icon}</span>
+    <span className="text-sm">{title}</span>
+  </Link>
+);
 
 const DashboardSidebar = () => {
   const { pathname } = useLocation();
@@ -69,26 +78,40 @@ const DashboardSidebar = () => {
           <img className="" src="/logo.svg" alt="Puthi Pallab" />
         </Link>
       </div>
-      <div className="px-8 py-8">
-        <nav className="flex flex-col gap-1">
+      <div>
+        <p className="text-primary px-8 py-4 text-xs font-medium uppercase">
+          Menu
+        </p>
+        <nav className="flex flex-col gap-1.5">
           {menuItems.map(({ title, path, icon }, index) => {
-            const activeLink = pathname.split("/").slice(-1)[0] === path;
-
+            const isActive = pathname.split("/").slice(-1)[0] === path;
             return (
-              <Link
+              <MenuLink
+                path={path}
+                title={title}
+                icon={icon}
+                isActive={isActive}
                 key={index}
-                to={`../${path}`}
-                className={`flex items-center gap-3 rounded-xl p-3 ${
-                  activeLink
-                    ? "bg-[#F59115] text-white"
-                    : "text-[#333] duration-300 hover:bg-[#F59115] hover:text-white"
-                }`}
-              >
-                <span className="text-xl">{icon}</span>
-                <span className="text-sm">{title}</span>
-              </Link>
+              />
             );
           })}
+          <hr className="border-gray-200/70" />
+          <MenuLink
+            path="profile"
+            title="Profile"
+            icon={<FiUser />}
+            isActive={pathname.split("/").slice(-1)[0] === "profile"}
+          />
+
+          <button
+            className="hover:text-primary flex items-center gap-3 px-8 py-3 text-[#808080] duration-300"
+            onClick={() => {}}
+          >
+            <span className="text-xl">
+              <TbLogout2 />
+            </span>
+            <div className="text-sm">Logout</div>
+          </button>
         </nav>
       </div>
     </aside>

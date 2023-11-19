@@ -31,7 +31,7 @@ const DashboardHeader = ({ title, desc }) => {
           <h4 className="font-medium leading-tight text-[#1d1d1d]">
             {name.split(" ")[0]}
           </h4>
-          <p className="text-xs text-[#F59115] group-hover:underline">
+          <p className="text-primary text-xs group-hover:underline">
             Visit Profile
           </p>
         </div>

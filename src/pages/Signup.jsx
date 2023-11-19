@@ -18,7 +18,7 @@ const style = {
   icon: "absolute left-1 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center text-xl text-[#c3c3c3]",
   error: "mt-1 block text-xs text-red-400",
   gender:
-    "flex cursor-pointer items-center justify-center gap-2 rounded-md border-2 border-[#f5901566] bg-[#f590151c] p-3 font-medium duration-300 hover:bg-[#F59115] hover:text-white peer-checked:bg-[#F59115] peer-checked:text-white",
+    "flex cursor-pointer items-center justify-center gap-2 rounded-md border-2 border-[#f5901566] bg-[#f590151c] p-3 font-medium duration-300 hover:bg-primary hover:text-white peer-checked:bg-primary peer-checked:text-white",
 };
 
 const Signup = () => {
@@ -208,7 +208,7 @@ const Signup = () => {
 
           <button
             type="submit"
-            className="mt-3 block w-full rounded-lg bg-[#F59115] p-4 text-center font-semibold text-white"
+            className="bg-primary mt-3 block w-full rounded-lg p-4 text-center font-semibold text-white"
           >
             Sign up
           </button>
@@ -216,7 +216,7 @@ const Signup = () => {
 
         <p className="mt-8 text-center text-xs font-medium text-[#898989]">
           Already have an account?{" "}
-          <Link to="/login" className="text-[#F59115] hover:underline">
+          <Link to="/login" className="text-primary hover:underline">
             Log in
           </Link>
         </p>
