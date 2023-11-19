@@ -1,16 +1,16 @@
 import React from "react";
 import DashboardHeader from "../../components/DashboardHeader";
 
-const Profile = () => {
+const Books = () => {
   return (
     <>
       <DashboardHeader
-        title="Profile"
-        desc="Manage your profile effortlessly"
+        title="Manage Books"
+        desc="Manage library book with ease"
       />
       <section></section>
     </>
   );
 };
 
-export default Profile;
+export default Books;

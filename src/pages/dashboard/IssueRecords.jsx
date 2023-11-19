@@ -1,16 +1,16 @@
 import React from "react";
 import DashboardHeader from "../../components/DashboardHeader";
 
-const Profile = () => {
+const IssueRecords = () => {
   return (
     <>
       <DashboardHeader
-        title="Profile"
-        desc="Manage your profile effortlessly"
+        title="Issue Records"
+        desc="Track All Issue-Return History"
       />
       <section></section>
     </>
   );
 };
 
-export default Profile;
+export default IssueRecords;

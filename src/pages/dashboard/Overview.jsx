@@ -4,7 +4,7 @@ import DashboardHeader from "../../components/DashboardHeader";
 const Overview = () => {
   return (
     <>
-      <DashboardHeader title="Overview" desc="Let's check library statistics" />
+      <DashboardHeader title="Overview" desc="Get a comprehensive snapshot" />
       <section></section>
     </>
   );

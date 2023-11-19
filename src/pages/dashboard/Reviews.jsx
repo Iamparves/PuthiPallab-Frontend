@@ -1,16 +1,16 @@
 import React from "react";
 import DashboardHeader from "../../components/DashboardHeader";
 
-const Profile = () => {
+const Reviews = () => {
   return (
     <>
       <DashboardHeader
-        title="Profile"
-        desc="Manage your profile effortlessly"
+        title="Manage Reviews"
+        desc="Oversee and manage reviews"
       />
       <section></section>
     </>
   );
 };
 
-export default Profile;
+export default Reviews;

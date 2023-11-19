@@ -34,7 +34,7 @@ const menuItems = [
   },
   {
     title: "Issue Records",
-    path: "records",
+    path: "issue-records",
     icon: <TfiLayoutListThumb />,
   },
   {

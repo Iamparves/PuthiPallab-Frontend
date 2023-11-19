@@ -3,8 +3,19 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div>
-      <Link to="/login">Login</Link>
+    <div className="space-x-2 pt-10 text-center">
+      <Link
+        to="/login"
+        className="mt-6 inline-block rounded-lg bg-[#F59115] px-10 py-4 text-center font-semibold text-white"
+      >
+        Log In
+      </Link>
+      <Link
+        to="/dashboard"
+        className="mt-6 inline-block rounded-lg bg-[#F59115] px-10 py-4 text-center font-semibold text-white"
+      >
+        Dashboard
+      </Link>
     </div>
   );
 };

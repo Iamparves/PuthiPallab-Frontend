@@ -41,7 +41,7 @@ const Genres = () => {
 
   return (
     <>
-      <DashboardHeader title="Genres" desc="Manage all genres" />
+      <DashboardHeader title="Genres" desc="Effortlessly organize genres" />
       <section className="h-[calc(100vh-80px)] overflow-y-auto p-10">
         <div className="mx-auto grid max-w-7xl grid-cols-[1fr_500px] gap-6">
           <div className="rounded-xl border border-gray-200/70 bg-white p-8">

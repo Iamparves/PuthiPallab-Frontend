@@ -1,16 +1,13 @@
 import React from "react";
 import DashboardHeader from "../../components/DashboardHeader";
 
-const Profile = () => {
+const IssueBook = () => {
   return (
     <>
-      <DashboardHeader
-        title="Profile"
-        desc="Manage your profile effortlessly"
-      />
+      <DashboardHeader title="Issue Book" desc="Issue books to members" />
       <section></section>
     </>
   );
 };
 
-export default Profile;
+export default IssueBook;
