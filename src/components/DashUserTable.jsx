@@ -113,7 +113,6 @@ const DashUserTable = ({ data }) => {
         columns={columns}
         filter={filter}
         setFilter={setFilter}
-        pageSize={10}
       />
     </div>
   );

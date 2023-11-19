@@ -124,3 +124,12 @@ export const updateUserRole = async (userId, data) => {
     return error.response?.data;
   }
 };
+
+export const getAllBooks = async () => {
+  try {
+    const res = await api.get("/books");
+    return res.data.data.books;
+  } catch (error) {
+    return error.response?.data;
+  }
+};

@@ -28,7 +28,7 @@ const TanstackTable = ({ data, columns, filter, setFilter, pageSize }) => {
     onGlobalFilterChange: setFilter,
     initialState: {
       pagination: {
-        pageSize: pageSize || 15,
+        pageSize: pageSize || 10,
       },
     },
   });
@@ -45,7 +45,7 @@ const TanstackTable = ({ data, columns, filter, setFilter, pageSize }) => {
               {headerGroup.headers.map((header) => (
                 <th
                   onClick={header.column.getToggleSortingHandler()}
-                  className="font-Semibold px-5 py-3 text-left text-sm text-[#1d1d1d]"
+                  className="font-Semibold cursor-pointer px-5 py-3 text-left text-sm text-[#1d1d1d]"
                   key={header.id}
                 >
                   <div className="inline-flex items-center gap-1">

@@ -24,10 +24,7 @@ const Users = () => {
           )}
           {userQuery.isError && <p>Error: {userQuery.error.message}</p>}
           {!userQuery.isLoading && !userQuery.isError && (
-            <DashUserTable
-              isLoading={userQuery.isLoading}
-              data={userQuery.data}
-            />
+            <DashUserTable data={userQuery.data} />
           )}
         </div>
       </section>
