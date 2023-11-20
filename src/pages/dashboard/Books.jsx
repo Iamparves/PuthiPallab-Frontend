@@ -1,15 +1,38 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React from "react";
+import toast from "react-hot-toast";
 import DashBooksTable from "../../components/DashBooksTable";
 import DashboardHeader from "../../components/DashboardHeader";
 import Spinner from "../../components/Spinner";
-import { getAllBooks } from "../../utils/apiRequest";
+import { deleteBook, getAllBooks } from "../../utils/apiRequest";
 
 const Books = () => {
+  const queryClient = useQueryClient();
+
   const booksQuery = useQuery({
     queryKey: ["books"],
     queryFn: () => getAllBooks(),
   });
+
+  const mutation = useMutation({
+    mutationFn: deleteBook,
+    onSuccess: (data) => {
+      if (data.status === "success") {
+        queryClient.invalidateQueries(["books"]);
+        return toast.success("Book deleted successfully");
+      }
+      toast.error(data.message);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const handleDelete = (bookId) => {
+    const confirm = window.confirm("Are you sure you want to delete the book?");
+
+    if (confirm) mutation.mutate(bookId);
+  };
 
   return (
     <>
@@ -24,7 +47,7 @@ const Books = () => {
           )}
           {booksQuery.isError && <p>Error: {booksQuery.error.message}</p>}
           {!booksQuery.isLoading && !booksQuery.isError && (
-            <DashBooksTable data={booksQuery.data} />
+            <DashBooksTable data={booksQuery.data} onDelete={handleDelete} />
           )}
         </div>
       </section>

@@ -4,7 +4,7 @@ import { MdDeleteOutline, MdOutlineAdd } from "react-icons/md";
 import { TbEdit } from "react-icons/tb";
 import TanstackTable from "./TanstackTable";
 
-const DashBooksTable = ({ data }) => {
+const DashBooksTable = ({ data, onDelete }) => {
   const [filter, setFilter] = useState("");
 
   const columns = [
@@ -71,13 +71,14 @@ const DashBooksTable = ({ data }) => {
       cell: (props) => (
         <button
           className="mx-auto flex aspect-square w-9 items-center justify-center rounded-md border border-[#eee] bg-[#FEF2E2]/30 text-xl text-[#FF5556]"
-          onClick={() => console.log(props.getValue())}
+          onClick={() => onDelete(props.getValue())}
         >
           <MdDeleteOutline />
         </button>
       ),
     },
   ];
+
   return (
     <div>
       <div className="flex items-center justify-between gap-3 px-5 py-3">

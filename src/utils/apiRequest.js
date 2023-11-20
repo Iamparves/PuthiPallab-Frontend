@@ -133,3 +133,21 @@ export const getAllBooks = async (query) => {
     return error.response?.data;
   }
 };
+
+export const updateBook = async ({ bookId, data }) => {
+  try {
+    const res = await api.patch(`/books/${bookId}`, data);
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
+export const deleteBook = async (bookId) => {
+  try {
+    const res = await api.delete(`/books/${bookId}`);
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
