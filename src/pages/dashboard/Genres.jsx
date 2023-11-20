@@ -14,7 +14,7 @@ const Genres = () => {
 
   const genresQuery = useQuery({
     queryKey: ["genres"],
-    queryFn: getAllGenres,
+    queryFn: () => getAllGenres(),
   });
 
   const mutation = useMutation({

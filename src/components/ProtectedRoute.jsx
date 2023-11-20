@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useStore } from "../store";
 import { getMe } from "../utils/apiRequest";
 import FullpageSpinner from "./FullpageSpinner";
 
-const ProtectedOutlet = () => {
+const ProtectedRoute = ({ allowedRoles }) => {
+  const location = useLocation();
   const [loading, setLoading] = useState(true);
   const setUser = useStore((state) => state.setUser);
   const user = useStore((state) => state.user);
@@ -25,7 +26,15 @@ const ProtectedOutlet = () => {
 
   if (loading) return <FullpageSpinner />;
 
-  return !!user ? <Outlet /> : <Navigate to="/login" />;
+  return !!user ? (
+    allowedRoles?.includes(user.role) ? (
+      <Outlet />
+    ) : (
+      <Navigate to="/unauthorized" state={{ from: location }} replace />
+    )
+  ) : (
+    <Navigate to="/login" state={{ from: location }} replace />
+  );
 };
 
-export default ProtectedOutlet;
+export default ProtectedRoute;

@@ -8,7 +8,7 @@ import { getAllBooks } from "../../utils/apiRequest";
 const Books = () => {
   const booksQuery = useQuery({
     queryKey: ["books"],
-    queryFn: getAllBooks,
+    queryFn: () => getAllBooks(),
   });
 
   return (

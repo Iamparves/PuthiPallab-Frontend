@@ -8,7 +8,7 @@ import { getAllUsers } from "../../utils/apiRequest";
 const Users = () => {
   const userQuery = useQuery({
     queryKey: ["users"],
-    queryFn: getAllUsers,
+    queryFn: () => getAllUsers(),
   });
 
   return (

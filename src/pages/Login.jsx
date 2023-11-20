@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { MdOutlineLock, MdOutlineMailOutline } from "react-icons/md";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthWrapper from "../components/AuthWrapper";
 import { useStore } from "../store";
 import { login } from "../utils/apiRequest";
@@ -16,7 +16,10 @@ const style = {
 
 const Login = () => {
   const navigate = useNavigate();
-  const [isUnverified, setIsUnverified] = useState(false);
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/dashboard";
+
+  // const [isUnverified, setIsUnverified] = useState(false);
   const isLoggedIn = useStore((state) => state.loggedIn);
   const setUser = useStore((state) => state.setUser);
 
@@ -35,15 +38,15 @@ const Login = () => {
       reset();
 
       toast.success("Login successful");
-      return navigate("/dashboard");
+      return navigate(from, { replace: true });
     }
 
     toast.error(result?.message || "Something went wrong");
   };
 
-  if (isLoggedIn) {
-    return <Navigate to="/dashboard" replace />;
-  }
+  useEffect(() => {
+    if (isLoggedIn) return navigate(from, { replace: true });
+  }, [isLoggedIn]);
 
   return (
     <AuthWrapper>
@@ -98,7 +101,7 @@ const Login = () => {
           <div className="text-right">
             <Link
               to="/forgot-password"
-              className="text-primary text-xs font-medium hover:underline"
+              className="text-xs font-medium text-primary hover:underline"
               href="#"
             >
               Forgot Password?
@@ -107,7 +110,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="bg-primary mt-6 block w-full rounded-lg p-4 text-center font-semibold text-white duration-300"
+            className="mt-6 block w-full rounded-lg bg-primary p-4 text-center font-semibold text-white duration-300"
           >
             Log In
           </button>

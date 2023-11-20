@@ -59,11 +59,11 @@ const menuItems = [
 
 const MenuLink = ({ path, title, icon, isActive }) => (
   <Link
-    to={`../${path}`}
+    to={`${path}`}
     className={`dashboardMenu flex items-center gap-3 px-8 py-3.5 font-light ${
       isActive
-        ? "text-primary border-primary border-r-4 bg-[#FEF2E2]"
-        : "hover:text-primary border-white text-[#808080] duration-300 hover:bg-[#FEF2E2]"
+        ? "border-r-4 border-primary bg-[#FEF2E2] text-primary"
+        : "border-white text-[#808080] duration-300 hover:bg-[#FEF2E2] hover:text-primary"
     }`}
   >
     <span className="text-xl">{icon}</span>
@@ -94,7 +94,7 @@ const DashboardSidebar = () => {
         </Link>
       </div>
       <div>
-        <p className="text-primary px-8 py-4 text-xs font-medium uppercase">
+        <p className="px-8 py-4 text-xs font-medium uppercase text-primary">
           Menu
         </p>
         <nav className="flex flex-col gap-1.5">
@@ -119,7 +119,7 @@ const DashboardSidebar = () => {
           />
 
           <button
-            className="hover:text-primary flex items-center gap-3 px-8 py-3 text-[#808080] duration-300"
+            className="flex items-center gap-3 px-8 py-3 text-[#808080] duration-300 hover:text-primary"
             onClick={handleLogout}
           >
             <span className="text-xl">

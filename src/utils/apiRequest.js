@@ -60,9 +60,9 @@ export const uploadImage = async (imageFile) => {
   }
 };
 
-export const getAllGenres = async () => {
+export const getAllGenres = async (query) => {
   try {
-    const res = await api.get("/genres");
+    const res = await api.get(`/genres${query ? query : ""}`);
     return res.data.data.genres;
   } catch (error) {
     return error.response?.data;
@@ -107,9 +107,9 @@ export const deleteGenre = async (genreId) => {
   }
 };
 
-export const getAllUsers = async () => {
+export const getAllUsers = async (query) => {
   try {
-    const res = await api.get(`/users`);
+    const res = await api.get(`/users${query ? query : ""}`);
     return res.data.data.users;
   } catch (error) {
     return error.response?.data;
@@ -125,9 +125,9 @@ export const updateUserRole = async (userId, data) => {
   }
 };
 
-export const getAllBooks = async () => {
+export const getAllBooks = async (query) => {
   try {
-    const res = await api.get("/books");
+    const res = await api.get(`/books${query ? query : ""}`);
     return res.data.data.books;
   } catch (error) {
     return error.response?.data;
