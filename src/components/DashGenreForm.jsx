@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import {
   addGenre,
-  getGenre,
+  getAllGenres,
   updateGenre,
   uploadImage,
 } from "../utils/apiRequest";
@@ -20,7 +20,7 @@ const DashGenreForm = ({ updateId, setUpdateId }) => {
 
   const genreQuery = useQuery({
     queryKey: ["genres", updateId],
-    queryFn: () => getGenre(updateId),
+    queryFn: () => getAllGenres(updateId ? `?_id=${updateId}` : ""),
   });
 
   const mutation = useMutation({

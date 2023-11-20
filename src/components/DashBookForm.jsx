@@ -1,20 +1,31 @@
-import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { FaStarOfLife } from "react-icons/fa6";
 import { TbBookUpload } from "react-icons/tb";
 import { useNavigate, useParams } from "react-router-dom";
-import { getAllGenres } from "../utils/apiRequest";
+import {
+  addBook,
+  getAllBooks,
+  getAllGenres,
+  updateBook,
+} from "../utils/apiRequest";
 import BookImageUpload from "./BookImageUpload";
+import Spinner from "./Spinner";
 
 const DashBookForm = () => {
   const { bookId } = useParams();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
   const [coverImg, setCoverImg] = useState("");
   const [isUploading, setIsUploading] = useState(false);
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -23,13 +34,89 @@ const DashBookForm = () => {
     queryFn: () => getAllGenres(),
   });
 
-  const onBookSubmit = (data) => {};
+  const booksQuery = useQuery({
+    queryKey: ["books", bookId],
+    queryFn: () => getAllBooks(bookId ? `?_id=${bookId}` : ""),
+  });
+
+  const mutation = useMutation({
+    mutationFn: addBook,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["books"]);
+      toast.success("Book added successfully!");
+
+      navigate(-1);
+    },
+  });
+
+  const updateMutation = useMutation({
+    mutationFn: updateBook,
+    onSuccess: (data) => {
+      if (data.status === "success") {
+        queryClient.invalidateQueries(["books", bookId]);
+        toast.success("Book updated successfully!");
+
+        navigate(-1);
+      }
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const onBookSubmit = (data) => {
+    if (!coverImg && !bookId)
+      return toast.error("Please upload book cover image");
+
+    const bookData = { ...data };
+
+    if (!bookId) {
+      bookData.coverImg = coverImg;
+      return mutation.mutate(bookData);
+    } else {
+      if (coverImg) bookData.coverImg = coverImg;
+      return updateMutation.mutate({ bookId, data: bookData });
+    }
+  };
+
+  useEffect(() => {
+    if (booksQuery.data?.length === 1) {
+      const {
+        coverImg: bookCoverImg,
+        title,
+        author,
+        publisher,
+        publicationdate,
+        bookLanguage,
+        pageCount,
+        totalCopies,
+        genres,
+        summary,
+      } = booksQuery.data[0];
+
+      const genresId = genres.map((genre) => genre._id);
+      reset({
+        title,
+        author,
+        publisher,
+        publicationDate: publicationdate,
+        bookLanguage,
+        pageCount,
+        totalCopies,
+        genres: genresId,
+        summary,
+      });
+
+      setCoverImg(bookCoverImg);
+    }
+  }, [booksQuery.data]);
 
   return (
-    <div className=" w-[calc(100vw-40px)] max-w-3xl p-8">
+    <div className="w-[calc(100vw-40px)] max-w-3xl p-8">
       <form onSubmit={handleSubmit(onBookSubmit)}>
         <div className="grid grid-cols-[auto_1fr] items-center gap-6">
           <BookImageUpload
+            coverImg={coverImg}
             setCoverImg={setCoverImg}
             setIsUploading={setIsUploading}
             isUpdate={!!bookId}
@@ -38,9 +125,12 @@ const DashBookForm = () => {
             <div>
               <label
                 htmlFor="title"
-                className="mb-1 inline-block text-xs font-medium text-gray-400"
+                className="mb-1 inline-flex items-center gap-1 text-xs font-medium text-gray-400"
               >
-                Title
+                Title{" "}
+                <span className="text-[10px] text-red-400">
+                  <FaStarOfLife />
+                </span>
               </label>
               <input
                 {...register("title")}
@@ -55,9 +145,12 @@ const DashBookForm = () => {
             <div>
               <label
                 htmlFor="author"
-                className="mb-1 inline-block text-xs font-medium text-gray-400"
+                className="mb-1 inline-flex items-center gap-1 text-xs font-medium text-gray-400"
               >
                 Author
+                <span className="text-[10px] text-red-400">
+                  <FaStarOfLife />
+                </span>
               </label>
               <input
                 {...register("author")}
@@ -106,15 +199,18 @@ const DashBookForm = () => {
           </div>
           <div>
             <label
-              htmlFor="language"
-              className="mb-1 inline-block text-xs font-medium text-gray-400"
+              htmlFor="bookLanguage"
+              className="mb-1 inline-flex items-center gap-1 text-xs font-medium text-gray-400"
             >
-              language
+              Language
+              <span className="text-[10px] text-red-400">
+                <FaStarOfLife />
+              </span>
             </label>
             <select
-              {...register("language")}
-              id="language"
-              name="language"
+              {...register("bookLanguage")}
+              id="bookLanguage"
+              name="bookLanguage"
               className="block w-full cursor-pointer rounded-md border p-3 focus:outline-none"
               defaultValue={"বাংলা"}
               required
@@ -128,7 +224,7 @@ const DashBookForm = () => {
               htmlFor="pageCount"
               className="mb-1 inline-block text-xs font-medium text-gray-400"
             >
-              Page Count
+              Total Pages
             </label>
             <input
               {...register("pageCount")}
@@ -142,9 +238,12 @@ const DashBookForm = () => {
           <div>
             <label
               htmlFor="totalCopies"
-              className="mb-1 inline-block text-xs font-medium text-gray-400"
+              className="mb-1 inline-flex items-center gap-1 text-xs font-medium text-gray-400"
             >
               No. of copies
+              <span className="text-[10px] text-red-400">
+                <FaStarOfLife />
+              </span>
             </label>
             <input
               {...register("totalCopies")}
@@ -155,6 +254,38 @@ const DashBookForm = () => {
               className="block w-full rounded-md border p-3 focus:outline-none"
               required
             />
+          </div>
+          <div className="col-span-2">
+            <p
+              htmlFor="genres"
+              className="mb-1 inline-flex items-center gap-1 text-xs font-medium text-gray-400"
+            >
+              Genres
+              <span className="text-[10px] text-red-400">
+                <FaStarOfLife />
+              </span>
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {!genresQuery.isLoading &&
+                genresQuery.data.map((genre) => (
+                  <span
+                    className="flex cursor-pointer items-center gap-2 rounded-md border border-gray-200/80 bg-gray-100/50 px-2.5 py-1.5 text-[12px] font-medium text-[#333] [&:has(input:checked)]:border-primary/30 [&:has(input:checked)]:bg-[#FEF2E2] [&:has(input:checked)]:text-primary"
+                    key={genre._id}
+                  >
+                    <input
+                      type="checkbox"
+                      {...register("genres", { required: true })}
+                      id={genre.genreName}
+                      name="genres"
+                      value={genre._id}
+                      className="hidden appearance-none"
+                    />
+                    <label className="cursor-pointer" htmlFor={genre.genreName}>
+                      {genre.genreName}
+                    </label>
+                  </span>
+                ))}
+            </div>
           </div>
           <div className="col-span-2">
             <label
@@ -176,12 +307,17 @@ const DashBookForm = () => {
         <div className="text-center">
           <button
             type="submit"
-            className="mt-6 inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-lg bg-primary p-4 text-center font-medium text-white duration-300"
+            className="mt-6 inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-full border-2 border-primary bg-primary p-3.5 text-center font-medium text-white duration-300 hover:bg-white hover:text-primary disabled:pointer-events-none disabled:opacity-60"
+            disabled={isUploading}
           >
-            <span className="text-xl">
-              <TbBookUpload />
-            </span>{" "}
-            Add Book
+            {isUploading ? (
+              <Spinner width="w-5" height="h-5" />
+            ) : (
+              <span className="text-xl">
+                <TbBookUpload />
+              </span>
+            )}
+            {bookId ? "Update Book" : "Add Book"}
           </button>
         </div>
       </form>

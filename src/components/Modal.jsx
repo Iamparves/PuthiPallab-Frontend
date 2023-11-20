@@ -12,7 +12,7 @@ const Modal = ({ children, title }) => {
 
   return (
     <div
-      className="fixed left-0 top-0 z-[9999] flex h-screen w-full items-center justify-center bg-[#1d1d1d]/30 backdrop-blur-[4px]"
+      className="fixed left-0 top-0 z-[99] flex h-screen w-full items-center justify-center bg-[#1d1d1d]/30 backdrop-blur-[4px]"
       onClick={closeModal}
     >
       <div className="modalCard max-h-full w-auto max-w-full overflow-y-auto overflow-x-hidden rounded-md bg-white">
@@ -20,12 +20,12 @@ const Modal = ({ children, title }) => {
           <h2 className="text-lg font-semibold text-[#1d1d1d]">{title}</h2>
           <button
             className="text-2xl text-red-500"
-            onClick={(e) => navigate(-1)}
+            onClick={() => navigate(-1)}
           >
             <MdOutlineClose />
           </button>
         </div>
-        <div className="max-h-[calc(100vh-160px)]">{children}</div>
+        <div className="max-h-[calc(100vh-100px)]">{children}</div>
       </div>
     </div>
   );

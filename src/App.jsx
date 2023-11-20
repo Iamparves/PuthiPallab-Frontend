@@ -46,6 +46,14 @@ const App = () => {
                     </Modal>
                   }
                 />
+                <Route
+                  path="edit/:bookId"
+                  element={
+                    <Modal title="Update Existing Book">
+                      <DashBookForm />
+                    </Modal>
+                  }
+                />
               </Route>
 
               <Route path="genres" element={<Genres />} />

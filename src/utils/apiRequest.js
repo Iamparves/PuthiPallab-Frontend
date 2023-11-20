@@ -69,17 +69,6 @@ export const getAllGenres = async (query) => {
   }
 };
 
-export const getGenre = async (genreId) => {
-  try {
-    if (!genreId) return [];
-
-    const res = await api.get(`/genres?_id=${genreId}`);
-    return res.data.data?.genres;
-  } catch (error) {
-    return error.response?.data;
-  }
-};
-
 export const addGenre = async (newGenre) => {
   try {
     const res = await api.post("/genres", newGenre);
@@ -128,7 +117,16 @@ export const updateUserRole = async (userId, data) => {
 export const getAllBooks = async (query) => {
   try {
     const res = await api.get(`/books${query ? query : ""}`);
-    return res.data.data.books;
+    return res.data.data?.books;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
+export const addBook = async (newBook) => {
+  try {
+    const res = await api.post("/books", newBook);
+    return res.data;
   } catch (error) {
     return error.response?.data;
   }
@@ -136,7 +134,12 @@ export const getAllBooks = async (query) => {
 
 export const updateBook = async ({ bookId, data }) => {
   try {
-    const res = await api.patch(`/books/${bookId}`, data);
+    const res = await api.patch(`/books/${bookId}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        maxRedirects: 0,
+      },
+    });
     return res.data;
   } catch (error) {
     return error.response?.data;

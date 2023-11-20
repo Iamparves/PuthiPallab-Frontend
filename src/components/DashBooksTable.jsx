@@ -61,12 +61,12 @@ const DashBooksTable = ({ data, onDelete }) => {
       accessorFn: (row) => row._id,
       header: "Update",
       cell: (props) => (
-        <button
+        <Link
+          to={`edit/${props.getValue()}`}
           className="mx-auto flex aspect-square w-9 items-center justify-center rounded-md border border-[#eee] bg-[#FEF2E2]/30 text-xl text-[#50C878]"
-          onClick={() => console.log(props.getValue())}
         >
           <TbEdit />
-        </button>
+        </Link>
       ),
     },
     {
