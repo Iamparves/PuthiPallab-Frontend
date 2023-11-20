@@ -1,6 +1,8 @@
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import DashBookForm from "./components/DashBookForm";
+import Modal from "./components/Modal";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
@@ -34,7 +36,18 @@ const App = () => {
             <Route path="/dashboard" element={<Dashboard />}>
               <Route path="" element={<Navigate to="overview" replace />} />
               <Route path="overview" element={<Overview />} />
-              <Route path="books" element={<Books />} />
+
+              <Route path="books" element={<Books />}>
+                <Route
+                  path="new"
+                  element={
+                    <Modal title="Add New Book">
+                      <DashBookForm />
+                    </Modal>
+                  }
+                />
+              </Route>
+
               <Route path="genres" element={<Genres />} />
               <Route path="issue-book" element={<IssueBook />} />
               <Route path="return-book" element={<ReturnBook />} />

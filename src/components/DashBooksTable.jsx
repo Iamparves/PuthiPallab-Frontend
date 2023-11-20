@@ -1,11 +1,15 @@
+import { useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 import { MdDeleteOutline, MdOutlineAdd } from "react-icons/md";
 import { TbEdit } from "react-icons/tb";
+import { Link } from "react-router-dom";
+import { getAllGenres } from "../utils/apiRequest";
 import TanstackTable from "./TanstackTable";
 
 const DashBooksTable = ({ data, onDelete }) => {
   const [filter, setFilter] = useState("");
+  const queryClient = useQueryClient();
 
   const columns = [
     {
@@ -55,7 +59,7 @@ const DashBooksTable = ({ data, onDelete }) => {
     },
     {
       accessorFn: (row) => row._id,
-      header: "Edit Book",
+      header: "Update",
       cell: (props) => (
         <button
           className="mx-auto flex aspect-square w-9 items-center justify-center rounded-md border border-[#eee] bg-[#FEF2E2]/30 text-xl text-[#50C878]"
@@ -79,6 +83,13 @@ const DashBooksTable = ({ data, onDelete }) => {
     },
   ];
 
+  const prefetchGenres = async () => {
+    await queryClient.prefetchQuery({
+      queryKey: ["genres"],
+      queryFn: () => getAllGenres(),
+    });
+  };
+
   return (
     <div>
       <div className="flex items-center justify-between gap-3 px-5 py-3">
@@ -95,12 +106,16 @@ const DashBooksTable = ({ data, onDelete }) => {
             <HiOutlineSearch />
           </span>
         </div>
-        <button className="flex items-center gap-1 rounded-md bg-primary p-2 font-medium text-white">
+        <Link
+          to="new"
+          className="flex items-center gap-1 rounded-md bg-primary p-2 font-medium text-white"
+          onMouseOver={prefetchGenres}
+        >
           <span className="text-xl">
             <MdOutlineAdd />
           </span>
           Add Book
-        </button>
+        </Link>
       </div>
       <TanstackTable
         data={data}

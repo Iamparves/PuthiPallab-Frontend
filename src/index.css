@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* width */
+.modalCard::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.modalCard::-webkit-scrollbar-track {
+  background: #fff;
+  border-radius: 5px;
+}
+
+/* Handle */
+.modalCard::-webkit-scrollbar-thumb {
+  background: hsl(220, 30%, 90%);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+.modalCard::-webkit-scrollbar-thumb:hover {
+  background: hsl(220, 35%, 85%);
+}

@@ -60,7 +60,7 @@ const DashGenreForm = ({ updateId, setUpdateId }) => {
     toast.error("Image upload failed! Please try again", { id: toastId });
   };
 
-  const genreSubmit = ({ genreName }) => {
+  const onGenreSubmit = ({ genreName }) => {
     const data = { genreName, imageUrl: genreImg };
 
     if (!updateId) {
@@ -101,7 +101,7 @@ const DashGenreForm = ({ updateId, setUpdateId }) => {
           </button>
         )}
       </div>
-      <form onSubmit={handleSubmit(genreSubmit)}>
+      <form onSubmit={handleSubmit(onGenreSubmit)}>
         <div className="mb-5">
           <label
             htmlFor="genreName"
@@ -146,7 +146,7 @@ const DashGenreForm = ({ updateId, setUpdateId }) => {
         </div>
         <button
           type="submit"
-          className="bg-primary flex w-full items-center justify-center gap-2 rounded-lg p-3 font-semibold text-white duration-300 disabled:opacity-70"
+          className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary p-3 font-semibold text-white duration-300 disabled:opacity-70"
           disabled={isUploading}
         >
           {isUploading || mutation.isPending || updateMutation.isPending ? (

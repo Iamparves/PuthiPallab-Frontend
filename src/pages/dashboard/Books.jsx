@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
+import { Outlet } from "react-router-dom";
 import DashBooksTable from "../../components/DashBooksTable";
 import DashboardHeader from "../../components/DashboardHeader";
 import Spinner from "../../components/Spinner";
@@ -14,7 +15,7 @@ const Books = () => {
     queryFn: () => getAllBooks(),
   });
 
-  const mutation = useMutation({
+  const deleteMutation = useMutation({
     mutationFn: deleteBook,
     onSuccess: (data) => {
       if (data.status === "success") {
@@ -31,11 +32,12 @@ const Books = () => {
   const handleDelete = (bookId) => {
     const confirm = window.confirm("Are you sure you want to delete the book?");
 
-    if (confirm) mutation.mutate(bookId);
+    if (confirm) deleteMutation.mutate(bookId);
   };
 
   return (
     <>
+      <Outlet />
       <DashboardHeader title="Books" desc="Manage library book with ease" />
       <section className="h-[calc(100vh-80px)] overflow-y-auto p-10">
         <div className="rounded-xl border border-gray-200/70 bg-white">
