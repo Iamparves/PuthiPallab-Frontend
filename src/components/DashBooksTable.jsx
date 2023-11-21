@@ -20,9 +20,7 @@ const DashBooksTable = ({ data, onDelete }) => {
       accessorKey: "coverImg",
       header: "Cover",
       cell: (props) => {
-        const cover =
-          // props.getValue() ||
-          "https://www.sketchappsources.com/resources/source-image/profile-illustration-gunaldi-yunus.png";
+        const cover = props.getValue();
 
         return (
           <img src={cover} alt="" className="aspect-[3/4] w-12 object-cover" />
@@ -92,15 +90,17 @@ const DashBooksTable = ({ data, onDelete }) => {
 
   return (
     <div>
-      <div className="flex items-center justify-between gap-3 px-5 py-3">
-        <h2 className="text-xl font-semibold text-[#1d1d1d]">Books List</h2>
-        <div className="relative">
+      <div className="flex items-center justify-between gap-3 px-3 py-2 lg:px-5 lg:py-3">
+        <h2 className="hidden text-lg font-semibold text-[#1d1d1d] sm:block md:text-xl">
+          Books List
+        </h2>
+        <div className="relative w-[60%] max-w-[220px] sm:w-auto sm:max-w-none">
           <input
             type="text"
             onChange={(e) => setFilter(e.target.value)}
             value={filter}
             placeholder="Search"
-            className="block w-64 rounded-xl border-2 border-gray-200/70 px-3 py-2 pl-8 placeholder:text-[#bbb] focus:outline-none"
+            className="block w-full rounded-lg border-2 border-gray-200/70 px-2 py-1.5 pl-8 text-sm placeholder:text-[#bbb] focus:outline-none sm:w-64 sm:rounded-xl sm:px-3 sm:py-2 sm:pl-8 sm:text-base"
           />
           <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-lg text-gray-400/80">
             <HiOutlineSearch />
@@ -108,7 +108,7 @@ const DashBooksTable = ({ data, onDelete }) => {
         </div>
         <Link
           to="new"
-          className="flex items-center gap-1 rounded-md bg-primary p-2 font-medium text-white"
+          className="flex items-center gap-1 rounded-md bg-primary p-2 text-sm font-medium text-white sm:text-base"
           onMouseOver={prefetchGenres}
         >
           <span className="text-xl">

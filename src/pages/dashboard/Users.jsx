@@ -14,7 +14,7 @@ const Users = () => {
   return (
     <>
       <DashboardHeader title="Users" desc="Efficiently oversee user accounts" />
-      <section className="h-[calc(100vh-80px)] overflow-y-auto p-10">
+      <section className="h-[calc(100vh-80px)] overflow-y-auto p-5 lg:p-10">
         <div className="rounded-xl border border-gray-200/70 bg-white">
           {userQuery.isLoading && (
             <div className="flex flex-col items-center justify-center py-20">

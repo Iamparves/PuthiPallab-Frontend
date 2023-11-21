@@ -57,21 +57,22 @@ const menuItems = [
   },
 ];
 
-const MenuLink = ({ path, title, icon, isActive }) => (
+const MenuLink = ({ path, title, icon, isActive, closeSidebar }) => (
   <Link
     to={`${path}`}
-    className={`dashboardMenu flex items-center gap-3 px-8 py-3.5 font-light ${
+    className={`dashboardMenu flex items-center gap-3 px-8 py-3 font-light sm:py-3.5 sm:text-base ${
       isActive
         ? "border-r-4 border-primary bg-[#FEF2E2] text-primary"
         : "border-white text-[#808080] duration-300 hover:bg-[#FEF2E2] hover:text-primary"
     }`}
+    onClick={closeSidebar}
   >
-    <span className="text-xl">{icon}</span>
-    <span className="text-sm">{title}</span>
+    <span className="text-lg sm:text-xl">{icon}</span>
+    <span className="text-xs sm:text-sm">{title}</span>
   </Link>
 );
 
-const DashboardSidebar = () => {
+const DashboardSidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const { pathname } = useLocation();
   const setUser = useStore((state) => state.setUser);
 
@@ -86,50 +87,65 @@ const DashboardSidebar = () => {
     toast.error("Logout failed! Please try again.");
   };
 
-  return (
-    <aside className="h-full border-r border-[#eee]/70 bg-white">
-      <div className="flex h-20 items-center border-b border-[#eee]/70 px-8">
-        <Link to="/">
-          <img className="" src="/logo.svg" alt="Puthi Pallab" />
-        </Link>
-      </div>
-      <div>
-        <p className="px-8 py-4 text-xs font-medium uppercase text-primary">
-          Menu
-        </p>
-        <nav className="flex flex-col gap-1.5">
-          {menuItems.map(({ title, path, icon }, index) => {
-            const isActive = pathname.split("/").slice(-1)[0] === path;
-            return (
-              <MenuLink
-                path={path}
-                title={title}
-                icon={icon}
-                isActive={isActive}
-                key={index}
-              />
-            );
-          })}
-          <hr className="border-gray-200/70" />
-          <MenuLink
-            path="profile"
-            title="Profile"
-            icon={<FiUser />}
-            isActive={pathname.split("/").slice(-1)[0] === "profile"}
-          />
+  const closeSidebar = () => setSidebarOpen(false);
 
-          <button
-            className="flex items-center gap-3 px-8 py-3 text-[#808080] duration-300 hover:text-primary"
-            onClick={handleLogout}
-          >
-            <span className="text-xl">
-              <TbLogout2 />
-            </span>
-            <span className="text-sm duration-300">Logout</span>
-          </button>
-        </nav>
-      </div>
-    </aside>
+  return (
+    <div
+      className={`group invisible fixed left-0 top-0 z-50 h-full w-full bg-black/10 opacity-0 backdrop-blur-[2px] duration-300 lg:visible lg:static lg:opacity-100 [&.active]:visible [&.active]:opacity-100 [&.active]:duration-100 ${
+        sidebarOpen ? "active" : ""
+      }`}
+      onClick={(e) => e.target.classList.contains("group") && closeSidebar()}
+    >
+      <aside className="sidebar h-full w-64 -translate-x-full bg-white duration-300 group-[&.active]:-translate-x-0 lg:w-full lg:-translate-x-0 lg:border-r lg:border-[#eee]/70">
+        <div className="flex h-16 items-center overflow-hidden border-b border-[#eee]/70 px-8 sm:h-20">
+          <Link to="/">
+            <img
+              className="h-10 sm:h-auto"
+              src="/logo.svg"
+              alt="Puthi Pallab"
+            />
+          </Link>
+        </div>
+        <div className="h-[calc(100vh-64px)] overflow-y-auto pb-5 sm:h-[calc(100vh-80px)] sm:pb-10">
+          <p className="px-8 py-4 text-xs font-medium uppercase text-primary">
+            Menu
+          </p>
+          <nav className="flex flex-col gap-1 sm:gap-1.5">
+            {menuItems.map(({ title, path, icon }, index) => {
+              const isActive = pathname.split("/").slice(-1)[0] === path;
+              return (
+                <MenuLink
+                  path={path}
+                  title={title}
+                  icon={icon}
+                  isActive={isActive}
+                  closeSidebar={closeSidebar}
+                  key={index}
+                />
+              );
+            })}
+            <hr className="border-gray-200/70" />
+            <MenuLink
+              path="profile"
+              title="Profile"
+              icon={<FiUser />}
+              isActive={pathname.split("/").slice(-1)[0] === "profile"}
+              onClick={closeSidebar}
+            />
+
+            <button
+              className="flex items-center gap-3 px-8 py-3 text-[#808080] duration-300 hover:text-primary"
+              onClick={handleLogout}
+            >
+              <span className="text-xl">
+                <TbLogout2 />
+              </span>
+              <span className="text-sm duration-300">Logout</span>
+            </button>
+          </nav>
+        </div>
+      </aside>
+    </div>
   );
 };
 

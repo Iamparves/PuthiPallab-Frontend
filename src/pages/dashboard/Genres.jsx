@@ -42,8 +42,8 @@ const Genres = () => {
   return (
     <>
       <DashboardHeader title="Genres" desc="Effortlessly organize genres" />
-      <section className="h-[calc(100vh-80px)] overflow-y-auto p-10">
-        <div className="mx-auto grid max-w-7xl grid-cols-[1fr_500px] gap-6">
+      <section className="h-[calc(100vh-80px)] overflow-y-auto p-5 lg:p-10">
+        <div className="mx-auto grid max-w-7xl grid-cols-[1fr_500px] items-start gap-6">
           <div className="rounded-xl border border-gray-200/70 bg-white p-8">
             <h2 className="mb-2 border-b border-gray-100 pb-1 text-xl font-semibold text-[#2d2d2d]">
               All Genres
@@ -63,9 +63,10 @@ const Genres = () => {
                     key={genre._id}
                     className="grid grid-cols-[80px_1fr_auto_auto] items-center gap-5 border-b border-gray-100 pb-2"
                   >
-                    <div className="w-full">
+                    <div className="aspect-square w-full">
                       <img
-                        src="https://www.rmusentrymedia.com/wp-content/uploads/2023/09/istockphoto-1092170968-612x612-1.jpg"
+                        className="h-full w-full rounded-[4px] object-cover"
+                        src={genre.imageUrl}
                         alt=""
                       />
                     </div>
@@ -88,7 +89,7 @@ const Genres = () => {
                 ))}
             </div>
           </div>
-          <div className="rounded-xl border border-gray-200/70 bg-white p-8">
+          <div className="sticky  top-0 rounded-xl border border-gray-200/70 bg-white p-8">
             <DashGenreForm updateId={updateId} setUpdateId={setUpdateId} />
           </div>
         </div>
