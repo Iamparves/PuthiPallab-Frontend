@@ -46,7 +46,7 @@ const TanstackTable = ({ data, columns, filter, setFilter, pageSize }) => {
                 {headerGroup.headers.map((header) => (
                   <th
                     onClick={header.column.getToggleSortingHandler()}
-                    className="font-Semibold cursor-pointer px-3 py-2 text-left text-xs text-[#1d1d1d] md:py-3 md:text-sm md:text-sm"
+                    className="font-Semibold cursor-pointer px-3 py-2 text-left text-xs text-[#1d1d1d] md:px-5 md:py-3 md:text-sm"
                     key={header.id}
                   >
                     <div className="inline-flex items-center gap-1">

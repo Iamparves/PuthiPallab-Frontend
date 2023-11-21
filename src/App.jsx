@@ -1,6 +1,7 @@
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import "./App.css";
 import DashBookForm from "./components/DashBookForm";
 import Modal from "./components/Modal";
 import ProtectedRoute from "./components/ProtectedRoute";

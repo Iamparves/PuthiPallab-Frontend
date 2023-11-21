@@ -43,17 +43,14 @@ const DashBooksTable = ({ data, onDelete }) => {
     {
       accessorKey: "totalCopies",
       header: "Total",
-      cell: (props) => <p className="text-center">{props.getValue()}</p>,
     },
     {
       accessorKey: "availableCopies",
       header: "Available",
-      cell: (props) => <p className="text-center">{props.getValue()}</p>,
     },
     {
       accessorKey: "borrowCount",
       header: "Borrowed",
-      cell: (props) => <p className="text-center">{props.getValue()}</p>,
     },
     {
       accessorFn: (row) => row._id,
@@ -89,7 +86,7 @@ const DashBooksTable = ({ data, onDelete }) => {
   };
 
   return (
-    <div>
+    <div className="book__table">
       <div className="flex items-center justify-between gap-3 px-3 py-2 lg:px-5 lg:py-3">
         <h2 className="hidden text-lg font-semibold text-[#1d1d1d] sm:block md:text-xl">
           Books List

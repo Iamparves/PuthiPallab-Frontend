@@ -1,0 +1,15 @@
+.book__table
+  table
+  :is(th, td):is(
+    :nth-child(6),
+    :nth-child(7),
+    :nth-child(8),
+    :nth-child(9),
+    :nth-child(10)
+  ) {
+  text-align: center;
+}
+
+:is(.user__table, .book__table) table :is(th, td) {
+  white-space: nowrap;
+}
