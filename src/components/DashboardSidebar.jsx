@@ -106,7 +106,7 @@ const DashboardSidebar = ({ sidebarOpen, setSidebarOpen }) => {
             />
           </Link>
         </div>
-        <div className="h-[calc(100vh-64px)] overflow-y-auto pb-5 sm:h-[calc(100vh-80px)] sm:pb-10">
+        <div className="sidebarContent h-[calc(100vh-64px)] overflow-y-auto pb-5 sm:h-[calc(100vh-80px)] sm:pb-10">
           <p className="px-8 py-4 text-xs font-medium uppercase text-primary">
             Menu
           </p>

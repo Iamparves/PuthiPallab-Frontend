@@ -20,7 +20,8 @@ const DashGenreForm = ({ updateId, setUpdateId }) => {
 
   const genreQuery = useQuery({
     queryKey: ["genres", updateId],
-    queryFn: () => getAllGenres(updateId ? `?_id=${updateId}` : ""),
+    queryFn: () => getAllGenres(`?_id=${updateId}`),
+    enabled: !!updateId,
   });
 
   const mutation = useMutation({

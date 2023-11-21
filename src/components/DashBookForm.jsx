@@ -36,7 +36,8 @@ const DashBookForm = () => {
 
   const booksQuery = useQuery({
     queryKey: ["books", bookId],
-    queryFn: () => getAllBooks(bookId ? `?_id=${bookId}` : ""),
+    queryFn: () => getAllBooks(`?_id=${bookId}`),
+    enabled: !!bookId,
   });
 
   const mutation = useMutation({

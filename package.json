@@ -13,6 +13,8 @@
     "@tanstack/react-query-devtools": "^5.8.4",
     "@tanstack/react-table": "^8.10.7",
     "axios": "^1.6.2",
+    "lodash.debounce": "^4.0.8",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",

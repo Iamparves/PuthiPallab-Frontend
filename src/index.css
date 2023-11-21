@@ -3,24 +3,28 @@
 @tailwind utilities;
 
 /* width */
-:is(.modalCard, .tasnstack__table)::-webkit-scrollbar {
+:is(.modalCard, .tasnstack__table, .sidebarContent)::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 /* Track */
-:is(.modalCard, .tasnstack__table)::-webkit-scrollbar-track {
+:is(.modalCard, .tasnstack__table, .sidebarContent)::-webkit-scrollbar-track {
   background: hsl(220, 30%, 95%);
   border-radius: 5px;
 }
 
 /* Handle */
-:is(.modalCard, .tasnstack__table)::-webkit-scrollbar-thumb {
+:is(.modalCard, .tasnstack__table, .sidebarContent)::-webkit-scrollbar-thumb {
   background: hsl(220, 30%, 90%);
   border-radius: 5px;
 }
 
 /* Handle on hover */
-:is(.modalCard, .tasnstack__table)::-webkit-scrollbar-thumb:hover {
+:is(
+    .modalCard,
+    .tasnstack__table,
+    .sidebarContent
+  )::-webkit-scrollbar-thumb:hover {
   background: hsl(220, 35%, 85%);
 }
