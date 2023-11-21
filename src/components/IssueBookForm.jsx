@@ -6,7 +6,7 @@ import { GoPerson } from "react-icons/go";
 import { LuBookMarked, LuCalendar } from "react-icons/lu";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TbBrandGoogleBigQuery, TbFileUpload } from "react-icons/tb";
-import { getAllBooks, getAllUsers } from "../utils/apiRequest";
+import { getAllBooks, getAllUsers, issueBook } from "../utils/apiRequest";
 
 const style = {
   label: "mb-1 inline-block text-xs font-medium text-gray-400",
@@ -48,19 +48,24 @@ const IssueBookForm = ({ book, user, setBook, setUser }) => {
 
   const mutation = useMutation({
     mutationFn: () => {
-      const data = {
+      const issueData = {
         user: user?._id,
         book: book?._id,
         issueDate: dates.issueDate,
         estimatedReturnDate: dates.estimatedReturnDate,
       };
 
-      console.log(data);
-
-      return () => {};
+      return issueBook(issueData);
     },
-    onSuccess: () => {
-      console.log("Book issued successfully!");
+    onSuccess: (data) => {
+      if (data.status === "success") {
+        return toast.success("Book issued successfully!");
+      }
+
+      toast.error(data.message);
+    },
+    onError: (err) => {
+      toast.error(err.message);
     },
   });
 
@@ -98,13 +103,13 @@ const IssueBookForm = ({ book, user, setBook, setUser }) => {
       });
     }
 
-    if (bookQueryData.availableCopies === 0) {
-      return toast.error("Currently, this book is unavailable in the library", {
+    if (!userQueryData.isVerified) {
+      return toast.error("Books cannot be issued to unverified users!", {
         id: toastId,
       });
     }
 
-    toast.success("This book is available!", { id: toastId });
+    toast.dismiss(toastId);
 
     setUser(userQueryData);
     setBook(bookQueryData);
@@ -124,8 +129,11 @@ const IssueBookForm = ({ book, user, setBook, setUser }) => {
   };
 
   const onIssueBook = async (e) => {
-    console.log("Issue Book");
     e.preventDefault();
+
+    if (book.availableCopies === 0) {
+      return toast.error("Currently, this book is unavailable in the library");
+    }
 
     await mutation.mutate();
 

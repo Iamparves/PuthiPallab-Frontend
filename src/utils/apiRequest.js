@@ -154,3 +154,12 @@ export const deleteBook = async (bookId) => {
     return error.response?.data;
   }
 };
+
+export const issueBook = async (newIssue) => {
+  try {
+    const res = await api.post("/issues", newIssue);
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
