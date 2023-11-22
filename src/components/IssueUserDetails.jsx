@@ -5,7 +5,7 @@ const IssueUserDetails = ({ user }) => {
 
   return (
     <div className="rounded-xl border border-gray-200/70 bg-white">
-      <h1 className="border-b border-gray-200/70 px-5 py-4 text-xl font-semibold text-[#1d1d1d]">
+      <h1 className="border-b border-gray-200/70 px-4 py-3 text-lg font-semibold text-[#1d1d1d] sm:px-5 sm:py-4 sm:text-xl">
         User Details
       </h1>
       {!userId && (
@@ -14,7 +14,7 @@ const IssueUserDetails = ({ user }) => {
         </p>
       )}
       {userId && (
-        <div className="space-y-2 p-5">
+        <div className="space-y-2 p-4 sm:p-5">
           <div className="mb-5">
             <div className="aspect-[4/5] w-40 overflow-hidden rounded-md border p-1">
               <img

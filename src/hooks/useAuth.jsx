@@ -8,6 +8,8 @@ const useAuth = () => {
   const user = useStore((state) => state.user);
 
   useEffect(() => {
+    if (user) return setLoading(false);
+
     (async () => {
       const result = await getMe();
 

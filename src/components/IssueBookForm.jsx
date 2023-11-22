@@ -141,11 +141,11 @@ const IssueBookForm = ({ book, user, setBook, setUser }) => {
   };
 
   return (
-    <div className="rounded-xl border border-gray-200/70 bg-white p-5">
-      <h1 className="mb-5 border-b border-gray-200/70 pb-3 text-xl font-semibold text-[#1d1d1d]">
+    <div className="rounded-xl border border-gray-200/70 bg-white md:col-span-2 2xl:col-span-1">
+      <h1 className="border-b border-gray-200/70 px-4 py-3 text-lg font-semibold text-[#1d1d1d] sm:px-5 sm:py-4 sm:text-xl">
         Issue Book
       </h1>
-      <form className="issueBookForm space-y-5 text-[#1d1d1d]">
+      <form className="issueBookForm grid grid-cols-1 gap-5 p-4 text-[#1d1d1d] sm:p-5 md:grid-cols-2 2xl:grid-cols-1">
         <div>
           <label htmlFor="bookId" className={style.label}>
             Book ID
@@ -222,7 +222,7 @@ const IssueBookForm = ({ book, user, setBook, setUser }) => {
             </span>
           </div>
         </div>
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex items-center justify-center gap-2 md:col-span-2 2xl:col-span-1">
           <button
             type="reset"
             className={style.button2}

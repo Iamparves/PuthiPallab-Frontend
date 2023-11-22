@@ -11,8 +11,8 @@ const IssueBook = () => {
   return (
     <>
       <DashboardHeader title="Issue Book" desc="Issue books to members" />
-      <section className="h-[calc(100vh-80px)] overflow-y-auto overflow-x-hidden p-3 sm:p-5 lg:p-10">
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+      <section className="h-[calc(100vh-80px)] overflow-y-auto overflow-x-hidden p-3 sm:p-5 xl:p-10">
+        <div className="mx-auto grid max-w-lg grid-cols-1 gap-3 md:max-w-none md:grid-cols-2 xl:gap-5 2xl:grid-cols-3">
           <IssueBookForm
             book={book}
             setBook={setBook}
