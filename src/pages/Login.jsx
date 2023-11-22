@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { MdOutlineLock, MdOutlineMailOutline } from "react-icons/md";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import AuthWrapper from "../components/AuthWrapper";
+import FullpageSpinner from "../components/FullpageSpinner";
+import useAuth from "../hooks/useAuth";
 import { useStore } from "../store";
 import { login } from "../utils/apiRequest";
 
@@ -18,9 +20,9 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/dashboard";
+  const { user, loading } = useAuth();
 
   // const [isUnverified, setIsUnverified] = useState(false);
-  const isLoggedIn = useStore((state) => state.loggedIn);
   const setUser = useStore((state) => state.setUser);
 
   const {
@@ -44,9 +46,8 @@ const Login = () => {
     toast.error(result?.message || "Something went wrong");
   };
 
-  useEffect(() => {
-    if (isLoggedIn) return navigate(from, { replace: true });
-  }, [isLoggedIn]);
+  if (loading) return <FullpageSpinner />;
+  if (user) return <Navigate to="/dashboard" replace />;
 
   return (
     <AuthWrapper>
