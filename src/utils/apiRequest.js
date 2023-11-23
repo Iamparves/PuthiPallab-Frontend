@@ -163,3 +163,12 @@ export const issueBook = async (newIssue) => {
     return error.response?.data;
   }
 };
+
+export const getAllIssues = async (query) => {
+  try {
+    const res = await api.get(`/issues${query ? query : ""}`);
+    return res.data.data?.issues;
+  } catch (error) {
+    return error.response?.data;
+  }
+};

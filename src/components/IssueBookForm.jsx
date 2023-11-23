@@ -7,6 +7,7 @@ import { LuBookMarked, LuCalendar } from "react-icons/lu";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TbBrandGoogleBigQuery, TbFileUpload } from "react-icons/tb";
 import { getAllBooks, getAllUsers, issueBook } from "../utils/apiRequest";
+import Spinner from "./Spinner";
 
 const style = {
   label: "mb-1 inline-block text-xs font-medium text-gray-400",
@@ -136,7 +137,6 @@ const IssueBookForm = ({ book, user, setBook, setUser }) => {
     }
 
     await mutation.mutate();
-
     resetFormData();
   };
 
@@ -155,7 +155,10 @@ const IssueBookForm = ({ book, user, setBook, setUser }) => {
               className={style.input}
               type="number"
               placeholder="Enter book ID"
-              onChange={(e) => setBookId(e.target.value)}
+              onChange={(e) => {
+                setBookId(e.target.value);
+                setBook({});
+              }}
               disabled={mutation.isLoading}
             />
             <span className={style.icon}>
@@ -172,7 +175,10 @@ const IssueBookForm = ({ book, user, setBook, setUser }) => {
               className={style.input}
               type="number"
               placeholder="Enter user ID"
-              onChange={(e) => setUserId(e.target.value)}
+              onChange={(e) => {
+                setUserId(e.target.value);
+                setUser({});
+              }}
               disabled={mutation.isLoading}
             />
             <span className={style.icon}>
@@ -251,14 +257,20 @@ const IssueBookForm = ({ book, user, setBook, setUser }) => {
             type="submit"
             className={style.button}
             disabled={
-              mutation.isLoading || !bookId || !userId || !user._id || !book._id
+              mutation.isPending || !bookId || !userId || !user._id || !book._id
             }
             onClick={onIssueBook}
           >
-            <span className="text-xl">
-              <TbFileUpload />
-            </span>{" "}
-            Issue
+            {mutation.isPending ? (
+              <span className="text-xl">
+                <Spinner width="w-5" height="h-5" color="fill-white" />
+              </span>
+            ) : (
+              <span className="text-xl">
+                <TbFileUpload />
+              </span>
+            )}
+            {mutation.isPending ? "Issuing..." : "Issue"}
           </button>
         </div>
       </form>
