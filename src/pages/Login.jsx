@@ -47,7 +47,7 @@ const Login = () => {
   };
 
   if (loading) return <FullpageSpinner />;
-  if (user) return <Navigate to="/dashboard" replace />;
+  if (user) return <Navigate to={from} replace />;
 
   return (
     <AuthWrapper>

@@ -155,19 +155,28 @@ export const deleteBook = async (bookId) => {
   }
 };
 
-export const issueBook = async (newIssue) => {
+export const getAllIssues = async (query) => {
   try {
-    const res = await api.post("/issues", newIssue);
-    return res.data;
+    const res = await api.get(`/issues${query ? query : ""}`);
+    return res.data.data?.issues;
   } catch (error) {
     return error.response?.data;
   }
 };
 
-export const getAllIssues = async (query) => {
+export const getIssue = async (bookId, userId) => {
   try {
-    const res = await api.get(`/issues${query ? query : ""}`);
-    return res.data.data?.issues;
+    const res = await api.get(`/issues/${bookId}/${userId}`);
+    return res.data.data?.issue;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
+export const issueBook = async (newIssue) => {
+  try {
+    const res = await api.post("/issues", newIssue);
+    return res.data;
   } catch (error) {
     return error.response?.data;
   }

@@ -9,7 +9,8 @@ import {
 } from "react-icons/md";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import AuthWrapper from "../components/AuthWrapper";
-import { useStore } from "../store";
+import FullpageSpinner from "../components/FullpageSpinner";
+import useAuth from "../hooks/useAuth";
 import { signup } from "../utils/apiRequest";
 
 const style = {
@@ -23,7 +24,7 @@ const style = {
 
 const Signup = () => {
   const navigate = useNavigate();
-  const isLoggedIn = useStore((state) => state.loggedIn);
+  const { user, loading } = useAuth();
 
   const {
     register,
@@ -66,9 +67,8 @@ const Signup = () => {
     toast.error(result.message);
   };
 
-  if (isLoggedIn) {
-    return <Navigate to="/dashboard" replace />;
-  }
+  if (loading) return <FullpageSpinner />;
+  if (user) return <Navigate to="/dashboard" replace />;
 
   return (
     <AuthWrapper>
@@ -208,7 +208,7 @@ const Signup = () => {
 
           <button
             type="submit"
-            className="bg-primary mt-3 block w-full rounded-lg p-4 text-center font-semibold text-white"
+            className="mt-3 block w-full rounded-lg bg-primary p-4 text-center font-semibold text-white"
           >
             Sign up
           </button>
