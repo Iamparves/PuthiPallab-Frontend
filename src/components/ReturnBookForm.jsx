@@ -70,7 +70,7 @@ const ReturnBookForm = ({ issue, setIssue }) => {
       <h1 className="border-b border-gray-200/70 px-4 py-3 text-lg font-semibold text-[#1d1d1d] sm:px-5 sm:py-4 sm:text-xl">
         Return Book
       </h1>
-      <form className="returnBookForm grid grid-cols-1 gap-5 p-4 text-[#1d1d1d] sm:p-5 md:grid-cols-2 2xl:grid-cols-1">
+      <form className="returnBookForm grid grid-cols-2 gap-x-3 gap-y-5 p-4 text-[#1d1d1d] sm:p-5 xl:grid-cols-1">
         <div>
           <label htmlFor="bookId" className={style.label}>
             Book ID
@@ -83,7 +83,7 @@ const ReturnBookForm = ({ issue, setIssue }) => {
               onChange={(e) => {
                 setBookId(e.target.value);
               }}
-              // disabled={mutation.isLoading}
+              disabled={mutation.isPending}
             />
             <span className={style.icon}>
               <LuBookMarked />
@@ -102,18 +102,18 @@ const ReturnBookForm = ({ issue, setIssue }) => {
               onChange={(e) => {
                 setUserId(e.target.value);
               }}
-              // disabled={mutation.isLoading}
+              disabled={mutation.isPending}
             />
             <span className={style.icon}>
               <GoPerson />
             </span>
           </div>
         </div>
-        <div className="flex items-center justify-center gap-2 md:col-span-2 2xl:col-span-1">
+        <div className="col-span-2 flex items-center justify-center gap-2 xl:col-span-1">
           <button
             type="reset"
             className={style.button2}
-            disabled={mutation.isLoading || (!bookId && !userId)}
+            disabled={mutation.isPending || (!bookId && !userId)}
             onClick={resetFormData}
           >
             <span className="text-xl">
@@ -123,7 +123,7 @@ const ReturnBookForm = ({ issue, setIssue }) => {
           </button>
           <button
             className={style.button}
-            disabled={mutation.isLoading || !bookId || !userId}
+            disabled={mutation.isPending || !bookId || !userId}
             onClick={handlePreview}
           >
             <span className="text-xl">

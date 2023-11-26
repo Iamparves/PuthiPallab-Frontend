@@ -159,7 +159,7 @@ const IssueBookForm = ({ book, user, setBook, setUser }) => {
                 setBookId(e.target.value);
                 setBook({});
               }}
-              disabled={mutation.isLoading}
+              disabled={mutation.isPending}
             />
             <span className={style.icon}>
               <LuBookMarked />
@@ -179,7 +179,7 @@ const IssueBookForm = ({ book, user, setBook, setUser }) => {
                 setUserId(e.target.value);
                 setUser({});
               }}
-              disabled={mutation.isLoading}
+              disabled={mutation.isPending}
             />
             <span className={style.icon}>
               <GoPerson />
@@ -233,7 +233,7 @@ const IssueBookForm = ({ book, user, setBook, setUser }) => {
             type="reset"
             className={style.button2}
             disabled={
-              mutation.isLoading ||
+              mutation.isPending ||
               (!bookId && !userId && !dates.currentDate && !dates.returnDate)
             }
             onClick={resetFormData}
@@ -245,7 +245,7 @@ const IssueBookForm = ({ book, user, setBook, setUser }) => {
           </button>
           <button
             className={style.button}
-            disabled={mutation.isLoading || !bookId || !userId}
+            disabled={mutation.isPending || !bookId || !userId}
             onClick={handlePreview}
           >
             <span className="text-xl">

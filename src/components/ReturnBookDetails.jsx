@@ -24,15 +24,15 @@ const ReturnBookDetails = ({ issue }) => {
         </p>
       )}
       {issue._id && (
-        <div className="grid grid-cols-[240px_1fr] items-center gap-5 p-4 sm:p-5">
+        <div className="grid grid-cols-1 items-center gap-5 p-4 sm:grid-cols-[auto_1fr] sm:p-5">
           <div>
             <img
-              className="mx-auto aspect-[4/5] w-full max-w-[240px] rounded-lg border border-gray-200/70 object-cover p-1"
+              className="aspect-[4/5] w-full max-w-[160px] rounded-lg border border-gray-200/70 object-cover p-1 md:max-w-[240px]"
               src={issue.book.coverImg}
               alt={issue.book.title}
             />
           </div>
-          <div className="space-y-2">
+          <div className="min-w-[320px] space-y-2 text-sm md:text-base">
             <div className="grid grid-cols-[auto_1fr] gap-2">
               <h3 className="font-semibold text-[#1d1d1d]">Book ID: </h3>
               <p className="text-gray-500">{book.bookId}</p>
@@ -54,9 +54,7 @@ const ReturnBookDetails = ({ issue }) => {
               <p className="text-gray-500">{getLocalDate(issue.issueDate)}</p>
             </div>
             <div className="grid grid-cols-[auto_1fr] gap-2">
-              <h3 className="font-semibold text-[#1d1d1d]">
-                Estimated Return Date:{" "}
-              </h3>
+              <h3 className="font-semibold text-[#1d1d1d]">Due Date: </h3>
               <p className="text-gray-500">
                 {getLocalDate(issue.estimatedReturnDate)}
               </p>
