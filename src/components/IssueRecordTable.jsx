@@ -87,7 +87,7 @@ const IssueRecordTable = ({ data }) => {
   ];
 
   return (
-    <div className="user__table">
+    <div className="issueRecord__table">
       <div className="flex items-center justify-between gap-3 px-3 py-2 lg:px-5 lg:py-3">
         <h2 className="text-lg font-semibold text-[#1d1d1d] sm:block md:text-xl">
           Issue Records

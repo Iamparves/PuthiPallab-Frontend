@@ -10,6 +10,8 @@
   text-align: center;
 }
 
-:is(.user__table, .book__table) table :is(th, td) {
+:is(.user__table, .book__table, .issueRecord__table, .waitlist__table)
+  table
+  :is(th, td) {
   white-space: nowrap;
 }

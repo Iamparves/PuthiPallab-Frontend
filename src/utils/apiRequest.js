@@ -181,3 +181,12 @@ export const issueBook = async (newIssue) => {
     return error.response?.data;
   }
 };
+
+export const getAllWaitlist = async (query) => {
+  try {
+    const res = await api.get(`/waitlist${query ? query : ""}`);
+    return res.data.data?.waitlist;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
