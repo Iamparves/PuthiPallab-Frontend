@@ -20,7 +20,7 @@ const Waitlist = () => {
             <div className="flex flex-col items-center justify-center py-20">
               <Spinner color="fill-gray-400" />
               <p className="mt-2 font-medium text-gray-500">
-                Issue Records Loading...
+                waitlist Loading...
               </p>
             </div>
           )}

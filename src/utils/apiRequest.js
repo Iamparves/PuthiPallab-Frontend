@@ -6,6 +6,7 @@ const api = axios.create({
   // baseURL: "https://puthipallab.onrender.com/api/v1",
 });
 
+// Auth
 export const signup = async (data) => {
   try {
     const res = await api.post("/users/signup", data);
@@ -30,6 +31,7 @@ export const logout = async () => {
   return res.data;
 };
 
+// Me
 export const getMe = async () => {
   try {
     const res = await api.get("/users/me");
@@ -39,6 +41,7 @@ export const getMe = async () => {
   }
 };
 
+// Image Upload (ImgBB)
 export const uploadImage = async (imageFile) => {
   try {
     const ImageData = new FormData();
@@ -60,6 +63,7 @@ export const uploadImage = async (imageFile) => {
   }
 };
 
+// Genres
 export const getAllGenres = async (query) => {
   try {
     const res = await api.get(`/genres${query ? query : ""}`);
@@ -96,6 +100,7 @@ export const deleteGenre = async (genreId) => {
   }
 };
 
+// Users
 export const getAllUsers = async (query) => {
   try {
     const res = await api.get(`/users${query ? query : ""}`);
@@ -114,6 +119,7 @@ export const updateUserRole = async (userId, data) => {
   }
 };
 
+// Book
 export const getAllBooks = async (query) => {
   try {
     const res = await api.get(`/books${query ? query : ""}`);
@@ -155,6 +161,7 @@ export const deleteBook = async (bookId) => {
   }
 };
 
+// Issues
 export const getAllIssues = async (query) => {
   try {
     const res = await api.get(`/issues${query ? query : ""}`);
@@ -182,10 +189,30 @@ export const issueBook = async (newIssue) => {
   }
 };
 
+// Waitlist
 export const getAllWaitlist = async (query) => {
   try {
     const res = await api.get(`/waitlist${query ? query : ""}`);
     return res.data.data?.waitlist;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
+// Reviews
+export const getAllReviews = async (query) => {
+  try {
+    const res = await api.get(`/reviews${query ? query : ""}`);
+    return res.data.data?.reviews;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
+export const deleteReview = async (reviewId) => {
+  try {
+    const res = await api.delete(`/reviews/${reviewId}`);
+    return res.data;
   } catch (error) {
     return error.response?.data;
   }
