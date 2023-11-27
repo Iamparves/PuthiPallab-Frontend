@@ -16,7 +16,7 @@ const Modal = ({ children, title }) => {
       onClick={closeModal}
     >
       <div className="modalCard max-h-full w-auto max-w-full overflow-y-auto overflow-x-hidden rounded-md bg-white">
-        <div className="flex items-center justify-between gap-10 border-b border-gray-200/70 px-5 py-3">
+        <div className="flex items-center justify-between gap-10 border-b border-gray-200/70 px-3 py-3 sm:px-5">
           <h2 className="text-lg font-semibold text-[#1d1d1d]">{title}</h2>
           <button
             className="text-2xl text-red-500"

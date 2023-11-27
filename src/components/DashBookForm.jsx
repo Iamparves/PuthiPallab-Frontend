@@ -113,9 +113,9 @@ const DashBookForm = () => {
   }, [booksQuery.data]);
 
   return (
-    <div className="w-[calc(100vw-40px)] max-w-3xl p-8">
+    <div className="w-[calc(100vw-20px)] max-w-xl p-3 sm:w-[calc(100vw-40px)] sm:p-8 md:max-w-3xl">
       <form onSubmit={handleSubmit(onBookSubmit)}>
-        <div className="grid grid-cols-[auto_1fr] items-center gap-6">
+        <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[auto_1fr]">
           <BookImageUpload
             coverImg={coverImg}
             setCoverImg={setCoverImg}
@@ -139,7 +139,7 @@ const DashBookForm = () => {
                 id="title"
                 name="title"
                 placeholder="Enter book title"
-                className="block w-full rounded-md border p-3 focus:outline-none"
+                className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
                 required
               />
             </div>
@@ -159,7 +159,7 @@ const DashBookForm = () => {
                 id="author"
                 name="author"
                 placeholder="Enter author name"
-                className="block w-full rounded-md border p-3 focus:outline-none"
+                className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
                 required
               />
             </div>
@@ -176,12 +176,12 @@ const DashBookForm = () => {
                 id="publisher"
                 name="publisher"
                 placeholder="Enter publisher name"
-                className="block w-full rounded-md border p-3 focus:outline-none"
+                className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
               />
             </div>
           </div>
         </div>
-        <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-5">
+        <div className="mt-5 grid-cols-2 gap-x-6 gap-y-5 space-y-5 md:grid md:space-y-0">
           <div>
             <label
               htmlFor="publicationDate"
@@ -195,7 +195,7 @@ const DashBookForm = () => {
               id="publicationDate"
               name="publicationDate"
               placeholder="Enter publisher name"
-              className="block w-full rounded-md border p-3 focus:outline-none"
+              className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
             />
           </div>
           <div>
@@ -212,7 +212,7 @@ const DashBookForm = () => {
               {...register("bookLanguage")}
               id="bookLanguage"
               name="bookLanguage"
-              className="block w-full cursor-pointer rounded-md border p-3 focus:outline-none"
+              className="block w-full cursor-pointer rounded-md border p-3 text-sm focus:outline-none sm:text-base"
               defaultValue={"বাংলা"}
               required
             >
@@ -233,7 +233,7 @@ const DashBookForm = () => {
               id="pageCount"
               name="pageCount"
               placeholder="Enter book page count"
-              className="block w-full rounded-md border p-3 focus:outline-none"
+              className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
             />
           </div>
           <div>
@@ -252,7 +252,7 @@ const DashBookForm = () => {
               id="totalCopies"
               name="totalCopies"
               placeholder="Enter number copies"
-              className="block w-full rounded-md border p-3 focus:outline-none"
+              className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
               required
             />
           </div>
@@ -270,7 +270,7 @@ const DashBookForm = () => {
               {!genresQuery.isLoading &&
                 genresQuery.data.map((genre) => (
                   <span
-                    className="flex cursor-pointer items-center gap-2 rounded-md border border-gray-200/80 bg-gray-100/50 px-2.5 py-1.5 text-[12px] font-medium text-[#333] [&:has(input:checked)]:border-primary/30 [&:has(input:checked)]:bg-[#FEF2E2] [&:has(input:checked)]:text-primary"
+                    className="flex cursor-pointer items-center gap-2 rounded-md border border-gray-200/80 bg-gray-100/50 px-2 py-1.5 text-[11px] font-medium text-[#333] sm:px-2.5 sm:text-[12px] [&:has(input:checked)]:border-primary/30 [&:has(input:checked)]:bg-[#FEF2E2] [&:has(input:checked)]:text-primary"
                     key={genre._id}
                   >
                     <input
@@ -301,14 +301,14 @@ const DashBookForm = () => {
               id="summary"
               name="summary"
               placeholder="Enter book summary"
-              className="block h-32 w-full resize-none rounded-md border p-3 focus:outline-none"
+              className="block h-32 w-full resize-none rounded-md border p-3 text-sm focus:outline-none sm:text-base"
             ></textarea>
           </div>
         </div>
         <div className="text-center">
           <button
             type="submit"
-            className="mt-6 inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-full border-2 border-primary bg-primary p-3.5 text-center font-medium text-white duration-300 hover:bg-white hover:text-primary disabled:pointer-events-none disabled:opacity-60"
+            className="mt-6 inline-flex w-full max-w-[200px] items-center justify-center gap-2 rounded-full border-2 border-primary bg-primary p-3.5 text-center text-sm font-medium text-white duration-300 hover:bg-white hover:text-primary disabled:pointer-events-none disabled:opacity-60 sm:max-w-xs sm:text-base"
             disabled={isUploading}
           >
             {isUploading ? (
