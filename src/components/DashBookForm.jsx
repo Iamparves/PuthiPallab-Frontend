@@ -134,14 +134,18 @@ const DashBookForm = () => {
                 </span>
               </label>
               <input
-                {...register("title")}
+                {...register("title", { required: "Title is required" })}
                 type="text"
                 id="title"
                 name="title"
                 placeholder="Enter book title"
                 className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
-                required
               />
+              {errors.title && (
+                <span className="mt-1 block text-xs text-red-400">
+                  {errors.title.message}
+                </span>
+              )}
             </div>
             <div>
               <label
@@ -154,14 +158,18 @@ const DashBookForm = () => {
                 </span>
               </label>
               <input
-                {...register("author")}
+                {...register("author", { required: "Author name is required" })}
                 type="text"
                 id="author"
                 name="author"
                 placeholder="Enter author name"
                 className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
-                required
               />
+              {errors.author && (
+                <span className="mt-1 block text-xs text-red-400">
+                  {errors.author.message}
+                </span>
+              )}
             </div>
             <div>
               <label
@@ -247,14 +255,20 @@ const DashBookForm = () => {
               </span>
             </label>
             <input
-              {...register("totalCopies")}
+              {...register("totalCopies", {
+                required: "Number of copies required",
+              })}
               type="Number"
               id="totalCopies"
               name="totalCopies"
               placeholder="Enter number copies"
               className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
-              required
             />
+            {errors.totalCopies && (
+              <span className="mt-1 block text-xs text-red-400">
+                {errors.totalCopies.message}
+              </span>
+            )}
           </div>
           <div className="col-span-2">
             <p
@@ -266,6 +280,7 @@ const DashBookForm = () => {
                 <FaStarOfLife />
               </span>
             </p>
+
             <div className="flex flex-wrap gap-2">
               {!genresQuery.isLoading &&
                 genresQuery.data.map((genre) => (
@@ -275,7 +290,9 @@ const DashBookForm = () => {
                   >
                     <input
                       type="checkbox"
-                      {...register("genres", { required: true })}
+                      {...register("genres", {
+                        required: "Must select at least one genre",
+                      })}
                       id={genre.genreName}
                       name="genres"
                       value={genre._id}
@@ -287,6 +304,11 @@ const DashBookForm = () => {
                   </span>
                 ))}
             </div>
+            {errors.genres && (
+              <span className="mt-2 block text-xs text-red-400">
+                {errors.genres.message}
+              </span>
+            )}
           </div>
           <div className="col-span-2">
             <label
@@ -308,7 +330,7 @@ const DashBookForm = () => {
         <div className="text-center">
           <button
             type="submit"
-            className="mt-6 inline-flex w-full max-w-[200px] items-center justify-center gap-2 rounded-full border-2 border-primary bg-primary p-3.5 text-center text-sm font-medium text-white duration-300 hover:bg-white hover:text-primary disabled:pointer-events-none disabled:opacity-60 sm:max-w-xs sm:text-base"
+            className="mt-6 inline-flex w-full max-w-[200px] items-center justify-center gap-2 rounded-full border-2 border-primary bg-primary p-3.5 text-center text-sm font-medium text-white duration-300 hover:bg-white hover:text-primary disabled:pointer-events-none disabled:opacity-60 sm:max-w-[280px] sm:text-base"
             disabled={isUploading}
           >
             {isUploading ? (

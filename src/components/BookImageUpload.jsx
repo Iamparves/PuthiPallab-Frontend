@@ -10,6 +10,7 @@ const BookImageUpload = ({
   setCoverImg,
   setIsUploading,
   isUpdate,
+  errors,
 }) => {
   const [image, setImage] = useState(null);
 
@@ -43,9 +44,11 @@ const BookImageUpload = ({
           </span>
           <p className="mb-1 mt-6 text-sm text-[#4d91ff] group-hover:underline">
             Click to upload image
-            <span className="ml-1 inline-block text-[10px] text-red-400">
-              <FaStarOfLife />
-            </span>
+            {!isUpdate && (
+              <span className="ml-1 inline-block text-[10px] text-red-400">
+                <FaStarOfLife />
+              </span>
+            )}
           </p>
           <span className="text-xs text-gray-400">( Less than 4 MB )</span>
           {isUpdate && (
