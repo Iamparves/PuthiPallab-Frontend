@@ -79,7 +79,7 @@ const IssueRecordTable = ({ data }) => {
                 : "bg-red-100 text-red-600"
             }`}
           >
-            {fine}
+            {fine} BDT
           </span>
         );
       },

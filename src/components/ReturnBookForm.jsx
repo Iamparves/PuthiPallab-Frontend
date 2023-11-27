@@ -1,4 +1,5 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import moment from "moment";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { GiReturnArrow } from "react-icons/gi";
@@ -6,7 +7,7 @@ import { GoPerson } from "react-icons/go";
 import { LuBookMarked } from "react-icons/lu";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TbBrandGoogleBigQuery } from "react-icons/tb";
-import { getIssue } from "../utils/apiRequest";
+import { getIssue, returnBook } from "../utils/apiRequest";
 import Spinner from "./Spinner";
 
 const style = {
@@ -23,7 +24,8 @@ const style = {
 
 const getCurrentDate = () => moment().toISOString().slice(0, 16);
 
-const ReturnBookForm = ({ issue, setIssue }) => {
+const ReturnBookForm = ({ issue, setIssue, fine }) => {
+  const queryClient = useQueryClient();
   const [bookId, setBookId] = useState("");
   const [userId, setUserId] = useState("");
 
@@ -35,7 +37,16 @@ const ReturnBookForm = ({ issue, setIssue }) => {
   });
 
   const mutation = useMutation({
-    mutationFn: () => {},
+    mutationFn: returnBook,
+    onSuccess: (data) => {
+      if (data.status === "success") {
+        queryClient.invalidateQueries(["issues"]);
+        toast.success("Book returned successfully!");
+      }
+    },
+    onError: (error) => {
+      console.log(error);
+    },
   });
 
   const resetFormData = () => {
@@ -60,8 +71,19 @@ const ReturnBookForm = ({ issue, setIssue }) => {
 
   const onReturnBook = async (e) => {
     e.preventDefault();
+    if (!bookId || !userId) return;
+    const toastId = toast.loading("Returning book...");
 
-    await mutation.mutate();
+    const data = {
+      book: issue.book._id,
+      user: issue.user._id,
+      returnDate: getCurrentDate(),
+      delayedFine: fine,
+    };
+
+    await mutation.mutate(data);
+    toast.dismiss(toastId);
+
     resetFormData();
   };
 
@@ -82,6 +104,7 @@ const ReturnBookForm = ({ issue, setIssue }) => {
               placeholder="Enter book ID"
               onChange={(e) => {
                 setBookId(e.target.value);
+                setIssue({});
               }}
               disabled={mutation.isPending}
             />
@@ -101,6 +124,7 @@ const ReturnBookForm = ({ issue, setIssue }) => {
               placeholder="Enter user ID"
               onChange={(e) => {
                 setUserId(e.target.value);
+                setIssue({});
               }}
               disabled={mutation.isPending}
             />

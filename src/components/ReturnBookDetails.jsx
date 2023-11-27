@@ -1,5 +1,5 @@
 import moment from "moment";
-import React from "react";
+import React, { useEffect } from "react";
 
 const getLocalDate = (date) => {
   if (!date) return "-";
@@ -8,10 +8,18 @@ const getLocalDate = (date) => {
 
 const getCurrentDate = () => moment().toISOString().slice(0, 16);
 
-const ReturnBookDetails = ({ issue }) => {
+const ReturnBookDetails = ({ issue, setFine }) => {
   const { book, user } = issue;
   const isDelayed = issue.estimatedReturnDate < getCurrentDate();
-  const delayedDays = moment().diff(issue.estimatedReturnDate, "days");
+  const delayedDays = moment
+    .duration(moment().diff(issue.estimatedReturnDate))
+    .asDays();
+
+  const delayedFine = 50 + (Math.ceil(delayedDays) - 1) * 10;
+
+  useEffect(() => {
+    setFine(isDelayed ? delayedFine : 0);
+  }, [issue._id]);
 
   return (
     <div className="rounded-xl border border-gray-200/70 bg-white">
@@ -34,19 +42,11 @@ const ReturnBookDetails = ({ issue }) => {
           </div>
           <div className="min-w-[320px] space-y-2 text-sm md:text-base">
             <div className="grid grid-cols-[auto_1fr] gap-2">
-              <h3 className="font-semibold text-[#1d1d1d]">Book ID: </h3>
-              <p className="text-gray-500">{book.bookId}</p>
-            </div>
-            <div className="grid grid-cols-[auto_1fr] gap-2">
-              <h3 className="font-semibold text-[#1d1d1d]">Title: </h3>
+              <h3 className="font-semibold text-[#1d1d1d]">Book: </h3>
               <p className="text-gray-500">{book.title}</p>
             </div>
             <div className="grid grid-cols-[auto_1fr] gap-2">
-              <h3 className="font-semibold text-[#1d1d1d]">User ID: </h3>
-              <p className="text-gray-500">{user.userId}</p>
-            </div>
-            <div className="grid grid-cols-[auto_1fr] gap-2">
-              <h3 className="font-semibold text-[#1d1d1d]">Name: </h3>
+              <h3 className="font-semibold text-[#1d1d1d]">Member: </h3>
               <p className="text-gray-500">{user.name}</p>
             </div>
             <div className="grid grid-cols-[auto_1fr] gap-2">
@@ -60,6 +60,10 @@ const ReturnBookDetails = ({ issue }) => {
               </p>
             </div>
             <div className="grid grid-cols-[auto_1fr] gap-2">
+              <h3 className="font-semibold text-[#1d1d1d]">Return Date: </h3>
+              <p className="text-gray-500">{getLocalDate(moment())}</p>
+            </div>
+            <div className="grid grid-cols-[auto_1fr] items-center gap-2">
               <h3 className="font-semibold text-[#1d1d1d]">Delay Status: </h3>
               <p>
                 <span
@@ -70,16 +74,19 @@ const ReturnBookDetails = ({ issue }) => {
                   }`}
                 >
                   {isDelayed ? "Delayed" : "Not delayed"}{" "}
-                  {isDelayed && `by ${delayedDays} days`}
+                  {isDelayed &&
+                    `by ${Math.trunc(delayedDays)} ${
+                      delayedDays < 2 ? "day" : "days"
+                    }`}
                 </span>
               </p>
             </div>
             {isDelayed && (
-              <div className="grid grid-cols-[auto_1fr] gap-2">
+              <div className="grid grid-cols-[auto_1fr] items-center gap-2">
                 <h3 className="font-semibold text-[#1d1d1d]">Delay Fine: </h3>
                 <p>
                   <span className="inline-block rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-600">
-                    50 BDT
+                    {delayedFine} BDT
                   </span>
                 </p>
               </div>

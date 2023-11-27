@@ -8,7 +8,7 @@ import { getAllIssues } from "../../utils/apiRequest";
 const IssueRecords = () => {
   const issuesQuery = useQuery({
     queryKey: ["issues"],
-    queryFn: () => getAllIssues(),
+    queryFn: () => getAllIssues(`?sort=-updatedAt`),
   });
 
   return (

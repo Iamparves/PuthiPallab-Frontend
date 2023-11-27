@@ -189,6 +189,15 @@ export const issueBook = async (newIssue) => {
   }
 };
 
+export const returnBook = async (data) => {
+  try {
+    const res = await api.patch("/issues", data);
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
 // Waitlist
 export const getAllWaitlist = async (query) => {
   try {
