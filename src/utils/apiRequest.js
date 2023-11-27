@@ -82,9 +82,9 @@ export const addGenre = async (newGenre) => {
   }
 };
 
-export const updateGenre = async ({ genreId, data }) => {
+export const updateGenre = async ({ genreId, genreData }) => {
   try {
-    const res = await api.patch(`/genres/${genreId}`, data);
+    const res = await api.patch(`/genres/${genreId}`, genreData);
     return res.data;
   } catch (error) {
     return error.response?.data;

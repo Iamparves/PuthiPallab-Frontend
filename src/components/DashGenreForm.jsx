@@ -2,15 +2,15 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import {
-  addGenre,
-  getAllGenres,
-  updateGenre,
-  uploadImage,
-} from "../utils/apiRequest";
+import { TbCategoryPlus } from "react-icons/tb";
+import { useNavigate, useParams } from "react-router-dom";
+import { addGenre, getAllGenres, updateGenre } from "../utils/apiRequest";
+import GenreImageUpload from "./GenreImageUpload";
 import Spinner from "./Spinner";
 
-const DashGenreForm = ({ updateId, setUpdateId }) => {
+const DashGenreForm = () => {
+  const { updateId } = useParams();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const [genreImg, setGenreImage] = useState("");
@@ -29,45 +29,39 @@ const DashGenreForm = ({ updateId, setUpdateId }) => {
     onSuccess: () => {
       queryClient.invalidateQueries(["genres"]);
       toast.success("Genre added successfully!");
-      reset({ genreName: "", imageUrl: "" });
-      setGenreImage("");
+
+      navigate(-1);
     },
   });
 
   const updateMutation = useMutation({
     mutationFn: updateGenre,
-    onSuccess: () => {
-      queryClient.invalidateQueries(["genres"]);
-      toast.success("Genre updated successfully!");
+    onSuccess: (data) => {
+      if (data.status === "success") {
+        queryClient.invalidateQueries(["genres"]);
+        toast.success("Genre updated successfully!");
 
-      setUpdateId("");
-      reset({ genreName: "", imageUrl: "" });
-      setGenreImage("");
+        navigate(-1);
+      }
+    },
+    onError: (error) => {
+      console.log(error);
     },
   });
 
-  const handleImageUpload = async (e) => {
-    const toastId = toast.loading("Image is uploading...");
-    setIsUploading(true);
-
-    const result = await uploadImage(e.target.files[0]);
-    setIsUploading(false);
-
-    if (result?.success) {
-      setGenreImage(result.data.display_url);
-      return toast.success("Image upload successful!", { id: toastId });
+  const onGenreSubmit = ({ genreName }) => {
+    if (!genreImg && !updateId) {
+      return toast.error("Please upload genre image");
     }
 
-    toast.error("Image upload failed! Please try again", { id: toastId });
-  };
-
-  const onGenreSubmit = ({ genreName }) => {
-    const data = { genreName, imageUrl: genreImg };
+    const genreData = { genreName };
 
     if (!updateId) {
-      mutation.mutate(data);
+      genreData.imageUrl = genreImg;
+      mutation.mutate(genreData);
     } else {
-      updateMutation.mutate({ genreId: updateId, data });
+      if (genreImg) genreData.imageUrl = genreImg;
+      updateMutation.mutate({ genreId: updateId, genreData });
     }
   };
 
@@ -77,33 +71,22 @@ const DashGenreForm = ({ updateId, setUpdateId }) => {
 
       reset({
         genreName,
-        imageUrl: "",
       });
+
       setGenreImage(imageUrl);
     }
   }, [genreQuery.data]);
 
   return (
-    <>
-      <div className="mb-2 flex items-center justify-between border-b border-gray-100 pb-2">
-        <h2 className="text-xl font-semibold text-[#2d2d2d]">
-          {updateId ? "Update existing" : "Add New"} Genre
-        </h2>
-        {updateId && (
-          <button
-            onClick={() => {
-              setUpdateId("");
-              reset({ genreName: "", imageUrl: "" });
-              setGenreImage("");
-            }}
-            className="rounded-md bg-[#FF5556] px-3 py-1.5 text-xs font-medium text-white"
-          >
-            Cancel
-          </button>
-        )}
-      </div>
-      <form onSubmit={handleSubmit(onGenreSubmit)}>
-        <div className="mb-5">
+    <div className="w-[calc(100vw-20px)] max-w-lg p-3 sm:p-8">
+      <form className="space-y-5" onSubmit={handleSubmit(onGenreSubmit)}>
+        <GenreImageUpload
+          genreImg={genreImg}
+          setGenreImage={setGenreImage}
+          setIsUploading={setIsUploading}
+          isUpdate={!!updateId}
+        />
+        <div>
           <label
             htmlFor="genreName"
             className="mb-1 inline-block text-xs font-medium text-gray-400"
@@ -120,45 +103,22 @@ const DashGenreForm = ({ updateId, setUpdateId }) => {
             required
           />
         </div>
-        <div className="mb-5">
-          <label
-            htmlFor="imageUrl"
-            className="mb-1 inline-block text-xs font-medium text-gray-400"
-          >
-            Genre Image{" "}
-            {updateId ? (
-              <span className="text-red-400">
-                (Don't select anything if you don't want to change the image)
-              </span>
-            ) : (
-              ""
-            )}
-          </label>
-          <input
-            {...register("imageUrl")}
-            type="file"
-            id="imageUrl"
-            name="imageUrl"
-            accept="image/*"
-            className="block w-full cursor-pointer rounded-md bg-gray-100 p-3"
-            required={!updateId}
-            onChange={handleImageUpload}
-          />
-        </div>
         <button
           type="submit"
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary p-3 font-semibold text-white duration-300 disabled:opacity-70"
+          className="mx-auto flex w-full max-w-[200px] items-center justify-center gap-2 rounded-full border-2 border-primary bg-primary p-3 font-semibold text-white duration-300 hover:bg-white hover:text-primary disabled:pointer-events-none disabled:opacity-70"
           disabled={isUploading}
         >
-          {isUploading || mutation.isPending || updateMutation.isPending ? (
-            <Spinner width="w-5" height="h-5" color="fill-orange-400" />
+          {isUploading ? (
+            <Spinner width="w-5" height="h-5" />
           ) : (
-            ""
-          )}{" "}
+            <span className="text-xl">
+              <TbCategoryPlus />
+            </span>
+          )}
           {updateId ? "Update Genre" : "Add Genre"}
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

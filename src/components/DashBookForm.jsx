@@ -330,7 +330,7 @@ const DashBookForm = () => {
         <div className="text-center">
           <button
             type="submit"
-            className="mt-6 inline-flex w-full max-w-[200px] items-center justify-center gap-2 rounded-full border-2 border-primary bg-primary p-3.5 text-center text-sm font-medium text-white duration-300 hover:bg-white hover:text-primary disabled:pointer-events-none disabled:opacity-60 sm:max-w-[280px] sm:text-base"
+            className="mt-6 inline-flex w-full max-w-[200px] items-center justify-center gap-2 rounded-full border-2 border-primary bg-primary p-3.5 text-center text-sm font-medium text-white duration-300 hover:bg-white hover:text-primary disabled:pointer-events-none disabled:opacity-60 sm:max-w-[260px] sm:text-base"
             disabled={isUploading}
           >
             {isUploading ? (

@@ -1,4 +1,4 @@
-.book__table
+.books__table
   table
   :is(th, td):is(
     :nth-child(6),
@@ -10,12 +10,17 @@
   text-align: center;
 }
 
+.genres__table table :is(th, td):is(:nth-child(4), :nth-child(5), ) {
+  text-align: center;
+}
+
 :is(
     .user__table,
-    .book__table,
+    .books__table,
     .issueRecord__table,
     .waitlist__table,
-    .reviews__table
+    .reviews__table,
+    .genres__table
   )
   table
   :is(th, td) {

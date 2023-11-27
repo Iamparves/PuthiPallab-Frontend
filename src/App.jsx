@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import DashBookForm from "./components/DashBookForm";
+import DashGenreForm from "./components/DashGenreForm";
 import Modal from "./components/Modal";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Dashboard from "./pages/Dashboard";
@@ -57,7 +58,25 @@ const App = () => {
                 />
               </Route>
 
-              <Route path="genres" element={<Genres />} />
+              <Route path="genres" element={<Genres />}>
+                <Route
+                  path="new"
+                  element={
+                    <Modal title="Add New Genre">
+                      <DashGenreForm />
+                    </Modal>
+                  }
+                />
+                <Route
+                  path="edit/:updateId"
+                  element={
+                    <Modal title="Update Existing Genre">
+                      <DashGenreForm />
+                    </Modal>
+                  }
+                />
+              </Route>
+
               <Route path="issue-book" element={<IssueBook />} />
               <Route path="return-book" element={<ReturnBook />} />
               <Route path="issue-records" element={<IssueRecords />} />

@@ -1,56 +1,37 @@
-import { useQueryClient } from "@tanstack/react-query";
+import moment from "moment";
 import React, { useState } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 import { MdDeleteOutline, MdOutlineAdd } from "react-icons/md";
 import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import { getAllGenres } from "../utils/apiRequest";
 import TanstackTable from "./TanstackTable";
 
-const DashBooksTable = ({ data, onDelete }) => {
+const DashGenresTable = ({ data, onDelete }) => {
   const [filter, setFilter] = useState("");
-  const queryClient = useQueryClient();
 
   const columns = [
     {
-      accessorKey: "bookId",
-      header: "Book ID",
-    },
-    {
-      accessorKey: "coverImg",
-      header: "Cover",
+      accessorKey: "imageUrl",
+      header: "Thumbnail",
       cell: (props) => {
-        const cover = props.getValue();
+        const thumbnail = props.getValue();
 
         return (
-          <img src={cover} alt="" className="aspect-[3/4] w-12 object-cover" />
+          <img
+            src={thumbnail}
+            alt=""
+            className="aspect-[8/7] w-20 object-cover"
+          />
         );
       },
     },
     {
-      accessorKey: "title",
-      header: "Title",
+      accessorKey: "genreName",
+      header: "Genre",
     },
     {
-      accessorKey: "author",
-      header: "Author",
-    },
-    {
-      accessorFn: (row) =>
-        row.genres.map((genre) => genre.genreName).join(", "),
-      header: "Genres",
-    },
-    {
-      accessorKey: "totalCopies",
-      header: "Total",
-    },
-    {
-      accessorKey: "availableCopies",
-      header: "Available",
-    },
-    {
-      accessorKey: "borrowCount",
-      header: "Borrowed",
+      accessorFn: (row) => moment.utc(row.createdAt).local().format("LLL"),
+      header: "Created At",
     },
     {
       accessorFn: (row) => row._id,
@@ -78,18 +59,11 @@ const DashBooksTable = ({ data, onDelete }) => {
     },
   ];
 
-  const prefetchGenres = async () => {
-    await queryClient.prefetchQuery({
-      queryKey: ["genres"],
-      queryFn: () => getAllGenres(),
-    });
-  };
-
   return (
-    <div className="books__table">
+    <div className="genres__table">
       <div className="flex items-center justify-between gap-3 px-3 py-2 lg:px-5 lg:py-3">
         <h2 className="hidden text-lg font-semibold text-[#1d1d1d] sm:block md:text-xl">
-          Books List
+          Genres List
         </h2>
         <div className="relative w-[60%] max-w-[220px] sm:w-auto sm:max-w-none">
           <input
@@ -106,12 +80,11 @@ const DashBooksTable = ({ data, onDelete }) => {
         <Link
           to="new"
           className="flex items-center gap-1 rounded-md bg-primary p-2 text-sm font-medium text-white sm:text-base"
-          onMouseOver={prefetchGenres}
         >
           <span className="text-xl">
             <MdOutlineAdd />
           </span>
-          Add Book
+          Add Genre
         </Link>
       </div>
       <TanstackTable
@@ -124,4 +97,4 @@ const DashBooksTable = ({ data, onDelete }) => {
   );
 };
 
-export default DashBooksTable;
+export default DashGenresTable;

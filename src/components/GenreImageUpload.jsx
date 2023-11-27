@@ -5,9 +5,9 @@ import { MdDelete } from "react-icons/md";
 import { TbPhotoUp } from "react-icons/tb";
 import { uploadImage } from "../utils/apiRequest";
 
-const BookImageUpload = ({
-  coverImg,
-  setCoverImg,
+const GenreImageUpload = ({
+  genreImg,
+  setGenreImage,
   setIsUploading,
   isUpdate,
 }) => {
@@ -23,7 +23,7 @@ const BookImageUpload = ({
     setIsUploading(false);
 
     if (result?.success) {
-      setCoverImg(result.data.display_url);
+      setGenreImage(result.data.display_url);
       return toast.success("Image upload successful!", { id: toastId });
     }
 
@@ -32,11 +32,11 @@ const BookImageUpload = ({
   };
 
   return (
-    <div className="aspect-[5/6] w-[240px] overflow-hidden rounded-lg border-2 border-dashed bg-[#F8F9FB]">
-      {!image && !coverImg && (
+    <div className="aspect-[4/3] w-full overflow-hidden rounded-lg border-2 border-dashed bg-[#F8F9FB]">
+      {!image && !genreImg && (
         <label
           className="group flex h-full cursor-pointer flex-col items-center justify-center p-5 text-center"
-          htmlFor="coverImg"
+          htmlFor="imageUrl"
         >
           <span className="text-3xl text-gray-400">
             <TbPhotoUp />
@@ -60,8 +60,8 @@ const BookImageUpload = ({
       <input
         type="file"
         accept="image/*"
-        name="coverImg"
-        id="coverImg"
+        name="imageUrl"
+        id="imageUrl"
         className="hidden"
         onChange={async (e) => {
           const imageFile = e.target?.files[0];
@@ -73,10 +73,10 @@ const BookImageUpload = ({
           return await handleImageUpload(imageFile);
         }}
       />
-      {(image || coverImg) && (
+      {(image || genreImg) && (
         <div className="relative h-full w-full p-2">
           <img
-            src={isUpdate ? coverImg || image : image}
+            src={isUpdate ? genreImg || image : image}
             alt=""
             className="h-full w-full rounded-md object-cover"
           />
@@ -84,7 +84,7 @@ const BookImageUpload = ({
             className="absolute right-3 top-3 rounded-md bg-white/90 p-1.5 text-xl text-red-500"
             onClick={() => {
               setImage(null);
-              setCoverImg("");
+              setGenreImage("");
             }}
           >
             <MdDelete />
@@ -95,4 +95,4 @@ const BookImageUpload = ({
   );
 };
 
-export default BookImageUpload;
+export default GenreImageUpload;
