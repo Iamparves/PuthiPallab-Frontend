@@ -4,6 +4,8 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import DashBookForm from "./components/DashBookForm";
 import DashGenreForm from "./components/DashGenreForm";
+import DashProfileGeneral from "./components/DashProfileGeneral";
+import DashProfileSecurity from "./components/DashProfileSecurity";
 import Modal from "./components/Modal";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Dashboard from "./pages/Dashboard";
@@ -38,6 +40,12 @@ const App = () => {
             <Route path="/dashboard" element={<Dashboard />}>
               <Route path="" element={<Navigate to="overview" replace />} />
               <Route path="overview" element={<Overview />} />
+              <Route path="issue-book" element={<IssueBook />} />
+              <Route path="return-book" element={<ReturnBook />} />
+              <Route path="issue-records" element={<IssueRecords />} />
+              <Route path="users" element={<Users />} />
+              <Route path="waitlist" element={<Waitlist />} />
+              <Route path="reviews" element={<Reviews />} />
 
               <Route path="books" element={<Books />}>
                 <Route
@@ -77,13 +85,11 @@ const App = () => {
                 />
               </Route>
 
-              <Route path="issue-book" element={<IssueBook />} />
-              <Route path="return-book" element={<ReturnBook />} />
-              <Route path="issue-records" element={<IssueRecords />} />
-              <Route path="users" element={<Users />} />
-              <Route path="waitlist" element={<Waitlist />} />
-              <Route path="reviews" element={<Reviews />} />
-              <Route path="profile" element={<Profile />} />
+              <Route path="profile" element={<Profile />}>
+                <Route path="" element={<Navigate to="general" replace />} />
+                <Route path="general" element={<DashProfileGeneral />} />
+                <Route path="security" element={<DashProfileSecurity />} />
+              </Route>
             </Route>
           </Route>
           <Route element={<ProtectedRoute allowedRoles={["member"]} />}>

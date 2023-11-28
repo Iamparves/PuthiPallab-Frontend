@@ -72,7 +72,7 @@ const Signup = () => {
 
   return (
     <AuthWrapper>
-      <div className="">
+      <div>
         <Link className="inline-block" to="/">
           <img src="/logo.svg" alt="" />
         </Link>

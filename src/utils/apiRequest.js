@@ -41,6 +41,15 @@ export const getMe = async () => {
   }
 };
 
+export const updateMyPassword = async (passwords) => {
+  try {
+    const res = await api.patch("/users/updateMyPassword", passwords);
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
 // Image Upload (ImgBB)
 export const uploadImage = async (imageFile) => {
   try {
