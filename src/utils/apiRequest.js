@@ -2,8 +2,7 @@ import axios from "axios";
 
 const api = axios.create({
   withCredentials: true,
-  baseURL: "http://localhost:3000/api/v1",
-  // baseURL: "https://puthipallab.onrender.com/api/v1",
+  baseURL: import.meta.env.VITE_BASE_URL,
 });
 
 // Auth

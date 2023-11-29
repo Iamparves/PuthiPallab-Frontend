@@ -14,7 +14,12 @@ const OverviewIssueRecord = () => {
   const [filter, setFilter] = useState("");
 
   const issuesQuery = useQuery({
-    queryKey: ["issues"],
+    queryKey: [
+      "issues",
+      { status: "issued" },
+      { sort: "-updatedAt" },
+      { limit: 6 },
+    ],
     queryFn: () => getAllIssues("?status=issued&sort=-updatedAt&limit=6"),
   });
 
@@ -90,7 +95,7 @@ const OverviewIssueRecord = () => {
 
       <div className="mt-5 text-center">
         <Link
-          to="/issue-records"
+          to="../issue-records"
           className="mx-auto block w-[200px] rounded-full border-2 border-primary bg-primary p-3 text-center font-semibold text-white duration-300 hover:bg-white hover:text-primary"
         >
           View all
