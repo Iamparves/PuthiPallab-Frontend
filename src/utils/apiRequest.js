@@ -244,3 +244,13 @@ export const deleteReview = async (reviewId) => {
     return error.response?.data;
   }
 };
+
+// Overview
+export const getLibrarianOverview = async () => {
+  try {
+    const res = await api.get("/overview");
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};

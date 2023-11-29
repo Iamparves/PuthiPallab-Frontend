@@ -10,7 +10,14 @@ import React, { useState } from "react";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 
-const TanstackTable = ({ data, columns, filter, setFilter, pageSize }) => {
+const TanstackTable = ({
+  data,
+  columns,
+  filter,
+  setFilter,
+  pageSize,
+  noPagination,
+}) => {
   const [sorting, setSorting] = useState([]);
 
   const table = useReactTable({
@@ -86,33 +93,35 @@ const TanstackTable = ({ data, columns, filter, setFilter, pageSize }) => {
           </tbody>
         </table>
       </div>
-      <div className="flex justify-between px-3 py-2 md:px-5 md:py-3">
-        <button
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-          className="flex cursor-pointer items-center gap-1 rounded-lg bg-[#FEF2E2] px-3 py-1.5 text-sm font-medium text-primary disabled:cursor-default disabled:opacity-60 md:text-base"
-        >
-          <GoArrowLeft /> Prev
-        </button>
-        <div className="flex gap-1.5">
-          {new Array(table.getPageCount()).fill().map((_, i) => (
-            <button
-              onClick={() => table.setPageIndex(i)}
-              key={i}
-              className="w-8 cursor-pointer rounded-lg bg-[#FEF2E2] px-3 py-1.5 text-sm font-medium text-primary md:w-9 md:text-base"
-            >
-              {i + 1}
-            </button>
-          ))}
+      {!noPagination && (
+        <div className="flex justify-between px-3 py-2 md:px-5 md:py-3">
+          <button
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+            className="flex cursor-pointer items-center gap-1 rounded-lg bg-[#FEF2E2] px-3 py-1.5 text-sm font-medium text-primary disabled:cursor-default disabled:opacity-60 md:text-base"
+          >
+            <GoArrowLeft /> Prev
+          </button>
+          <div className="flex gap-1.5">
+            {new Array(table.getPageCount()).fill().map((_, i) => (
+              <button
+                onClick={() => table.setPageIndex(i)}
+                key={i}
+                className="w-8 cursor-pointer rounded-lg bg-[#FEF2E2] px-3 py-1.5 text-sm font-medium text-primary md:w-9 md:text-base"
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
+          <button
+            disabled={!table.getCanNextPage()}
+            onClick={() => table.nextPage()}
+            className="flex items-center gap-1 rounded-lg bg-[#FEF2E2] px-3 py-1.5 text-sm font-medium text-primary disabled:cursor-default disabled:opacity-60 md:text-base"
+          >
+            Next <GoArrowRight />
+          </button>
         </div>
-        <button
-          disabled={!table.getCanNextPage()}
-          onClick={() => table.nextPage()}
-          className="flex items-center gap-1 rounded-lg bg-[#FEF2E2] px-3 py-1.5 text-sm font-medium text-primary disabled:cursor-default disabled:opacity-60 md:text-base"
-        >
-          Next <GoArrowRight />
-        </button>
-      </div>
+      )}
     </>
   );
 };

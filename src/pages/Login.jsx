@@ -33,17 +33,20 @@ const Login = () => {
   } = useForm();
 
   const onLogin = async (data) => {
+    const toastId = toast.loading("Logging in...");
     const result = await login(data);
 
     if (result?.status === "success") {
       setUser(result.data.user);
       reset();
 
-      toast.success("Login successful");
+      toast.success("Login successful", { id: toastId });
       return navigate(from, { replace: true });
     }
 
-    toast.error(result?.message || "Something went wrong");
+    toast.error(result?.message || "Something went wrong", {
+      id: toastId,
+    });
   };
 
   if (loading) return <FullpageSpinner />;

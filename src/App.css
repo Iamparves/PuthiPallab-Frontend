@@ -20,7 +20,8 @@
     .issueRecord__table,
     .waitlist__table,
     .reviews__table,
-    .genres__table
+    .genres__table,
+    .overviewIssue__table
   )
   table
   :is(th, td) {
