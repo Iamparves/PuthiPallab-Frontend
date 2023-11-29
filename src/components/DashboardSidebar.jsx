@@ -5,7 +5,7 @@ import { LuFileClock } from "react-icons/lu";
 import { MdDashboard, MdOutlineReviews } from "react-icons/md";
 import { TbBookOff, TbBookUpload, TbBooks, TbLogout2 } from "react-icons/tb";
 import { TfiLayoutListThumb, TfiList } from "react-icons/tfi";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useStore } from "../store";
 import { logout } from "../utils/apiRequest";
 
@@ -58,22 +58,19 @@ const menuItems = [
 ];
 
 const MenuLink = ({ path, title, icon, isActive, closeSidebar }) => (
-  <Link
+  <NavLink
     to={`${path}`}
-    className={`dashboardMenu flex items-center gap-3 px-8 py-3 font-light sm:py-3.5 sm:text-base ${
-      isActive
-        ? "border-r-4 border-primary bg-[#FEF2E2] text-primary"
-        : "border-white text-[#808080] duration-300 hover:bg-[#FEF2E2] hover:text-primary"
-    }`}
+    className={
+      "dashboardMenu flex items-center gap-3 border-white px-8 py-3 font-light text-[#808080] duration-300 hover:bg-[#FEF2E2] hover:text-primary sm:py-3.5 sm:text-base [&.active]:border-r-4 [&.active]:border-primary [&.active]:bg-[#FEF2E2] [&.active]:text-primary"
+    }
     onClick={closeSidebar}
   >
     <span className="text-lg sm:text-xl">{icon}</span>
     <span className="text-xs sm:text-sm">{title}</span>
-  </Link>
+  </NavLink>
 );
 
 const DashboardSidebar = ({ sidebarOpen, setSidebarOpen }) => {
-  const { pathname } = useLocation();
   const setUser = useStore((state) => state.setUser);
 
   const handleLogout = async () => {
@@ -98,38 +95,33 @@ const DashboardSidebar = ({ sidebarOpen, setSidebarOpen }) => {
     >
       <aside className="sidebar h-full w-64 -translate-x-full bg-white duration-300 group-[&.active]:-translate-x-0 lg:w-full lg:-translate-x-0 lg:border-r lg:border-[#eee]/70">
         <div className="flex h-16 items-center overflow-hidden border-b border-[#eee]/70 px-8 sm:h-20">
-          <Link to="/">
+          <NavLink to="/">
             <img
               className="h-10 sm:h-auto"
               src="/logo.svg"
               alt="Puthi Pallab"
             />
-          </Link>
+          </NavLink>
         </div>
         <div className="sidebarContent h-[calc(100vh-64px)] overflow-y-auto pb-5 sm:h-[calc(100vh-80px)] sm:pb-10">
           <p className="px-8 py-4 text-xs font-medium uppercase text-primary">
             Menu
           </p>
           <nav className="flex flex-col gap-1 sm:gap-1.5">
-            {menuItems.map(({ title, path, icon }, index) => {
-              const isActive = pathname.split("/").slice(-1)[0] === path;
-              return (
-                <MenuLink
-                  path={path}
-                  title={title}
-                  icon={icon}
-                  isActive={isActive}
-                  closeSidebar={closeSidebar}
-                  key={index}
-                />
-              );
-            })}
+            {menuItems.map(({ title, path, icon }, index) => (
+              <MenuLink
+                path={path}
+                title={title}
+                icon={icon}
+                closeSidebar={closeSidebar}
+                key={index}
+              />
+            ))}
             <hr className="border-gray-200/70" />
             <MenuLink
               path="profile"
               title="Profile"
               icon={<FiUser />}
-              isActive={pathname.split("/").slice(-1)[0] === "profile"}
               onClick={closeSidebar}
             />
 

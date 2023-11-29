@@ -1,6 +1,6 @@
 import React from "react";
 import { MdLockOutline, MdOutlinePersonOutline } from "react-icons/md";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import DashboardHeader from "../../components/DashboardHeader";
 
 const styles = {
@@ -8,9 +8,6 @@ const styles = {
 };
 
 const Profile = () => {
-  const { pathname } = useLocation();
-  const activePath = pathname.split("/").slice(-1)[0];
-
   return (
     <>
       <DashboardHeader
@@ -20,28 +17,18 @@ const Profile = () => {
       <section className="h-[calc(100vh-80px)] overflow-y-auto p-3 sm:p-5 xl:p-10">
         <div className="mx-auto max-w-3xl overflow-hidden rounded-xl border border-gray-200/70 bg-white">
           <div className="flex gap-0.5 border-b border-gray-200/70">
-            <Link
-              className={`${activePath === "general" ? "active" : ""} ${
-                styles.link
-              }`}
-              to="/dashboard/profile/general"
-            >
+            <NavLink className={styles.link} to="/dashboard/profile/general">
               <span className="text-xl">
                 <MdOutlinePersonOutline />
               </span>
               General
-            </Link>
-            <Link
-              className={`${activePath === "security" ? "active" : ""} ${
-                styles.link
-              }`}
-              to="/dashboard/profile/security"
-            >
+            </NavLink>
+            <NavLink className={styles.link} to="/dashboard/profile/security">
               <span className="text-xl">
                 <MdLockOutline />
               </span>
               Security
-            </Link>
+            </NavLink>
           </div>
           <div className="p-5">
             <Outlet />

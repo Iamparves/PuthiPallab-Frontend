@@ -3,9 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { getMe, updateMe } from "../utils/apiRequest";
+import UserAvatarUpload from "./UserAvatarUpload";
 
 const DashProfileGeneral = () => {
   const [photo, setPhoto] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
+
   const userQuery = useQuery({
     queryKey: ["user"],
     queryFn: getMe,
@@ -25,7 +28,10 @@ const DashProfileGeneral = () => {
   const onUpdate = (data) => {
     const toastId = toast.loading("Updating profile...");
 
-    mutation.mutate(data, {
+    const updateData = { ...data };
+    if (photo) updateData.photo = photo;
+
+    mutation.mutate(updateData, {
       onSuccess: (data) => {
         if (data.status === "success") {
           toast.success("Profile updated successfully", { id: toastId });
@@ -52,13 +58,19 @@ const DashProfileGeneral = () => {
         birthDate: new Date(user.birthDate).toISOString().split("T")[0],
         contactNumber: user.contactNumber,
       });
+
+      if (user.photo) setPhoto(user.photo);
     }
   }, [userQuery.data]);
 
   return (
     <form onSubmit={handleSubmit(onUpdate)}>
       <div className="mx-auto max-w-md space-y-5">
-        <div className="w-52 sm:w-[240px]"></div>
+        <UserAvatarUpload
+          photo={photo}
+          setPhoto={setPhoto}
+          setIsUploading={setIsUploading}
+        />
         <div>
           <label
             htmlFor="name"
