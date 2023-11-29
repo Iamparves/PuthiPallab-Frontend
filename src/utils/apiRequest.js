@@ -41,6 +41,15 @@ export const getMe = async () => {
   }
 };
 
+export const updateMe = async (userData) => {
+  try {
+    const res = await api.patch("/users/updateMe", userData);
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
 export const updateMyPassword = async (passwords) => {
   try {
     const res = await api.patch("/users/updateMyPassword", passwords);

@@ -18,7 +18,7 @@ const Profile = () => {
         desc="Manage your profile effortlessly"
       />
       <section className="h-[calc(100vh-80px)] overflow-y-auto p-3 sm:p-5 xl:p-10">
-        <div className="overflow-hidden rounded-xl border border-gray-200/70 bg-white">
+        <div className="mx-auto max-w-3xl overflow-hidden rounded-xl border border-gray-200/70 bg-white">
           <div className="flex gap-0.5 border-b border-gray-200/70">
             <Link
               className={`${activePath === "general" ? "active" : ""} ${

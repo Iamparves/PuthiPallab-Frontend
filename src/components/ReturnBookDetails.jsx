@@ -11,11 +11,11 @@ const getCurrentDate = () => moment().toISOString().slice(0, 16);
 const ReturnBookDetails = ({ issue, setFine }) => {
   const { book, user } = issue;
   const isDelayed = issue.estimatedReturnDate < getCurrentDate();
-  const delayedDays = moment
-    .duration(moment().diff(issue.estimatedReturnDate))
-    .asDays();
+  const delayedDays = Math.ceil(
+    moment.duration(moment().diff(issue.estimatedReturnDate)).asDays(),
+  );
 
-  const delayedFine = 50 + (Math.ceil(delayedDays) - 1) * 10;
+  const delayedFine = 50 + (delayedDays - 1) * 10;
 
   useEffect(() => {
     setFine(isDelayed ? delayedFine : 0);
@@ -75,9 +75,7 @@ const ReturnBookDetails = ({ issue, setFine }) => {
                 >
                   {isDelayed ? "Delayed" : "Not delayed"}{" "}
                   {isDelayed &&
-                    `by ${Math.trunc(delayedDays)} ${
-                      delayedDays < 2 ? "day" : "days"
-                    }`}
+                    `by ${delayedDays} ${delayedDays < 2 ? "day" : "days"}`}
                 </span>
               </p>
             </div>

@@ -14,17 +14,6 @@ const DashProfileSecurity = () => {
 
   const mutation = useMutation({
     mutationFn: updateMyPassword,
-    onSuccess: (data) => {
-      if (data.status === "success") {
-        reset();
-        return toast.success("Password updated successfully");
-      }
-
-      toast.error(data.message);
-    },
-    onError: (error) => {
-      toast.error(error.message);
-    },
   });
 
   const onUpdate = async (data) => {
@@ -33,103 +22,117 @@ const DashProfileSecurity = () => {
     }
 
     const toastId = toast.loading("Updating password...");
-    await mutation.mutate(data);
-    toast.dismiss(toastId);
+    mutation.mutate(data, {
+      onSuccess: (data) => {
+        if (data.status === "success") {
+          reset();
+          return toast.success("Password updated successfully", {
+            id: toastId,
+          });
+        }
+
+        toast.error(data.message, { id: toastId });
+      },
+      onError: (error) => {
+        toast.error(error.message, { id: toastId });
+      },
+    });
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onUpdate)}>
-        <div className="max-w-md space-y-5">
-          <div>
-            <label
-              htmlFor="passwordCurrent"
-              className="mb-1 inline-block text-xs font-medium text-gray-400"
-            >
-              Current Password
-            </label>
-            <input
-              {...register("passwordCurrent", {
-                required: "Current Password is required",
-              })}
-              type="password"
-              id="passwordCurrent"
-              name="passwordCurrent"
-              placeholder="Enter current password"
-              className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
-            />
-            {errors.passwordCurrent && (
-              <span className="mt-1 block text-xs text-red-400">
-                {errors.passwordCurrent.message}
-              </span>
-            )}
-          </div>
-          <div>
-            <label
-              htmlFor="newPassword"
-              className="mb-1 inline-block text-xs font-medium text-gray-400"
-            >
-              New Password
-            </label>
-            <input
-              {...register("newPassword", {
-                required: "New password is required",
-                minLength: {
-                  value: 6,
-                  message: "Password must be at least 6 characters long",
-                },
-                pattern: {
-                  value: /^(?=.*[0-9])(?=.*[\W_])/,
-                  message:
-                    "Password must include at least 1 digit and 1 symbol",
-                },
-              })}
-              type="password"
-              id="newPassword"
-              name="newPassword"
-              placeholder="Enter new password"
-              className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
-            />
-            {errors.newPassword && (
-              <span className="mt-1 block text-xs text-red-400">
-                {errors.newPassword.message}
-              </span>
-            )}
-          </div>
-          <div>
-            <label
-              htmlFor="newPasswordConfirm"
-              className="mb-1 inline-block text-xs font-medium text-gray-400"
-            >
-              Confirm New Password
-            </label>
-            <input
-              {...register("newPasswordConfirm", {
-                required: "Confirm Password is required",
-              })}
-              type="password"
-              id="newPasswordConfirm"
-              name="newPasswordConfirm"
-              placeholder="Confirm new password"
-              className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
-            />
-            {errors.newPasswordConfirm && (
-              <span className="mt-1 block text-xs text-red-400">
-                {errors.newPasswordConfirm.message}
-              </span>
-            )}
-          </div>
-          <div>
-            <button
-              type="submit"
-              className="mx-auto block w-[200px] rounded-full border-2 border-primary bg-primary p-3 text-center font-semibold text-white duration-300 hover:bg-white hover:text-primary"
-            >
-              Change Password
-            </button>
-          </div>
+    <form onSubmit={handleSubmit(onUpdate)}>
+      <div className="mx-auto max-w-md space-y-5">
+        <div>
+          <label
+            htmlFor="passwordCurrent"
+            className="mb-1 inline-block text-xs font-medium text-gray-400"
+          >
+            Current Password
+          </label>
+          <input
+            {...register("passwordCurrent", {
+              required: "Current Password is required",
+            })}
+            type="password"
+            id="passwordCurrent"
+            name="passwordCurrent"
+            placeholder="Enter current password"
+            className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
+            disabled={mutation.isPending}
+          />
+          {errors.passwordCurrent && (
+            <span className="mt-1 block text-xs text-red-400">
+              {errors.passwordCurrent.message}
+            </span>
+          )}
         </div>
-      </form>
-    </div>
+        <div>
+          <label
+            htmlFor="newPassword"
+            className="mb-1 inline-block text-xs font-medium text-gray-400"
+          >
+            New Password
+          </label>
+          <input
+            {...register("newPassword", {
+              required: "New password is required",
+              minLength: {
+                value: 6,
+                message: "Password must be at least 6 characters long",
+              },
+              pattern: {
+                value: /^(?=.*[0-9])(?=.*[\W_])/,
+                message: "Password must include at least 1 digit and 1 symbol",
+              },
+            })}
+            type="password"
+            id="newPassword"
+            name="newPassword"
+            placeholder="Enter new password"
+            className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
+            disabled={mutation.isPending}
+          />
+          {errors.newPassword && (
+            <span className="mt-1 block text-xs text-red-400">
+              {errors.newPassword.message}
+            </span>
+          )}
+        </div>
+        <div>
+          <label
+            htmlFor="newPasswordConfirm"
+            className="mb-1 inline-block text-xs font-medium text-gray-400"
+          >
+            Confirm New Password
+          </label>
+          <input
+            {...register("newPasswordConfirm", {
+              required: "Confirm Password is required",
+            })}
+            type="password"
+            id="newPasswordConfirm"
+            name="newPasswordConfirm"
+            placeholder="Confirm new password"
+            className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
+            disabled={mutation.isPending}
+          />
+          {errors.newPasswordConfirm && (
+            <span className="mt-1 block text-xs text-red-400">
+              {errors.newPasswordConfirm.message}
+            </span>
+          )}
+        </div>
+        <div>
+          <button
+            type="submit"
+            className="mx-auto block w-[200px] rounded-full border-2 border-primary bg-primary p-3 text-center font-semibold text-white duration-300 hover:bg-white hover:text-primary disabled:pointer-events-none disabled:opacity-50"
+            disabled={mutation.isPending}
+          >
+            Change Password
+          </button>
+        </div>
+      </div>
+    </form>
   );
 };
 
