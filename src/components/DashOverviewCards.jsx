@@ -29,7 +29,8 @@ const DashOverviewCards = ({ overview }) => {
     issuedBooks,
     returnedBooks,
     totalReviews,
-  } = overview;
+  } = overview || {};
+
   return (
     <div className="grid grid-cols-2 gap-3 p-3 sm:gap-5 sm:p-5 md:grid-cols-3 2xl:grid-cols-6">
       <OverviewCard
