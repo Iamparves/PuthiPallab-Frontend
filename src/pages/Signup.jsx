@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { AiOutlineMan, AiOutlineWoman } from "react-icons/ai";
@@ -25,6 +25,8 @@ const style = {
 const Signup = () => {
   const navigate = useNavigate();
   const { user, loading } = useAuth();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -80,7 +82,11 @@ const Signup = () => {
           Create a new account
         </h1>
 
-        <form className="text-[#1d1d1d]" onSubmit={handleSubmit(onSignup)}>
+        <form
+          aria-disabled={isLoading}
+          className="text-[#1d1d1d] aria-disabled:pointer-events-none aria-disabled:opacity-60"
+          onSubmit={handleSubmit(onSignup)}
+        >
           <div className="mb-3">
             <div className="relative">
               <input

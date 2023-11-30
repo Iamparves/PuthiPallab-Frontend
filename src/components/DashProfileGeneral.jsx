@@ -55,7 +55,9 @@ const DashProfileGeneral = () => {
         name: user.name,
         email: user.email,
         gender: user.gender,
-        birthDate: new Date(user.birthDate).toISOString().split("T")[0],
+        birthDate: user.birthDate
+          ? new Date(user.birthDate).toISOString().split("T")[0]
+          : null,
         contactNumber: user.contactNumber,
       });
 

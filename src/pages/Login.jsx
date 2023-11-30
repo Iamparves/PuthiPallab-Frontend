@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { MdOutlineLock, MdOutlineMailOutline } from "react-icons/md";
@@ -22,6 +22,7 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/dashboard";
   const { user, loading } = useAuth();
 
+  const [isLoading, setIsLoading] = useState(false);
   // const [isUnverified, setIsUnverified] = useState(false);
   const setUser = useStore((state) => state.setUser);
 
@@ -33,6 +34,7 @@ const Login = () => {
   } = useForm();
 
   const onLogin = async (data) => {
+    setIsLoading(true);
     const toastId = toast.loading("Logging in...");
     const result = await login(data);
 
@@ -62,7 +64,11 @@ const Login = () => {
           Log in to your account
         </h1>
 
-        <form className="text-[#1d1d1d]" onSubmit={handleSubmit(onLogin)}>
+        <form
+          aria-disabled={isLoading}
+          className="text-[#1d1d1d] aria-disabled:pointer-events-none aria-disabled:opacity-60"
+          onSubmit={handleSubmit(onLogin)}
+        >
           <div className="mb-3">
             <div className="relative">
               <input
