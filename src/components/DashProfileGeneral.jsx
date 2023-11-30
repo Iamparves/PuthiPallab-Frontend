@@ -2,15 +2,17 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useStore } from "../store";
 import { getMe, updateMe } from "../utils/apiRequest";
 import UserAvatarUpload from "./UserAvatarUpload";
 
 const DashProfileGeneral = () => {
   const [photo, setPhoto] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
+  const user = useStore((state) => state.user);
 
   const userQuery = useQuery({
-    queryKey: ["user"],
+    queryKey: ["user", user?._id],
     queryFn: getMe,
   });
 
@@ -66,7 +68,11 @@ const DashProfileGeneral = () => {
   }, [userQuery.data]);
 
   return (
-    <form onSubmit={handleSubmit(onUpdate)}>
+    <form
+      aria-disabled={isUploading}
+      className="aria-disabled:pointer-events-none aria-disabled:opacity-60"
+      onSubmit={handleSubmit(onUpdate)}
+    >
       <div className="mx-auto max-w-md space-y-5">
         <UserAvatarUpload
           photo={photo}

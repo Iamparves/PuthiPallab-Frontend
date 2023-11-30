@@ -44,7 +44,10 @@ const Signup = () => {
       return toast.error("Password and Confirm Password doesn't match");
     }
 
+    setIsLoading(true);
+    const toastId = toast.loading("Signing up...");
     const result = await signup(data);
+    setIsLoading(false);
 
     if (result.status === "success") {
       reset();
@@ -59,6 +62,7 @@ const Signup = () => {
           </p>
         </div>,
         {
+          id: toastId,
           duration: 3000,
         },
       );
@@ -66,7 +70,7 @@ const Signup = () => {
       return navigate("/login");
     }
 
-    toast.error(result.message);
+    toast.error(result.message, { id: toastId });
   };
 
   if (loading) return <FullpageSpinner />;

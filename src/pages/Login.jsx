@@ -37,6 +37,7 @@ const Login = () => {
     setIsLoading(true);
     const toastId = toast.loading("Logging in...");
     const result = await login(data);
+    setIsLoading(false);
 
     if (result?.status === "success") {
       setUser(result.data.user);
