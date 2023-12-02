@@ -10,7 +10,7 @@ const Unauthorized = () => {
   return (
     <main>
       <section className="flex min-h-[100dvh] items-center justify-center bg-white">
-        <div className="container">
+        <div className="container py-10">
           <div className="mx-auto grid max-w-sm grid-cols-1 items-center gap-10 rounded-md md:max-w-3xl md:grid-cols-[auto_1fr]">
             <img
               className="mx-auto block w-[300px] lg:w-[350px]"
