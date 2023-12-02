@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Signup from "./pages/Signup";
 import Unauthorized from "./pages/Unauthorized";
+import UnverifiedAccount from "./pages/UnverifiedAccount";
 import Books from "./pages/dashboard/Books";
 import Genres from "./pages/dashboard/Genres";
 import IssueBook from "./pages/dashboard/IssueBook";
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/" index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/unverified-account" element={<UnverifiedAccount />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
 
           <Route element={<ProtectedRoute allowedRoles={["librarian"]} />}>

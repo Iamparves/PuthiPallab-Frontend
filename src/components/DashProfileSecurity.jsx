@@ -40,7 +40,11 @@ const DashProfileSecurity = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onUpdate)}>
+    <form
+      aria-disabled={mutation.isPending}
+      className="aria-disabled:pointer-events-none aria-disabled:opacity-60"
+      onSubmit={handleSubmit(onUpdate)}
+    >
       <div className="mx-auto max-w-md space-y-5">
         <div>
           <label
@@ -58,7 +62,6 @@ const DashProfileSecurity = () => {
             name="passwordCurrent"
             placeholder="Enter current password"
             className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
-            disabled={mutation.isPending}
           />
           {errors.passwordCurrent && (
             <span className="mt-1 block text-xs text-red-400">
@@ -90,7 +93,6 @@ const DashProfileSecurity = () => {
             name="newPassword"
             placeholder="Enter new password"
             className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
-            disabled={mutation.isPending}
           />
           {errors.newPassword && (
             <span className="mt-1 block text-xs text-red-400">
@@ -114,7 +116,6 @@ const DashProfileSecurity = () => {
             name="newPasswordConfirm"
             placeholder="Confirm new password"
             className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
-            disabled={mutation.isPending}
           />
           {errors.newPasswordConfirm && (
             <span className="mt-1 block text-xs text-red-400">
@@ -125,8 +126,7 @@ const DashProfileSecurity = () => {
         <div>
           <button
             type="submit"
-            className="mx-auto block w-[200px] rounded-full border-2 border-primary bg-primary p-3 text-center font-semibold text-white duration-300 hover:bg-white hover:text-primary disabled:pointer-events-none disabled:opacity-50"
-            disabled={mutation.isPending}
+            className="mx-auto block w-[200px] rounded-full border-2 border-primary bg-primary p-3 text-center font-semibold text-white duration-300 hover:bg-white hover:text-primary"
           >
             Change Password
           </button>

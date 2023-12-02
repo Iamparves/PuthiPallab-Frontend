@@ -4,8 +4,8 @@ const api = axios.create({
   withCredentials: true,
   baseURL: import.meta.env.VITE_BASE_URL,
   headers: {
-    'Access-Control-Allow-Origin': '*'
-  }
+    "Access-Control-Allow-Origin": "*",
+  },
 });
 
 // Auth
@@ -31,6 +31,15 @@ export const logout = async () => {
   const res = await api.get("/users/logout");
 
   return res.data;
+};
+
+export const resendVerificationEmail = async (data) => {
+  try {
+    const res = await api.post("/users/resendVerificationEmail", data);
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
 };
 
 // Me

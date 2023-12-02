@@ -23,7 +23,6 @@ const Login = () => {
   const { user, loading } = useAuth();
 
   const [isLoading, setIsLoading] = useState(false);
-  // const [isUnverified, setIsUnverified] = useState(false);
   const setUser = useStore((state) => state.setUser);
 
   const {
@@ -38,6 +37,12 @@ const Login = () => {
     const toastId = toast.loading("Logging in...");
     const result = await login(data);
     setIsLoading(false);
+
+    if (result?.status === "fail" && result?.isVerified === false) {
+      toast.error(result?.message, { id: toastId });
+
+      return navigate("/unverified-account", { state: { email: data.email } });
+    }
 
     if (result?.status === "success") {
       setUser(result.data.user);

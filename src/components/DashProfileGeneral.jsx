@@ -30,8 +30,7 @@ const DashProfileGeneral = () => {
   const onUpdate = (data) => {
     const toastId = toast.loading("Updating profile...");
 
-    const updateData = { ...data };
-    if (photo) updateData.photo = photo;
+    const updateData = { ...data, photo };
 
     mutation.mutate(updateData, {
       onSuccess: (data) => {
@@ -69,7 +68,7 @@ const DashProfileGeneral = () => {
 
   return (
     <form
-      aria-disabled={isUploading}
+      aria-disabled={isUploading || mutation.isPending}
       className="aria-disabled:pointer-events-none aria-disabled:opacity-60"
       onSubmit={handleSubmit(onUpdate)}
     >
@@ -93,7 +92,6 @@ const DashProfileGeneral = () => {
             name="name"
             placeholder="Enter your name"
             className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
-            disabled={mutation.isPending}
           />
           {errors.name && (
             <span className="mt-1 block text-xs text-red-400">
@@ -130,7 +128,6 @@ const DashProfileGeneral = () => {
             id="gender"
             name="gender"
             className="block w-full cursor-pointer rounded-md border p-3 text-sm focus:outline-none sm:text-base"
-            disabled={mutation.isPending}
           >
             <option value="male">Male</option>
             <option value="female">Female</option>
@@ -149,7 +146,6 @@ const DashProfileGeneral = () => {
             id="birthDate"
             name="birthDate"
             className="block w-full cursor-pointer rounded-md border p-3 text-sm focus:outline-none sm:text-base"
-            disabled={mutation.isPending}
           />
         </div>
         <div>
@@ -166,14 +162,12 @@ const DashProfileGeneral = () => {
             name="contactNumber"
             placeholder="Enter your contact number"
             className="block w-full rounded-md border p-3 text-sm focus:outline-none sm:text-base"
-            disabled={mutation.isPending}
           />
         </div>
         <div>
           <button
             type="submit"
-            className="mx-auto block w-[200px] rounded-full border-2 border-primary bg-primary p-3 text-center font-semibold text-white duration-300 hover:bg-white hover:text-primary disabled:pointer-events-none disabled:opacity-50"
-            disabled={mutation.isPending}
+            className="mx-auto block w-[200px] rounded-full border-2 border-primary bg-primary p-3 text-center font-semibold text-white duration-300 hover:bg-white hover:text-primary"
           >
             Save Changes
           </button>
