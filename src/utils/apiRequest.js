@@ -42,6 +42,24 @@ export const resendVerificationEmail = async (data) => {
   }
 };
 
+export const forgotPassword = async (data) => {
+  try {
+    const res = await api.post("/users/forgotPassword", data);
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
+export const resetPassword = async (token, data) => {
+  try {
+    const res = await api.patch(`/users/resetPassword/${token}`, data);
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
 // Me
 export const getMe = async () => {
   try {

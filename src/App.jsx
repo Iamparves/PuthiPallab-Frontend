@@ -9,9 +9,11 @@ import DashProfileSecurity from "./components/DashProfileSecurity";
 import Modal from "./components/Modal";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Dashboard from "./pages/Dashboard";
+import ForgotPassword from "./pages/ForgotPassword";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import ResetPassword from "./pages/ResetPassword";
 import Signup from "./pages/Signup";
 import Unauthorized from "./pages/Unauthorized";
 import UnverifiedAccount from "./pages/UnverifiedAccount";
@@ -35,6 +37,8 @@ const App = () => {
           <Route path="/" index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/unverified-account" element={<UnverifiedAccount />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
 
