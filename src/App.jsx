@@ -44,10 +44,22 @@ const App = () => {
           <Route path="/unverified-account" element={<UnverifiedAccount />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
 
-          <Route element={<ProtectedRoute allowedRoles={["librarian"]} />}>
-            <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route
+              element={
+                <ProtectedRoute allowedRoles={["librarian", "member"]} />
+              }
+            >
               <Route path="" element={<Navigate to="overview" replace />} />
               <Route path="overview" element={<Overview />} />
+              <Route path="profile" element={<Profile />}>
+                <Route path="" element={<Navigate to="general" replace />} />
+                <Route path="general" element={<DashProfileGeneral />} />
+                <Route path="security" element={<DashProfileSecurity />} />
+              </Route>
+            </Route>
+
+            <Route element={<ProtectedRoute allowedRoles={["librarian"]} />}>
               <Route path="issue-book" element={<IssueBook />} />
               <Route path="return-book" element={<ReturnBook />} />
               <Route path="issue-records" element={<IssueRecords />} />
@@ -92,18 +104,10 @@ const App = () => {
                   }
                 />
               </Route>
-
-              <Route path="profile" element={<Profile />}>
-                <Route path="" element={<Navigate to="general" replace />} />
-                <Route path="general" element={<DashProfileGeneral />} />
-                <Route path="security" element={<DashProfileSecurity />} />
-              </Route>
             </Route>
-          </Route>
-          <Route element={<ProtectedRoute allowedRoles={["member"]} />}>
-            <Route path="/dashboard" element={<Dashboard />}>
-              <Route path="" element={<Navigate to="profile" replace />} />
-              <Route path="profile" element={<Profile />} />
+
+            <Route element={<ProtectedRoute allowedRoles={["member"]} />}>
+              {/* <Route path="profile" element={<Profile />} /> */}
             </Route>
           </Route>
 

@@ -40,7 +40,7 @@ const OverviewIssueRecord = () => {
       header: "Book",
     },
     {
-      accessorFn: (row) => row.user.name,
+      accessorFn: (row) => row.user?.name || "-",
       header: "Member",
     },
     {

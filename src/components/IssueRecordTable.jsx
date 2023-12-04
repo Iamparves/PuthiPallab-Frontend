@@ -28,7 +28,8 @@ const IssueRecordTable = ({ data }) => {
       header: "BookId - Title",
     },
     {
-      accessorFn: (row) => `${row.user.userId} - ${row.user.name}`,
+      accessorFn: (row) =>
+        `${row.user?.userId || ""} - ${row.user?.name || ""}`,
       header: "UserId - Name",
     },
     {
