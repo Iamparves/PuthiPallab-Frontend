@@ -9,7 +9,15 @@ import { NavLink } from "react-router-dom";
 import { useStore } from "../store";
 import { logout } from "../utils/apiRequest";
 
-const menuItems = [
+const memberMenuItems = [
+  {
+    title: "Overview",
+    path: "overview",
+    icon: <MdDashboard />,
+  },
+];
+
+const librarianMenuItems = [
   {
     title: "Overview",
     path: "overview",
@@ -57,7 +65,7 @@ const menuItems = [
   },
 ];
 
-const MenuLink = ({ path, title, icon, isActive, closeSidebar }) => (
+const MenuLink = ({ path, title, icon, closeSidebar }) => (
   <NavLink
     to={`${path}`}
     className={
@@ -71,6 +79,7 @@ const MenuLink = ({ path, title, icon, isActive, closeSidebar }) => (
 );
 
 const DashboardSidebar = ({ sidebarOpen, setSidebarOpen }) => {
+  const user = useStore((state) => state.user);
   const setUser = useStore((state) => state.setUser);
 
   const handleLogout = async () => {
@@ -108,7 +117,10 @@ const DashboardSidebar = ({ sidebarOpen, setSidebarOpen }) => {
             Menu
           </p>
           <nav className="flex flex-col gap-1 sm:gap-1.5">
-            {menuItems.map(({ title, path, icon }, index) => (
+            {(user.role === "librarian"
+              ? librarianMenuItems
+              : memberMenuItems
+            ).map(({ title, path, icon }, index) => (
               <MenuLink
                 path={path}
                 title={title}
@@ -117,7 +129,7 @@ const DashboardSidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 key={index}
               />
             ))}
-            <hr className="border-gray-200/70" />
+            {user.role === "librarian" && <hr className="border-gray-200/70" />}
             <MenuLink
               path="profile"
               title="Profile"
