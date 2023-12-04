@@ -33,6 +33,15 @@ export const logout = async () => {
   return res.data;
 };
 
+export const verifyEmail = async (token) => {
+  try {
+    const res = await api.patch(`/users/verifyEmail/${token}`);
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
 export const resendVerificationEmail = async (data) => {
   try {
     const res = await api.post("/users/resendVerificationEmail", data);

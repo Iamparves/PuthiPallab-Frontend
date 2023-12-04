@@ -17,6 +17,7 @@ import ResetPassword from "./pages/ResetPassword";
 import Signup from "./pages/Signup";
 import Unauthorized from "./pages/Unauthorized";
 import UnverifiedAccount from "./pages/UnverifiedAccount";
+import VerifyEmail from "./pages/VerifyEmail";
 import Books from "./pages/dashboard/Books";
 import Genres from "./pages/dashboard/Genres";
 import IssueBook from "./pages/dashboard/IssueBook";
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/" index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/verify-email/:token" element={<VerifyEmail />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/unverified-account" element={<UnverifiedAccount />} />
