@@ -8,12 +8,18 @@ import { TfiLayoutListThumb, TfiList } from "react-icons/tfi";
 import { NavLink } from "react-router-dom";
 import { useStore } from "../store";
 import { logout } from "../utils/apiRequest";
+import Spinner from "./Spinner";
 
 const memberMenuItems = [
   {
     title: "Overview",
     path: "overview",
     icon: <MdDashboard />,
+  },
+  {
+    title: "Reviews",
+    path: "reviews",
+    icon: <MdOutlineReviews />,
   },
 ];
 
@@ -113,40 +119,51 @@ const DashboardSidebar = ({ sidebarOpen, setSidebarOpen }) => {
           </NavLink>
         </div>
         <div className="sidebarContent h-[calc(100vh-64px)] overflow-y-auto pb-5 sm:h-[calc(100vh-80px)] sm:pb-10">
-          <p className="px-8 py-4 text-xs font-medium uppercase text-primary">
-            Menu
-          </p>
-          <nav className="flex flex-col gap-1 sm:gap-1.5">
-            {(user.role === "librarian"
-              ? librarianMenuItems
-              : memberMenuItems
-            ).map(({ title, path, icon }, index) => (
-              <MenuLink
-                path={path}
-                title={title}
-                icon={icon}
-                closeSidebar={closeSidebar}
-                key={index}
-              />
-            ))}
-            {user.role === "librarian" && <hr className="border-gray-200/70" />}
-            <MenuLink
-              path="profile"
-              title="Profile"
-              icon={<FiUser />}
-              onClick={closeSidebar}
-            />
+          {user && (
+            <>
+              <p className="px-8 py-4 text-xs font-medium uppercase text-primary">
+                Menu
+              </p>
+              <nav className="flex flex-col gap-1 sm:gap-1.5">
+                {(user.role === "librarian"
+                  ? librarianMenuItems
+                  : memberMenuItems
+                ).map(({ title, path, icon }, index) => (
+                  <MenuLink
+                    path={path}
+                    title={title}
+                    icon={icon}
+                    closeSidebar={closeSidebar}
+                    key={index}
+                  />
+                ))}
+                {user.role === "librarian" && (
+                  <hr className="border-gray-200/70" />
+                )}
+                <MenuLink
+                  path="profile"
+                  title="Profile"
+                  icon={<FiUser />}
+                  onClick={closeSidebar}
+                />
 
-            <button
-              className="flex items-center gap-3 px-8 py-3 text-[#808080] duration-300 hover:text-primary"
-              onClick={handleLogout}
-            >
-              <span className="text-xl">
-                <TbLogout2 />
-              </span>
-              <span className="text-sm duration-300">Logout</span>
-            </button>
-          </nav>
+                <button
+                  className="flex items-center gap-3 px-8 py-3 text-[#808080] duration-300 hover:text-primary"
+                  onClick={handleLogout}
+                >
+                  <span className="text-xl">
+                    <TbLogout2 />
+                  </span>
+                  <span className="text-sm duration-300">Logout</span>
+                </button>
+              </nav>
+            </>
+          )}
+          {!user && (
+            <div className="flex h-full items-center justify-center">
+              <Spinner />
+            </div>
+          )}
         </div>
       </aside>
     </div>

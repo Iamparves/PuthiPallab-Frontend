@@ -4,14 +4,23 @@ import toast from "react-hot-toast";
 import DashReviewsTable from "../../components/DashReviewsTable";
 import DashboardHeader from "../../components/DashboardHeader";
 import Spinner from "../../components/Spinner";
-import { deleteReview, getAllReviews } from "../../utils/apiRequest";
+import { useStore } from "../../store";
+import {
+  deleteReview,
+  getAllReviews,
+  getMyReviews,
+} from "../../utils/apiRequest";
 
 const Reviews = () => {
+  const user = useStore((state) => state.user);
   const queryClient = useQueryClient();
 
   const reviewsQuery = useQuery({
-    queryKey: ["reviews"],
-    queryFn: () => getAllReviews(),
+    queryKey: ["reviews", user.role],
+    queryFn: () => {
+      if (user.role === "librarian") return getAllReviews();
+      return getMyReviews();
+    },
   });
 
   const deleteMutation = useMutation({

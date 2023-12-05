@@ -39,7 +39,7 @@ const DashGenresTable = ({ data, onDelete }) => {
       cell: (props) => (
         <Link
           to={`edit/${props.getValue()}`}
-          className="mx-auto flex aspect-square w-9 items-center justify-center rounded-md border border-[#eee] bg-[#FEF2E2]/30 text-xl text-[#50C878]"
+          className="mx-auto flex aspect-square w-9 items-center justify-center rounded-md border border-[#eee] bg-[#FEF2E2]/30 text-xl text-[#50C878] duration-200 hover:bg-[#50c878] hover:text-white"
         >
           <TbEdit />
         </Link>
@@ -50,7 +50,7 @@ const DashGenresTable = ({ data, onDelete }) => {
       header: "Delete",
       cell: (props) => (
         <button
-          className="mx-auto flex aspect-square w-9 items-center justify-center rounded-md border border-[#eee] bg-[#FEF2E2]/30 text-xl text-[#FF5556]"
+          className="mx-auto flex aspect-square w-9 items-center justify-center rounded-md border border-[#eee] bg-[#FEF2E2]/30 text-xl text-[#FF5556] duration-200 hover:bg-[#FF5556] hover:text-white"
           onClick={() => onDelete(props.getValue())}
         >
           <MdDeleteOutline />

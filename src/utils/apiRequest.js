@@ -274,6 +274,15 @@ export const getAllReviews = async (query) => {
   }
 };
 
+export const getMyReviews = async () => {
+  try {
+    const res = await api.get("/reviews/myReviews");
+    return res.data.data?.reviews;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
 export const deleteReview = async (reviewId) => {
   try {
     const res = await api.delete(`/reviews/${reviewId}`);

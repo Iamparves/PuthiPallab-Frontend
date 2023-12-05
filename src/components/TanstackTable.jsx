@@ -92,6 +92,11 @@ const TanstackTable = ({
             ))}
           </tbody>
         </table>
+        {data.length === 0 && (
+          <div className="py-20 text-center">
+            <p className="mt-2 font-medium text-gray-500">No data found</p>
+          </div>
+        )}
       </div>
       {!noPagination && (
         <div className="flex justify-between px-3 py-2 md:px-5 md:py-3">

@@ -28,7 +28,9 @@
   white-space: nowrap;
 }
 
-.reviews__table table :is(th, td):is(:nth-child(4)) {
+.reviews__table
+  table
+  :is(th, td):is(:nth-last-child(1), :nth-last-child(2), :nth-last-child(4)) {
   text-align: center;
 }
 

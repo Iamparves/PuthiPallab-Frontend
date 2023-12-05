@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import { AiOutlineEye } from "react-icons/ai";
 import { HiOutlineSearch } from "react-icons/hi";
 import { MdDeleteOutline } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { useStore } from "../store";
 import TanstackTable from "./TanstackTable";
 
 const DashReviewsTable = ({ data, onDelete }) => {
+  const user = useStore((state) => state.user);
+  const isMember = user.role === "member";
   const [filter, setFilter] = useState("");
 
   const columns = [
@@ -23,10 +28,6 @@ const DashReviewsTable = ({ data, onDelete }) => {
       header: "Book",
     },
     {
-      accessorFn: (row) => row.member.name,
-      header: "Member",
-    },
-    {
       accessorFn: (row) => row.ratings,
       header: "Rating",
     },
@@ -39,20 +40,40 @@ const DashReviewsTable = ({ data, onDelete }) => {
       header: "Delete",
       cell: (props) => (
         <button
-          className="mx-auto flex aspect-square w-9 items-center justify-center rounded-md border border-[#eee] bg-[#FEF2E2]/30 text-xl text-[#FF5556]"
+          className="mx-auto flex aspect-square w-9 items-center justify-center rounded-md border border-[#eee] bg-[#FEF2E2]/30 text-xl text-[#FF5556] duration-200 hover:bg-[#FF5556] hover:text-white"
           onClick={() => onDelete(props.getValue())}
         >
           <MdDeleteOutline />
         </button>
       ),
     },
+    {
+      accessorFn: (row) => row._id,
+      header: "View Book",
+      cell: (props) => (
+        <Link
+          className="mx-auto flex aspect-square w-9 items-center justify-center rounded-md border border-[#eee] bg-[#FEF2E2]/30 text-xl text-primary duration-200 hover:bg-primary hover:text-white"
+          target="_blank"
+          to={`/book/${props.getValue()}`}
+        >
+          <AiOutlineEye />
+        </Link>
+      ),
+    },
   ];
+
+  if (!isMember) {
+    columns.splice(2, 0, {
+      accessorFn: (row) => row.member?.name || "-",
+      header: "Member",
+    });
+  }
 
   return (
     <div className="reviews__table">
       <div className="flex items-center justify-between gap-3 px-3 py-2 lg:px-5 lg:py-3">
         <h2 className="text-lg font-semibold text-[#1d1d1d] sm:block md:text-xl">
-          Reviews
+          {isMember && "My"} Reviews
         </h2>
         <div className="relative w-[60%] max-w-[220px] sm:w-auto sm:max-w-none">
           <input
@@ -72,6 +93,7 @@ const DashReviewsTable = ({ data, onDelete }) => {
         columns={columns}
         filter={filter}
         setFilter={setFilter}
+        noPagination={isMember}
       />
     </div>
   );
