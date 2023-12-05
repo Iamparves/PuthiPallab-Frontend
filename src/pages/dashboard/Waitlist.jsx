@@ -10,8 +10,12 @@ const Waitlist = () => {
   const user = useStore((state) => state.user);
   const isLibrarian = user.role === "librarian";
 
+  const queryKey = isLibrarian
+    ? ["waitlist", "librarian"]
+    : ["waitlist", "member", user._id];
+
   const waitlistQuery = useQuery({
-    queryKey: ["waitlist", user.role],
+    queryKey: queryKey,
     queryFn: () => {
       if (isLibrarian) return getAllWaitlist();
       return getMyWaitlist();

@@ -19,7 +19,7 @@ const OverviewIssueRecord = () => {
   const issuesQuery = useQuery({
     queryKey: isLibrarian
       ? ["issues", { status: "issued" }, { sort: "-updatedAt" }, { limit: 6 }]
-      : ["issues", user?._id],
+      : ["issues", user?._id, { status: "issued" }],
     queryFn: () => {
       if (isLibrarian) {
         return getAllIssues("?status=issued&sort=-updatedAt&limit=6");
@@ -67,7 +67,7 @@ const OverviewIssueRecord = () => {
     },
     {
       accessorKey: "issueDate",
-      header: "Issue Date",
+      header: isLibrarian ? "Issue Date" : "Borrow Date",
       cell: (props) => getLocalDate(props.getValue()),
     },
     {

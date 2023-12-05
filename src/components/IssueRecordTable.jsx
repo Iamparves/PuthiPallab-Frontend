@@ -8,7 +8,7 @@ const getLocalDate = (date) => {
   return moment.utc(date).local().format("lll");
 };
 
-const IssueRecordTable = ({ data }) => {
+const IssueRecordTable = ({ data, isLibrarian }) => {
   const [filter, setFilter] = useState("");
 
   const columns = [
@@ -28,11 +28,6 @@ const IssueRecordTable = ({ data }) => {
       header: "BookId - Title",
     },
     {
-      accessorFn: (row) =>
-        `${row.user?.userId || ""} - ${row.user?.name || ""}`,
-      header: "UserId - Name",
-    },
-    {
       accessorKey: "status",
       header: "Status",
       cell: (props) => {
@@ -46,14 +41,18 @@ const IssueRecordTable = ({ data }) => {
                 : "bg-red-100 text-red-600"
             }`}
           >
-            {status}
+            {status === "returned"
+              ? status
+              : isLibrarian
+                ? "issued"
+                : "borrowed"}
           </span>
         );
       },
     },
     {
       accessorKey: "issueDate",
-      header: "Issue Date",
+      header: isLibrarian ? "Issue Date" : "Borrow Date",
       cell: (props) => getLocalDate(props.getValue()),
     },
     {
@@ -86,6 +85,14 @@ const IssueRecordTable = ({ data }) => {
       },
     },
   ];
+
+  if (isLibrarian) {
+    columns.splice(2, 0, {
+      accessorFn: (row) =>
+        `${row.user?.userId || ""} - ${row.user?.name || ""}`,
+      header: "UserId - Name",
+    });
+  }
 
   return (
     <div className="issueRecord__table">

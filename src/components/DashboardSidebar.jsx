@@ -17,14 +17,19 @@ const memberMenuItems = [
     icon: <MdDashboard />,
   },
   {
-    title: "My Reviews",
-    path: "reviews",
-    icon: <MdOutlineReviews />,
+    title: "Borrow Records",
+    path: "borrow-records",
+    icon: <TfiLayoutListThumb />,
   },
   {
     title: "My Waitlist",
     path: "waitlist",
     icon: <LuFileClock />,
+  },
+  {
+    title: "My Reviews",
+    path: "reviews",
+    icon: <MdOutlineReviews />,
   },
 ];
 

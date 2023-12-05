@@ -108,7 +108,7 @@ const App = () => {
             </Route>
 
             <Route element={<ProtectedRoute allowedRoles={["member"]} />}>
-              {/* <Route path="profile" element={<Profile />} /> */}
+              <Route path="borrow-records" element={<IssueRecords />} />
             </Route>
           </Route>
 
