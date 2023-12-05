@@ -73,11 +73,21 @@ const DashProfileGeneral = () => {
       onSubmit={handleSubmit(onUpdate)}
     >
       <div className="mx-auto max-w-md space-y-5">
-        <UserAvatarUpload
-          photo={photo}
-          setPhoto={setPhoto}
-          setIsUploading={setIsUploading}
-        />
+        <div className="space-y-3">
+          <UserAvatarUpload
+            photo={photo}
+            setPhoto={setPhoto}
+            setIsUploading={setIsUploading}
+          />
+          {user?.userId && (
+            <div className="flex justify-center">
+              <p className="rounded-full bg-primary px-5 py-1 text-white shadow-lg shadow-primary/25">
+                <span className="mr-2.5 text-white/90">User ID:</span>
+                <span className="font-medium">{user.userId}</span>
+              </p>
+            </div>
+          )}
+        </div>
         <div>
           <label
             htmlFor="name"
