@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import moment from "moment/moment";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
@@ -26,6 +26,7 @@ const getReturnDate = () =>
   moment().add(3, "days").add(2, "hours").toISOString().slice(0, 16);
 
 const IssueBookForm = ({ book, user, setBook, setUser }) => {
+  const queryClient = useQueryClient();
   const [bookId, setBookId] = useState("");
   const [userId, setUserId] = useState("");
   const [dates, setDates] = useState({
@@ -60,6 +61,7 @@ const IssueBookForm = ({ book, user, setBook, setUser }) => {
     },
     onSuccess: (data) => {
       if (data.status === "success") {
+        queryClient.invalidateQueries(["issues"]);
         return toast.success("Book issued successfully!");
       }
 
