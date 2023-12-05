@@ -3,54 +3,54 @@ import { LuBookOpenCheck } from "react-icons/lu";
 import { MdOutlineReviews } from "react-icons/md";
 import { PiBooks, PiMoneyLight } from "react-icons/pi";
 import { RiBookReadLine } from "react-icons/ri";
-import { TbUsers } from "react-icons/tb";
+import { TbArrowLoopLeft2 } from "react-icons/tb";
 import OverviewCard from "./OverviewCard";
 
-const DashOverviewCards = ({ overview }) => {
+const MemberOverviewCards = ({ overview }) => {
   const {
-    totalBooks,
-    totalUsers,
-    totalIssuedBooks,
-    issuedBooks,
+    totalBorrowed,
     totalReviews,
-    totalFineCollected,
+    currentlyBorrowed,
+    totalReturned,
+    delayedBooks,
+    totalFinePaid,
   } = overview || {};
 
   return (
     <div className="grid grid-cols-2 gap-3 p-3 sm:gap-5 sm:p-5 md:grid-cols-3 2xl:grid-cols-6">
       <OverviewCard
-        title={totalBooks}
-        desc="Total Books"
+        title={totalBorrowed}
+        desc="Books Borrowed"
         icon={<PiBooks className="text-primary" />}
         bgColor="bg-[#FEF2E2]"
       />
       <OverviewCard
-        title={totalUsers}
-        desc="Total Members"
-        icon={<TbUsers className="text-[#41C385]" />}
+        title={totalReturned}
+        desc="Books Returned"
+        icon={<TbArrowLoopLeft2 className="text-[#41C385]" />}
         bgColor="bg-[#E6F5EF]"
       />
       <OverviewCard
-        title={totalIssuedBooks}
-        desc="Total Issued"
+        title={currentlyBorrowed}
+        desc="Books On Loan"
         icon={<RiBookReadLine className="text-[#1F77FA]" />}
         bgColor="bg-[#E9F1FF]"
       />
       <OverviewCard
-        title={issuedBooks}
-        desc="Currently Issued"
+        title={delayedBooks}
+        desc="Delayed Books"
         icon={<LuBookOpenCheck className="text-[#b92eff]" />}
         bgColor="bg-[#f7e8ff]"
       />
       <OverviewCard
         title={totalReviews}
-        desc="Total Reviews"
+        desc="Reviews Given"
         icon={<MdOutlineReviews className="text-[#79ea4f]" />}
         bgColor="bg-[#eeffe8]"
       />
       <OverviewCard
-        title={`৳${totalFineCollected}`}
-        desc="Fine Collected"
+        title={`৳${totalFinePaid}`}
+        desc="Fine Paid"
         icon={<PiMoneyLight className="text-[#ff2e6d]" />}
         bgColor="bg-[#ffe8ef]"
       />
@@ -58,4 +58,4 @@ const DashOverviewCards = ({ overview }) => {
   );
 };
 
-export default DashOverviewCards;
+export default MemberOverviewCards;

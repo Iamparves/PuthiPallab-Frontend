@@ -227,6 +227,15 @@ export const getAllIssues = async (query) => {
   }
 };
 
+export const getMyIssues = async (query) => {
+  try {
+    const res = await api.get(`/issues/myIssues${query ? query : ""}`);
+    return res.data.data?.issues;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
 export const getIssue = async (bookId, userId) => {
   try {
     const res = await api.get(`/issues/${bookId}/${userId}`);
@@ -314,6 +323,15 @@ export const deleteReview = async (reviewId) => {
 export const getLibrarianOverview = async () => {
   try {
     const res = await api.get("/overview");
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
+export const getMemberOverview = async () => {
+  try {
+    const res = await api.get("/overview/me");
     return res.data;
   } catch (error) {
     return error.response?.data;

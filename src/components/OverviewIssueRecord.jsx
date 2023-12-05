@@ -2,7 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import moment from "moment/moment";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { getAllIssues } from "../utils/apiRequest";
+import { useStore } from "../store";
+import { getAllIssues, getMyIssues } from "../utils/apiRequest";
 import TanstackTable from "./TanstackTable";
 
 const getLocalDate = (date) => {
@@ -11,16 +12,21 @@ const getLocalDate = (date) => {
 };
 
 const OverviewIssueRecord = () => {
+  const user = useStore((state) => state.user);
+  const isLibrarian = user?.role === "librarian";
   const [filter, setFilter] = useState("");
 
   const issuesQuery = useQuery({
-    queryKey: [
-      "issues",
-      { status: "issued" },
-      { sort: "-updatedAt" },
-      { limit: 6 },
-    ],
-    queryFn: () => getAllIssues("?status=issued&sort=-updatedAt&limit=6"),
+    queryKey: isLibrarian
+      ? ["issues", { status: "issued" }, { sort: "-updatedAt" }, { limit: 6 }]
+      : ["issues", user?._id],
+    queryFn: () => {
+      if (isLibrarian) {
+        return getAllIssues("?status=issued&sort=-updatedAt&limit=6");
+      }
+
+      return getMyIssues("?status=issued&sort=-updatedAt&limit=6");
+    },
   });
 
   const columns = [
@@ -38,10 +44,6 @@ const OverviewIssueRecord = () => {
     {
       accessorFn: (row) => row.book.title,
       header: "Book",
-    },
-    {
-      accessorFn: (row) => row.user?.name || "-",
-      header: "Member",
     },
     {
       accessorFn: (row) =>
@@ -75,10 +77,17 @@ const OverviewIssueRecord = () => {
     },
   ];
 
+  if (isLibrarian) {
+    columns.splice(2, 0, {
+      accessorFn: (row) => row.user?.name || "-",
+      header: "Member",
+    });
+  }
+
   return (
     <div className="overviewIssue__table p-3 sm:p-5">
       <h2 className="mb-3 text-lg font-semibold text-[#1d1d1d] sm:mb-5 sm:text-xl">
-        Currently Issued Books
+        {isLibrarian ? "Currently Issued Books" : "Currently Borrowed Books"}
       </h2>
 
       {!issuesQuery.isLoading && !issuesQuery.isError && (
@@ -93,14 +102,16 @@ const OverviewIssueRecord = () => {
         </div>
       )}
 
-      <div className="mt-5 text-center">
-        <Link
-          to="../issue-records"
-          className="mx-auto block w-[200px] rounded-full border-2 border-primary bg-primary p-3 text-center font-semibold text-white duration-300 hover:bg-white hover:text-primary"
-        >
-          View all
-        </Link>
-      </div>
+      {isLibrarian && (
+        <div className="mt-5 text-center">
+          <Link
+            to="../issue-records"
+            className="mx-auto block w-[200px] rounded-full border-2 border-primary bg-primary p-3 text-center font-semibold text-white duration-300 hover:bg-white hover:text-primary"
+          >
+            View all
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

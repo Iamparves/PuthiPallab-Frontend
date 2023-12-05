@@ -7,7 +7,7 @@ import Spinner from "./Spinner";
 
 const LibrarianOverview = () => {
   const overviewQuery = useQuery({
-    queryKey: ["librarian_overview"],
+    queryKey: ["overview", "librarian"],
     queryFn: getLibrarianOverview,
   });
 

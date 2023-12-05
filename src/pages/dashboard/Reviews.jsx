@@ -16,7 +16,7 @@ const Reviews = () => {
   const queryClient = useQueryClient();
 
   const reviewsQuery = useQuery({
-    queryKey: ["reviews", user.role],
+    queryKey: ["reviews", user.role, user._id],
     queryFn: () => {
       if (user.role === "librarian") return getAllReviews();
       return getMyReviews();

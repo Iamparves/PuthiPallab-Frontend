@@ -142,9 +142,7 @@ const DashboardSidebar = ({ sidebarOpen, setSidebarOpen }) => {
                     key={index}
                   />
                 ))}
-                {user.role === "librarian" && (
-                  <hr className="border-gray-200/70" />
-                )}
+                <hr className="border-gray-200/70" />
                 <MenuLink
                   path="profile"
                   title="Profile"
