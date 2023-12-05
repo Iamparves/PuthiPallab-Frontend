@@ -53,6 +53,8 @@ const App = () => {
               <Route path="" element={<Navigate to="overview" replace />} />
               <Route path="overview" element={<Overview />} />
               <Route path="reviews" element={<Reviews />} />
+              <Route path="waitlist" element={<Waitlist />} />
+
               <Route path="profile" element={<Profile />}>
                 <Route path="" element={<Navigate to="general" replace />} />
                 <Route path="general" element={<DashProfileGeneral />} />
@@ -65,7 +67,6 @@ const App = () => {
               <Route path="return-book" element={<ReturnBook />} />
               <Route path="issue-records" element={<IssueRecords />} />
               <Route path="users" element={<Users />} />
-              <Route path="waitlist" element={<Waitlist />} />
 
               <Route path="books" element={<Books />}>
                 <Route

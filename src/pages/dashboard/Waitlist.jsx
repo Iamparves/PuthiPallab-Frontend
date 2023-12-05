@@ -3,17 +3,27 @@ import React from "react";
 import DashboardHeader from "../../components/DashboardHeader";
 import Spinner from "../../components/Spinner";
 import WaitlistTable from "../../components/WaitlistTable";
-import { getAllWaitlist } from "../../utils/apiRequest";
+import { useStore } from "../../store";
+import { getAllWaitlist, getMyWaitlist } from "../../utils/apiRequest";
 
 const Waitlist = () => {
+  const user = useStore((state) => state.user);
+  const isLibrarian = user.role === "librarian";
+
   const waitlistQuery = useQuery({
-    queryKey: ["waitlist"],
-    queryFn: () => getAllWaitlist(),
+    queryKey: ["waitlist", user.role],
+    queryFn: () => {
+      if (isLibrarian) return getAllWaitlist();
+      return getMyWaitlist();
+    },
   });
 
   return (
     <>
-      <DashboardHeader title="Waitlist" desc="Books people are waiting for" />
+      <DashboardHeader
+        title={`${!isLibrarian ? "My" : ""} Waitlist`}
+        desc={`Books ${isLibrarian ? "people" : "you"} are waiting for`}
+      />
       <section className="h-[calc(100vh-80px)] overflow-y-auto p-3 sm:p-5 xl:p-10">
         <div className="rounded-xl border border-gray-200/70 bg-white">
           {waitlistQuery.isLoading && (
@@ -26,7 +36,10 @@ const Waitlist = () => {
           )}
           {waitlistQuery.isError && <p>Error: {waitlistQuery.error.message}</p>}
           {!waitlistQuery.isLoading && !waitlistQuery.isError && (
-            <WaitlistTable data={waitlistQuery.data} />
+            <WaitlistTable
+              data={waitlistQuery.data}
+              isLibrarian={isLibrarian}
+            />
           )}
         </div>
       </section>

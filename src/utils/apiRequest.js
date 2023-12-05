@@ -264,6 +264,24 @@ export const getAllWaitlist = async (query) => {
   }
 };
 
+export const getMyWaitlist = async () => {
+  try {
+    const res = await api.get("/waitlist/myWaitlist");
+    return res.data.data?.waitlist;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
+export const leaveWaitlist = async (bookId) => {
+  try {
+    const res = await api.delete("/waitlist", { book: bookId });
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
 // Reviews
 export const getAllReviews = async (query) => {
   try {

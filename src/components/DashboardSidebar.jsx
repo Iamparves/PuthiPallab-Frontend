@@ -17,9 +17,14 @@ const memberMenuItems = [
     icon: <MdDashboard />,
   },
   {
-    title: "Reviews",
+    title: "My Reviews",
     path: "reviews",
     icon: <MdOutlineReviews />,
+  },
+  {
+    title: "My Waitlist",
+    path: "waitlist",
+    icon: <LuFileClock />,
   },
 ];
 

@@ -1,9 +1,34 @@
+import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { HiOutlineSearch } from "react-icons/hi";
+import { leaveWaitlist } from "../utils/apiRequest";
 import TanstackTable from "./TanstackTable";
 
-const WaitlistTable = ({ data }) => {
+const WaitlistTable = ({ data, isLibrarian }) => {
   const [filter, setFilter] = useState("");
+
+  const mutation = useMutation({
+    mutationFn: leaveWaitlist,
+    onSuccess: (data) => {
+      if (data.status === "success") {
+        return toast.success("Successfully left waitlist");
+      }
+
+      toast.error(data.message);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const onLeaveWaitlist = (bookId) => {
+    const confirm = window.confirm(
+      "Are you sure you want to leave the waitlist?",
+    );
+
+    if (confirm) mutation.mutate(bookId);
+  };
 
   const columns = [
     {
@@ -31,11 +56,29 @@ const WaitlistTable = ({ data }) => {
     },
   ];
 
+  if (!isLibrarian) {
+    // Leave waitlist / cancel waiting
+    columns.push({
+      accessorFn: (row) => row.book._id,
+      header: "Action",
+      cell: (props) => {
+        return (
+          <button
+            onClick={() => onLeaveWaitlist(props.getValue())}
+            className="rounded-md bg-[#FF5556] px-3 py-2.5 text-white hover:bg-[#ff4b4b]"
+          >
+            Leave Waitlist
+          </button>
+        );
+      },
+    });
+  }
+
   return (
     <div className="waitlist__table">
       <div className="flex items-center justify-between gap-3 px-3 py-2 lg:px-5 lg:py-3">
         <h2 className="text-lg font-semibold text-[#1d1d1d] sm:block md:text-xl">
-          Waitlist
+          {!isLibrarian && "My"} Waitlist
         </h2>
         <div className="relative w-[60%] max-w-[220px] sm:w-auto sm:max-w-none">
           <input
@@ -55,6 +98,7 @@ const WaitlistTable = ({ data }) => {
         columns={columns}
         filter={filter}
         setFilter={setFilter}
+        noPagination={!isLibrarian}
       />
     </div>
   );

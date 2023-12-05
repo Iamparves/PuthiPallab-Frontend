@@ -47,7 +47,10 @@ const Reviews = () => {
 
   return (
     <>
-      <DashboardHeader title="Reviews" desc="Oversee and manage reviews" />
+      <DashboardHeader
+        title={`${user.role === "member" ? "My" : ""} Reviews`}
+        desc="Oversee and manage reviews"
+      />
       <section className="h-[calc(100vh-80px)] overflow-y-auto p-3 sm:p-5 xl:p-10">
         <div className="rounded-xl border border-gray-200/70 bg-white">
           {reviewsQuery.isLoading && (
