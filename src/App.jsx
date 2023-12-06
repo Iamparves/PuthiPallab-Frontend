@@ -6,8 +6,13 @@ import DashBookForm from "./components/DashBookForm";
 import DashGenreForm from "./components/DashGenreForm";
 import DashProfileGeneral from "./components/DashProfileGeneral";
 import DashProfileSecurity from "./components/DashProfileSecurity";
+import Layout from "./components/Layout";
 import Modal from "./components/Modal";
 import ProtectedRoute from "./components/ProtectedRoute";
+import About from "./pages/About";
+import BookDetails from "./pages/BookDetails";
+import Books from "./pages/Books";
+import Contact from "./pages/Contact";
 import Dashboard from "./pages/Dashboard";
 import ForgotPassword from "./pages/ForgotPassword";
 import Home from "./pages/Home";
@@ -18,7 +23,7 @@ import Signup from "./pages/Signup";
 import Unauthorized from "./pages/Unauthorized";
 import UnverifiedAccount from "./pages/UnverifiedAccount";
 import VerifyEmail from "./pages/VerifyEmail";
-import Books from "./pages/dashboard/Books";
+import DashBooks from "./pages/dashboard/Books";
 import Genres from "./pages/dashboard/Genres";
 import IssueBook from "./pages/dashboard/IssueBook";
 import IssueRecords from "./pages/dashboard/IssueRecords";
@@ -35,7 +40,14 @@ const App = () => {
       <Toaster />
       <BrowserRouter>
         <Routes>
-          <Route path="/" index element={<Home />} />
+          <Route path="/" element={<Layout />}>
+            <Route path="" index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="books" element={<Books />} />
+            <Route path="books/:bookId" element={<BookDetails />} />
+            <Route path="contact" element={<Contact />} />
+          </Route>
+
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/verify-email/:token" element={<VerifyEmail />} />
@@ -68,7 +80,7 @@ const App = () => {
               <Route path="issue-records" element={<IssueRecords />} />
               <Route path="users" element={<Users />} />
 
-              <Route path="books" element={<Books />}>
+              <Route path="books" element={<DashBooks />}>
                 <Route
                   path="new"
                   element={

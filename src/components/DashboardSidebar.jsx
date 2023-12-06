@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { FiUser, FiUsers } from "react-icons/fi";
 import { LuFileClock } from "react-icons/lu";
@@ -81,13 +81,12 @@ const librarianMenuItems = [
   },
 ];
 
-const MenuLink = ({ path, title, icon, closeSidebar }) => (
+const MenuLink = ({ path, title, icon }) => (
   <NavLink
     to={`${path}`}
     className={
       "dashboardMenu flex items-center gap-3 border-white px-8 py-3 font-light text-[#808080] duration-300 hover:bg-[#FEF2E2] hover:text-primary sm:py-3.5 sm:text-base [&.active]:border-r-4 [&.active]:border-primary [&.active]:bg-[#FEF2E2] [&.active]:text-primary"
     }
-    onClick={closeSidebar}
   >
     <span className="text-lg sm:text-xl">{icon}</span>
     <span className="text-xs sm:text-sm">{title}</span>
@@ -113,6 +112,10 @@ const DashboardSidebar = ({ sidebarOpen, setSidebarOpen }) => {
   };
 
   const closeSidebar = () => setSidebarOpen(false);
+
+  useEffect(() => {
+    closeSidebar();
+  }, [location.pathname]);
 
   return (
     <div
@@ -142,21 +145,10 @@ const DashboardSidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   ? librarianMenuItems
                   : memberMenuItems
                 ).map(({ title, path, icon }, index) => (
-                  <MenuLink
-                    path={path}
-                    title={title}
-                    icon={icon}
-                    closeSidebar={closeSidebar}
-                    key={index}
-                  />
+                  <MenuLink path={path} title={title} icon={icon} key={index} />
                 ))}
                 <hr className="border-gray-200/70" />
-                <MenuLink
-                  path="profile"
-                  title="Profile"
-                  icon={<FiUser />}
-                  onClick={closeSidebar}
-                />
+                <MenuLink path="profile" title="Profile" icon={<FiUser />} />
 
                 <button
                   className="flex items-center gap-3 px-8 py-3 text-[#808080] duration-300 hover:text-primary"
