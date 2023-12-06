@@ -5,7 +5,7 @@ import { LuFileClock } from "react-icons/lu";
 import { MdDashboard, MdOutlineReviews } from "react-icons/md";
 import { TbBookOff, TbBookUpload, TbBooks, TbLogout2 } from "react-icons/tb";
 import { TfiLayoutListThumb, TfiList } from "react-icons/tfi";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useStore } from "../store";
 import { logout } from "../utils/apiRequest";
 import Spinner from "./Spinner";
@@ -95,6 +95,7 @@ const MenuLink = ({ path, title, icon, closeSidebar }) => (
 );
 
 const DashboardSidebar = ({ sidebarOpen, setSidebarOpen }) => {
+  const location = useLocation();
   const user = useStore((state) => state.user);
   const setUser = useStore((state) => state.setUser);
 
@@ -102,6 +103,8 @@ const DashboardSidebar = ({ sidebarOpen, setSidebarOpen }) => {
     const result = await logout();
 
     if (result?.status === "success") {
+      location.pathname = "/dashboard";
+
       toast.success(result.message);
       return setUser(null);
     }
