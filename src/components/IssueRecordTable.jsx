@@ -66,7 +66,7 @@ const IssueRecordTable = ({ data, isLibrarian }) => {
       cell: (props) => getLocalDate(props.getValue()),
     },
     {
-      accessorKey: "delayedFine",
+      accessorFn: (row) => (row.status === "returned" ? row.delayedFine : "-"),
       header: "Fine",
       cell: (props) => {
         const fine = props.getValue();
@@ -76,10 +76,12 @@ const IssueRecordTable = ({ data, isLibrarian }) => {
             className={`rounded-full px-2 py-1 text-xs font-medium ${
               fine === 0
                 ? "bg-green-100 text-green-600"
-                : "bg-red-100 text-red-600"
+                : fine === "-"
+                  ? "bg-gray-100 text-gray-600"
+                  : "bg-red-100 text-red-600"
             }`}
           >
-            {fine} BDT
+            {fine === 0 ? "No fine" : fine === "-" ? "-" : `${fine} BDT`}
           </span>
         );
       },
