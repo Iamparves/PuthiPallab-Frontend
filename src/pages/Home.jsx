@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <main>
+    <main className="h-[85vh]">
       <div className="space-x-2 pt-10 text-center">
         <Link
           to="/login"
