@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 
 const Layout = () => {
   return (
-    <div className="min-h-[100dvh] bg-[#F6F7FB]">
+    <div className="min-h-[100dvh]">
       <Navbar />
       <Outlet />
       <Footer />
