@@ -1,6 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    const keyword = e.target.search.value;
+    navigate(`/books?search=${keyword}`);
+  };
+
   return (
     <section className="bg-[url(/hero-bg.svg)] bg-contain bg-right-top bg-no-repeat py-10 lg:py-20 2xl:py-32">
       <div className="mx-auto max-w-xl lg:max-w-full">
@@ -17,10 +27,13 @@ const Hero = () => {
               library - a place where stories come alive and knowledge knows no
               bounds.
             </p>
-            <form className="mx-auto flex max-w-xs sm:max-w-[400px] lg:mx-0">
+            <form
+              onSubmit={handleSearch}
+              className="mx-auto flex max-w-xs sm:max-w-[400px] lg:mx-0"
+            >
               <input
                 className="w-full rounded-l-md border border-r-0 border-gray-200 px-3 py-2.5 text-base focus:outline-none sm:px-4 sm:py-3.5"
-                type="text"
+                type="search"
                 name="search"
                 placeholder="Enter keyword"
               />
