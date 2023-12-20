@@ -7,7 +7,7 @@ const contents = [
     image: "/home-about/about-us.jpg",
     title: "A Few Words About Our Library",
     description:
-      "MagicBook Library was founded in 1980 to provide access to books, the world’s most valuable source of knowledge.",
+      "Puthi Pallab Library was founded in 2019 to provide access to books, the world’s most valuable source of knowledge.",
   },
   {
     image: "/home-about/our-goals.jpg",
