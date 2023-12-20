@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <section className="bg-[url(../public/hero-bg.svg)] bg-contain bg-right-top bg-no-repeat py-10 lg:py-20">
+    <section className="bg-[url(/hero-bg.svg)] bg-contain bg-right-top bg-no-repeat py-10 lg:py-20 2xl:py-32">
       <div className="mx-auto max-w-xl lg:max-w-full">
         <div className="container grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-20">
           <div className="max-w-xl text-center lg:text-left">

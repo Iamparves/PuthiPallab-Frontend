@@ -6,6 +6,9 @@ export default {
       container: {
         center: true,
         padding: "15px",
+        screens: {
+          "2xl": "1280px",
+        },
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
