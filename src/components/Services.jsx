@@ -43,7 +43,7 @@ const services = [
 
 const Services = () => {
   return (
-    <section className="py-10">
+    <section className="pb-10 pt-16 lg:pt-10">
       <div className="sm:container">
         <SectionTop title="Our Services" letter="S" />
         <div className="mx-auto mt-5 grid grid-cols-1 sm:mt-10 sm:grid-cols-2 md:grid-cols-3 xl:max-w-6xl">

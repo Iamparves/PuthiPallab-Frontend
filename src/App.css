@@ -39,3 +39,27 @@
   max-width: 400px;
   min-width: 260px;
 }
+
+@media screen and (min-width: 768px) {
+  .home__about--img {
+    clip-path: polygon(
+      0 0,
+      0 100%,
+      calc(100% - 45px) 100%,
+      100% 140px,
+      calc(100% - 50px) 0
+    );
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .home__about--img {
+    clip-path: polygon(
+      0 0,
+      0 100%,
+      calc(100% - 55px) 100%,
+      100% 140px,
+      calc(100% - 80px) 0
+    );
+  }
+}
