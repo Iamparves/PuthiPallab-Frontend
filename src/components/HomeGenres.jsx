@@ -18,7 +18,7 @@ const HomeGenres = () => {
       <div className="container">
         <SectionTop title="Genres" letter="G" />
         {genresQuery.isLoading && (
-          <div className="mt-10 flex flex-col items-center gap-2 rounded-lg bg-[radial-gradient(circle,#f8f8f8_10%,#fff)] px-5 py-20 text-center">
+          <div className="mt-10 flex flex-col items-center gap-2 rounded-lg bg-[radial-gradient(circle,#fff_10%,#F6F7FB)] px-5 py-20 text-center">
             <Spinner />
             <p className="text-gray-400">Genres Loading...</p>
           </div>
@@ -36,7 +36,7 @@ const HomeGenres = () => {
             <div className="mt-7 text-center">
               <Link
                 className="inline-flex items-center gap-2 rounded-full border-2 border-primary bg-primary px-5 py-3.5 text-sm font-semibold uppercase text-white duration-300 hover:bg-transparent hover:text-primary sm:text-base"
-                to="/about"
+                to="/genres"
               >
                 View all Genre <FaChevronRight />
               </Link>
