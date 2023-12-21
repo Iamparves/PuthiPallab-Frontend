@@ -55,7 +55,7 @@ const Navbar = () => {
   }, [location.pathname]);
 
   return (
-    <header className="bg-white shadow-sm">
+    <header className="bg-white drop-shadow-sm">
       <div className="container flex h-16 items-center justify-between md:h-20">
         <NavLink onClick={closeMenu} to="/">
           <img src="/logo.svg" alt="Puthi Pallab" className="h-10 md:h-12" />

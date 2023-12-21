@@ -13,7 +13,7 @@ const services = [
     icon: "/services/service-02.png",
     title: "Meeting Rooms",
     description:
-      "Our library provides well-equipped meeting rooms ranging in size from 12 to 300.",
+      "Our library provides well-equipped meeting rooms ranging in size from 12 to 40.",
   },
   {
     icon: "/services/service-03.png",
