@@ -9,10 +9,19 @@ import { getAllBooks } from "../utils/apiRequest";
 import BookCard from "./BookCard";
 import Spinner from "./Spinner";
 
-const PopularBooks = () => {
+const HomeBooksSlider = ({ type }) => {
+  const prevClass = `${type}__books-prev`;
+  const nextClass = `${type}__books-next`;
+
   const booksQuery = useQuery({
-    queryKey: ["books", { sort: "-borrowCount", limit: 12 }],
-    queryFn: () => getAllBooks("?sort=-borrowCount&limit=12"),
+    queryKey:
+      type === "popular"
+        ? ["books", { sort: "-borrowCount", limit: 12 }]
+        : ["books", { limit: 12 }],
+    queryFn: () =>
+      getAllBooks(
+        type === "popular" ? "?sort=-borrowCount&limit=12" : "?limit=12",
+      ),
   });
 
   return (
@@ -20,13 +29,17 @@ const PopularBooks = () => {
       <div className="container">
         <div className="flex items-center justify-between gap-5">
           <h2 className="text-2xl font-bold text-primary sm:text-3xl lg:text-4xl">
-            Popular Books
+            {type === "popular" ? "Popular Books" : "Newest Arrivals"}
           </h2>
           <div className="flex items-center gap-5">
-            <button className="popular__book-prev flex aspect-square w-8 items-center justify-center rounded-full bg-[#eaa451] text-white duration-200 hover:bg-primary">
+            <button
+              className={`__books-prev flex aspect-square w-8 items-center justify-center rounded-full bg-[#eaa451] text-white duration-200 hover:bg-primary`}
+            >
               <FaChevronLeft />
             </button>
-            <button className="popular__book-next flex aspect-square w-8 items-center justify-center rounded-full bg-[#eaa451] text-white duration-200 hover:bg-primary">
+            <button
+              className={`__books-next flex aspect-square w-8 items-center justify-center rounded-full bg-[#eaa451] text-white duration-200 hover:bg-primary`}
+            >
               <FaChevronRight />
             </button>
           </div>
@@ -47,8 +60,8 @@ const PopularBooks = () => {
                 centeredSlides={true}
                 loop={true}
                 navigation={{
-                  prevEl: ".popular__book-prev",
-                  nextEl: ".popular__book-next",
+                  prevEl: "__books-prev",
+                  nextEl: "__books-next",
                 }}
                 breakpoints={{
                   640: {
@@ -57,7 +70,10 @@ const PopularBooks = () => {
                 }}
               >
                 {booksQuery.data?.map((book, index) => (
-                  <SwiperSlide className="w-[190px] sm:w-[225px]" key={index}>
+                  <SwiperSlide
+                    className="w-[190px] sm:w-[225px]"
+                    key={type + index}
+                  >
                     <BookCard book={book} />
                   </SwiperSlide>
                 ))}
@@ -70,4 +86,4 @@ const PopularBooks = () => {
   );
 };
 
-export default PopularBooks;
+export default HomeBooksSlider;

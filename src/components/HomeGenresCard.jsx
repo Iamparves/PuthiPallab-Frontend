@@ -6,6 +6,7 @@ const HomeGenresCard = ({ genre }) => {
 
   return (
     <Link
+      to={`/books?genres=${genreId}`}
       className="group relative block h-full w-full overflow-hidden rounded-md
     sm:last:hidden
     sm:[&:is(:nth-child(1),:nth-child(5))]:row-span-3

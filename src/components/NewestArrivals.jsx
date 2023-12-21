@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
@@ -9,10 +10,10 @@ import { getAllBooks } from "../utils/apiRequest";
 import BookCard from "./BookCard";
 import Spinner from "./Spinner";
 
-const PopularBooks = () => {
+const NewestArrivals = () => {
   const booksQuery = useQuery({
-    queryKey: ["books", { sort: "-borrowCount", limit: 12 }],
-    queryFn: () => getAllBooks("?sort=-borrowCount&limit=12"),
+    queryKey: ["books", { limit: 12 }],
+    queryFn: () => getAllBooks("?limit=12"),
   });
 
   return (
@@ -20,13 +21,13 @@ const PopularBooks = () => {
       <div className="container">
         <div className="flex items-center justify-between gap-5">
           <h2 className="text-2xl font-bold text-primary sm:text-3xl lg:text-4xl">
-            Popular Books
+            Newest Arrivals
           </h2>
           <div className="flex items-center gap-5">
-            <button className="popular__book-prev flex aspect-square w-8 items-center justify-center rounded-full bg-[#eaa451] text-white duration-200 hover:bg-primary">
+            <button className="newest__book-prev flex aspect-square w-8 items-center justify-center rounded-full bg-[#eaa451] text-white duration-200 hover:bg-primary">
               <FaChevronLeft />
             </button>
-            <button className="popular__book-next flex aspect-square w-8 items-center justify-center rounded-full bg-[#eaa451] text-white duration-200 hover:bg-primary">
+            <button className="newest__book-next flex aspect-square w-8 items-center justify-center rounded-full bg-[#eaa451] text-white duration-200 hover:bg-primary">
               <FaChevronRight />
             </button>
           </div>
@@ -47,8 +48,8 @@ const PopularBooks = () => {
                 centeredSlides={true}
                 loop={true}
                 navigation={{
-                  prevEl: ".popular__book-prev",
-                  nextEl: ".popular__book-next",
+                  prevEl: ".newest__book-prev",
+                  nextEl: ".newest__book-next",
                 }}
                 breakpoints={{
                   640: {
@@ -65,9 +66,17 @@ const PopularBooks = () => {
             </div>
           )}
         </div>
+        <div className="mt-7 text-center">
+          <Link
+            className="inline-flex items-center gap-2 rounded-full border-2 border-primary bg-primary px-5 py-3.5 text-sm font-semibold uppercase text-white duration-300 hover:bg-transparent hover:text-primary sm:text-base"
+            to="/genres"
+          >
+            View all Books <FaChevronRight />
+          </Link>
+        </div>
       </div>
     </section>
   );
 };
 
-export default PopularBooks;
+export default NewestArrivals;
