@@ -9,8 +9,8 @@ import Spinner from "./Spinner";
 
 const HomeGenres = () => {
   const genresQuery = useQuery({
-    queryKey: ["genres", { limit: 5 }],
-    queryFn: () => getAllGenres("?limit=5"),
+    queryKey: ["genres", { limit: 6 }],
+    queryFn: () => getAllGenres("?limit=6"),
   });
 
   return (
@@ -35,7 +35,7 @@ const HomeGenres = () => {
             </div>
             <div className="mt-7 text-center">
               <Link
-                className="inline-flex items-center gap-2 rounded-full border-2 border-primary bg-primary px-5 py-3.5 font-semibold uppercase text-white duration-300 hover:bg-transparent hover:text-primary"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-primary bg-primary px-5 py-3.5 text-sm font-semibold uppercase text-white duration-300 hover:bg-transparent hover:text-primary sm:text-base"
                 to="/about"
               >
                 View all Genre <FaChevronRight />

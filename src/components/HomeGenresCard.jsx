@@ -7,6 +7,7 @@ const HomeGenresCard = ({ genre }) => {
   return (
     <Link
       className="group relative block h-full w-full overflow-hidden rounded-md
+    sm:last:hidden
     sm:[&:is(:nth-child(1),:nth-child(5))]:row-span-3
     md:[&:is(:nth-child(2),:nth-child(3))]:col-span-2
     sm:[&:is(:nth-child(2),:nth-child(3),:nth-child(4))]:row-span-2
