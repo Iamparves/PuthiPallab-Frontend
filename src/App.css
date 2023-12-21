@@ -40,6 +40,19 @@
   min-width: 260px;
 }
 
+/* Homepage */
+.home__genres {
+  clip-path: polygon(
+    0 0,
+    calc(50% - 30px) 0,
+    50% 30px,
+    calc(50% + 30px) 0,
+    100% 0,
+    100% 100%,
+    0 100%
+  );
+}
+
 @media screen and (min-width: 768px) {
   .home__about--img {
     clip-path: polygon(
@@ -48,6 +61,18 @@
       calc(100% - 45px) 100%,
       100% 140px,
       calc(100% - 50px) 0
+    );
+  }
+
+  .home__genres {
+    clip-path: polygon(
+      0 0,
+      calc(50% - 40px) 0,
+      50% 40px,
+      calc(50% + 40px) 0,
+      100% 0,
+      100% 100%,
+      0 100%
     );
   }
 }

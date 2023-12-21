@@ -14,7 +14,7 @@ const HomeGenres = () => {
   });
 
   return (
-    <section className="bg-[#F6F7FB] py-16 sm:py-20">
+    <section className="home__genres bg-[#F6F7FB] py-16 sm:py-20 md:pt-24">
       <div className="container">
         <SectionTop title="Genres" letter="G" />
         {genresQuery.isLoading && (
