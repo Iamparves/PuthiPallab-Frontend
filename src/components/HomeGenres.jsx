@@ -38,7 +38,7 @@ const HomeGenres = () => {
                 className="inline-flex items-center gap-2 rounded-full border-2 border-primary bg-primary px-5 py-3.5 text-sm font-semibold uppercase text-white duration-300 hover:bg-transparent hover:text-primary sm:text-base"
                 to="/genres"
               >
-                View all Genre <FaChevronRight />
+                View all Genres <FaChevronRight />
               </Link>
             </div>
           </div>

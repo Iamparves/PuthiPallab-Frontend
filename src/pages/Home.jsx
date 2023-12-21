@@ -1,6 +1,7 @@
 import React from "react";
 import Hero from "../components/Hero";
 import HomeAbout from "../components/HomeAbout";
+import HomeContact from "../components/HomeContact";
 import HomeGenres from "../components/HomeGenres";
 import JoinLibrary from "../components/JoinLibrary";
 import NewestArrivals from "../components/NewestArrivals";
@@ -17,6 +18,7 @@ const Home = () => {
       <HomeGenres />
       <NewestArrivals />
       <JoinLibrary />
+      <HomeContact />
     </main>
   );
 };

@@ -13,6 +13,10 @@ const menuItems = [
     path: "/about",
   },
   {
+    name: "Genres",
+    path: "/genres",
+  },
+  {
     name: "Books",
     path: "/books",
   },

@@ -15,6 +15,7 @@ import Books from "./pages/Books";
 import Contact from "./pages/Contact";
 import Dashboard from "./pages/Dashboard";
 import ForgotPassword from "./pages/ForgotPassword";
+import HomeGenres from "./pages/Genres";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
@@ -43,6 +44,7 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             <Route path="" index element={<Home />} />
             <Route path="about" element={<About />} />
+            <Route path="genres" element={<HomeGenres />} />
             <Route path="books" element={<Books />} />
             <Route path="books/:bookId" element={<BookDetails />} />
             <Route path="contact" element={<Contact />} />
