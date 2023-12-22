@@ -24,12 +24,12 @@ const HomeGenresCard = ({ genre }) => {
     "
     >
       <img
-        className="h-full w-full object-cover duration-300 group-hover:scale-105"
+        className="h-full w-full object-cover duration-300"
         src={imageUrl}
         alt={genreName}
       />
       <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center bg-black/60 p-5 duration-300 hover:backdrop-blur-[2px]">
-        <p className="text-center font-semibold leading-tight tracking-wide text-white lg:text-xl">
+        <p className="text-center font-semibold leading-tight tracking-wide text-white duration-300 group-hover:tracking-widest lg:text-xl">
           {genreName}
         </p>
       </div>
