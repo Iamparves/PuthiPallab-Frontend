@@ -185,6 +185,15 @@ export const getAllBooks = async (query) => {
   }
 };
 
+export const getBookById = async (bookId) => {
+  try {
+    const res = await api.get(`/books/${bookId}`);
+    return res.data.data?.book;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
 export const addBook = async (newBook) => {
   try {
     const res = await api.post("/books", newBook);
