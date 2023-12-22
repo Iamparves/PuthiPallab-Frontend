@@ -59,29 +59,31 @@ const Navbar = () => {
   }, [location.pathname]);
 
   return (
-    <header className="bg-white drop-shadow-sm">
-      <div className="container flex h-16 items-center justify-between md:h-20">
-        <NavLink onClick={closeMenu} to="/">
-          <img src="/logo.svg" alt="Puthi Pallab" className="h-10 md:h-12" />
-        </NavLink>
-        <div>
-          <button
-            onClick={openMenu}
-            className="fMobileMenuBtn text-[32px] text-primary md:hidden md:text-4xl"
-          >
-            {showMenu ? <CgClose /> : <CgMenu />}
-          </button>
-          <nav className="hidden items-center gap-2 md:flex">
-            {menuItems.map(({ name, path }, index) => (
-              <MenuLink name={name} path={path} key={index} />
-            ))}
-            {!loading &&
-              (!user ? (
-                <MenuLink name="Login" path="/login" />
-              ) : (
-                <MenuLink name="Dashboard" path="/dashboard" />
+    <header>
+      <div className="bg-white drop-shadow-sm">
+        <div className="container flex h-16 items-center justify-between md:h-20">
+          <NavLink onClick={closeMenu} to="/">
+            <img src="/logo.svg" alt="Puthi Pallab" className="h-10 md:h-12" />
+          </NavLink>
+          <div>
+            <button
+              onClick={openMenu}
+              className="fMobileMenuBtn text-[32px] text-primary md:hidden md:text-4xl"
+            >
+              {showMenu ? <CgClose /> : <CgMenu />}
+            </button>
+            <nav className="hidden items-center gap-2 md:flex">
+              {menuItems.map(({ name, path }, index) => (
+                <MenuLink name={name} path={path} key={index} />
               ))}
-          </nav>
+              {!loading &&
+                (!user ? (
+                  <MenuLink name="Login" path="/login" />
+                ) : (
+                  <MenuLink name="Dashboard" path="/dashboard" />
+                ))}
+            </nav>
+          </div>
         </div>
       </div>
       <div
