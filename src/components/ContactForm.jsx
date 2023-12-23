@@ -1,9 +1,13 @@
 import React from "react";
+import toast from "react-hot-toast";
 import { MdAlternateEmail } from "react-icons/md";
+import { sendContactMessage } from "../utils/apiRequest";
 
 const ContactForm = () => {
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const toastId = toast.loading("Sending message...");
 
     const data = {
       name: e.target.name.value,
@@ -11,7 +15,18 @@ const ContactForm = () => {
       subject: e.target.subject.value,
       message: e.target.message.value,
     };
+
+    const result = await sendContactMessage(data);
+
+    if (result?.status === "success") {
+      toast.success(result.message, { id: toastId });
+    } else {
+      toast.error(result.message, { id: toastId });
+    }
+
+    e.target.reset();
   };
+
   return (
     <form onSubmit={handleSubmit} className="max-w-3xl space-y-3 sm:space-y-5">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5 md:grid-cols-1 lg:grid-cols-2">

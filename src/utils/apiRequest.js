@@ -355,3 +355,13 @@ export const getMemberOverview = async () => {
     return error.response?.data;
   }
 };
+
+// Contact
+export const sendContactMessage = async (data) => {
+  try {
+    const res = await api.post("/contact", data);
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
