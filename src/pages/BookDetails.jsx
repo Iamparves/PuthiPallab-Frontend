@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useParams } from "react-router-dom";
+import BookDetailsInfo from "../components/BookDetailsInfo";
 import BookDetailsSidebar from "../components/BookDetailsSidebar";
 import BookDetailsTop from "../components/BookDetailsTop";
 import Spinner from "../components/Spinner";
@@ -14,8 +15,6 @@ const BookDetails = () => {
     queryFn: () => getBookById(bookId),
     staleTime: 1000 * 30,
   });
-
-  // publisher, genres, publicationDate, bookLanguage, pageCount, totalCopies, borrowCount, reviews
 
   return (
     <main className="bg-[#F6F7FB]">
@@ -36,6 +35,7 @@ const BookDetails = () => {
                   genres={bookQuery.data?.genres}
                 />
               </div>
+              <BookDetailsInfo book={bookQuery.data} />
             </div>
           )}
         </div>
