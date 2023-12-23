@@ -28,12 +28,14 @@ const BookDetails = () => {
             </div>
           )}
           {!bookQuery.isLoading && !bookQuery.isError && (
-            <div className="grid grid-cols-1 gap-3 xl:grid-cols-[1fr_280px]">
-              <BookDetailsTop book={bookQuery.data} />
-              <BookDetailsSidebar
-                bookId={bookId}
-                genres={bookQuery.data.genres}
-              />
+            <div>
+              <div className="grid grid-cols-1 gap-3 xl:grid-cols-[1fr_280px]">
+                <BookDetailsTop book={bookQuery.data} />
+                <BookDetailsSidebar
+                  bookId={bookId}
+                  genres={bookQuery.data?.genres}
+                />
+              </div>
             </div>
           )}
         </div>

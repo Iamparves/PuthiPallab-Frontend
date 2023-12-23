@@ -48,13 +48,13 @@ const DashReviewsTable = ({ data, onDelete }) => {
       ),
     },
     {
-      accessorFn: (row) => row._id,
+      accessorFn: (row) => row.book._id,
       header: "View Book",
       cell: (props) => (
         <Link
           className="mx-auto flex aspect-square w-9 items-center justify-center rounded-md border border-[#eee] bg-[#FEF2E2]/30 text-xl text-primary duration-200 hover:bg-primary hover:text-white"
           target="_blank"
-          to={`/book/${props.getValue()}`}
+          to={`/books/${props.getValue()}`}
         >
           <AiOutlineEye />
         </Link>

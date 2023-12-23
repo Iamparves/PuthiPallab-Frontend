@@ -21,7 +21,7 @@ const BookCard = ({ book }) => {
           {title}
         </h4>
         <p className="text-xs text-[#777]">
-          by <span className="text-primary">{author}</span>
+          by <span className="font-medium text-primary">{author}</span>
         </p>
         <p
           className={`text-xs ${

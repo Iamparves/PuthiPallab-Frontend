@@ -17,7 +17,7 @@ const NewestArrivals = () => {
   });
 
   return (
-    <section className="py-16 sm:py-20">
+    <section className="bg-[#F8F8F8] py-16 sm:py-20">
       <div className="container">
         <div className="flex items-center justify-between gap-5">
           <h2 className="text-2xl font-bold text-primary sm:text-3xl lg:text-4xl">

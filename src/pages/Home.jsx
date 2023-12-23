@@ -2,7 +2,6 @@ import React from "react";
 import Hero from "../components/Hero";
 import HomeAbout from "../components/HomeAbout";
 import HomeContact from "../components/HomeContact";
-import HomeGenres from "../components/HomeGenres";
 import JoinLibrary from "../components/JoinLibrary";
 import NewestArrivals from "../components/NewestArrivals";
 import PopularBooks from "../components/PopularBooks";
@@ -15,7 +14,7 @@ const Home = () => {
       <Services />
       <HomeAbout />
       <PopularBooks />
-      <HomeGenres />
+      {/* <HomeGenres /> */}
       <NewestArrivals />
       <JoinLibrary />
       <HomeContact />
