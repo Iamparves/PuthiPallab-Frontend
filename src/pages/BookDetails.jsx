@@ -19,7 +19,7 @@ const BookDetails = () => {
 
   return (
     <main className="bg-[#F6F7FB]">
-      <section className="min-h-[calc(100vh-100px)] py-12 sm:py-16">
+      <section className="min-h-[calc(100vh-100px)] py-12">
         <div className="container">
           {bookQuery.isLoading && (
             <div className="flex flex-col items-center gap-2 text-center">
@@ -28,7 +28,7 @@ const BookDetails = () => {
             </div>
           )}
           {!bookQuery.isLoading && !bookQuery.isError && (
-            <div className="grid gap-3 xl:grid-cols-[1fr_280px]">
+            <div className="grid grid-cols-1 gap-3 xl:grid-cols-[1fr_280px]">
               <BookDetailsTop book={bookQuery.data} />
               <BookDetailsSidebar
                 bookId={bookId}

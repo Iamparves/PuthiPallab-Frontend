@@ -9,7 +9,7 @@ const BookCard = ({ book }) => {
   return (
     <Link
       to={`/books/${_id}`}
-      className="grid grid-cols-[60px_1fr] items-center gap-2 px-2 py-3 duration-300 hover:bg-gray-100/60"
+      className="group grid grid-cols-[60px_1fr] items-center gap-2 px-2 py-3 duration-300 hover:bg-gray-100/60"
     >
       <img
         src={coverImg}
@@ -17,7 +17,9 @@ const BookCard = ({ book }) => {
         className="aspect-[1/1.4] w-full object-cover"
       />
       <div className="space-y-1">
-        <h4 className="text-[15px] font-semibold text-[#151515]">{title}</h4>
+        <h4 className="text-[15px] font-semibold text-[#151515] duration-300 group-hover:text-primary">
+          {title}
+        </h4>
         <p className="text-xs text-[#777]">
           by <span className="text-primary">{author}</span>
         </p>
