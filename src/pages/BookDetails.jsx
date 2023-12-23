@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useParams } from "react-router-dom";
+import BookDetailsSidebar from "../components/BookDetailsSidebar";
 import BookDetailsTop from "../components/BookDetailsTop";
 import Spinner from "../components/Spinner";
 import { getBookById } from "../utils/apiRequest";
@@ -27,8 +28,12 @@ const BookDetails = () => {
             </div>
           )}
           {!bookQuery.isLoading && !bookQuery.isError && (
-            <div className="">
+            <div className="grid gap-3 xl:grid-cols-[1fr_280px]">
               <BookDetailsTop book={bookQuery.data} />
+              <BookDetailsSidebar
+                bookId={bookId}
+                genres={bookQuery.data.genres}
+              />
             </div>
           )}
         </div>

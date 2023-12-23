@@ -5,8 +5,8 @@ const BookDetailsTop = ({ book }) => {
   const { coverImg, title, author, summary, availableCopies, waitlist } = book;
 
   return (
-    <div className="grid grid-cols-1 items-start gap-10 bg-white px-5 py-10 shadow-sm sm:mx-auto sm:grid-cols-[auto_auto] sm:gap-5 md:gap-10 md:px-10 lg:items-center lg:gap-16 xl:gap-20 xl:p-16">
-      <div className="mx-auto w-[280px] border border-[#ebebeb] p-2 sm:w-[220px] md:w-[calc(25vw+50px)] lg:w-[350px] lg:p-10 xl:w-[400px]">
+    <div className="grid grid-cols-1 items-start gap-10 bg-white px-5 py-10 shadow-sm sm:mx-auto sm:grid-cols-[auto_auto] sm:gap-5 md:gap-10 md:px-10 lg:items-center lg:gap-16 xl:gap-10">
+      <div className="mx-auto w-[280px] border border-[#ebebeb] p-2 sm:w-[220px] md:w-[calc(25vw+50px)] lg:w-[350px] lg:p-10 xl:p-5">
         <img
           src={coverImg}
           alt={title}
