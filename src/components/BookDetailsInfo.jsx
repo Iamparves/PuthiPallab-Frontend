@@ -34,7 +34,7 @@ const BookDetailsInfo = ({ book }) => {
 
   return (
     <div className="mt-3 bg-white px-5 py-7 shadow-sm md:px-10 md:py-10">
-      <h2 className="text-lg font-semibold text-[#151515]">
+      <h2 className="text-lg font-semibold text-[#151515] sm:text-xl md:text-2xl">
         Additional Information
       </h2>
       <table className="mt-4 w-full border border-[#ebebeb]">

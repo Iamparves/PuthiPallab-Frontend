@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import BookDetailsInfo from "../components/BookDetailsInfo";
+import BookDetailsReviews from "../components/BookDetailsReviews";
 import BookDetailsSidebar from "../components/BookDetailsSidebar";
 import BookDetailsTop from "../components/BookDetailsTop";
 import Spinner from "../components/Spinner";
@@ -56,6 +57,7 @@ const BookDetails = () => {
                 />
               </div>
               <BookDetailsInfo book={bookQuery.data} />
+              <BookDetailsReviews book={bookQuery.data} />
             </div>
           )}
         </div>
