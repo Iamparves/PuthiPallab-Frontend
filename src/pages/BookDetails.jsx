@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import BookDetailsInfo from "../components/BookDetailsInfo";
 import BookDetailsSidebar from "../components/BookDetailsSidebar";
 import BookDetailsTop from "../components/BookDetailsTop";
@@ -15,6 +15,26 @@ const BookDetails = () => {
     queryFn: () => getBookById(bookId),
     staleTime: 1000 * 30,
   });
+
+  if (bookQuery.data?.status === "fail") {
+    return (
+      <main className="bg-[#F6F7FB]">
+        <section className="min-h-[calc(100vh-100px)] py-12">
+          <div className="container">
+            <div className="bg-white py-20 text-center shadow-sm">
+              <p className="text-gray-400 sm:text-lg">Book Not Found</p>
+              <Link
+                to="/"
+                className="mt-5 inline-block border-2 border-primary bg-transparent px-3 py-2 text-xs font-medium uppercase text-primary transition-all hover:bg-primary hover:text-white sm:text-sm"
+              >
+                Return Home
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <main className="bg-[#F6F7FB]">
