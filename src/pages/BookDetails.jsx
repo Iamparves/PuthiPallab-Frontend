@@ -11,12 +11,13 @@ const BookDetails = () => {
   const bookQuery = useQuery({
     queryKey: ["book", { bookId }],
     queryFn: () => getBookById(bookId),
+    staleTime: 1000 * 30,
   });
 
-  // coverImg, title, author, publisher, genres, publicationDate, bookLanguage, pageCount, summary, totalCopies, availableCopies, borrowCount, reviews, waitlist
+  // publisher, genres, publicationDate, bookLanguage, pageCount, totalCopies, borrowCount, reviews
 
   return (
-    <main className="bg-white">
+    <main className="bg-[#F6F7FB]">
       <section className="min-h-[calc(100vh-100px)] py-12 sm:py-16">
         <div className="container">
           {bookQuery.isLoading && (

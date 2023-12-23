@@ -21,6 +21,7 @@ const DashUserTable = ({ data }) => {
 
     if (result.status === "success") {
       queryClient.invalidateQueries(["users"]);
+
       return toast.success(`User successfully updated to ${role}`);
     }
 

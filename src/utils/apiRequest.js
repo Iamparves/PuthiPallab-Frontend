@@ -291,9 +291,18 @@ export const getMyWaitlist = async () => {
   }
 };
 
+export const joinWaitlist = async (bookId) => {
+  try {
+    const res = await api.post("/waitlist", { book: bookId });
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
 export const leaveWaitlist = async (bookId) => {
   try {
-    const res = await api.delete("/waitlist", { book: bookId });
+    const res = await api.patch("/waitlist", { book: bookId });
     return res.data;
   } catch (error) {
     return error.response?.data;

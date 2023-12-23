@@ -1,3 +1,4 @@
+import { useQueryClient } from "@tanstack/react-query";
 import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { FiUser, FiUsers } from "react-icons/fi";
@@ -97,6 +98,8 @@ const DashboardSidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
   const user = useStore((state) => state.user);
   const setUser = useStore((state) => state.setUser);
+
+  const queryClient = useQueryClient();
 
   const handleLogout = async () => {
     const result = await logout();
