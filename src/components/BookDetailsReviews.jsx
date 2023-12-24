@@ -36,7 +36,14 @@ const BookDetailsReviews = ({ book }) => {
         <div className="mt-2 grid grid-cols-1 gap-2 md:mt-3 md:gap-3">
           {reviews.map((review) => {
             if (review.member._id === user._id) return null;
-            else return <ReviewCard key={review._id} review={review} />;
+            else
+              return (
+                <ReviewCard
+                  key={review._id}
+                  bookId={book._id}
+                  review={review}
+                />
+              );
           })}
         </div>
       </div>

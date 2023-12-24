@@ -1,3 +1,7 @@
+:root {
+  scroll-behavior: smooth;
+}
+
 .books__table
   table
   :is(th, td):is(

@@ -1,18 +1,48 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import moment from "moment";
 import React from "react";
+import toast from "react-hot-toast";
 import { FaStar } from "react-icons/fa";
+import { deleteReview } from "../utils/apiRequest";
 
-const ReviewCard = ({ review, owner = false }) => {
+const ReviewCard = ({ review, owner = false, bookId }) => {
+  const queryClient = useQueryClient();
   const { ratings, review: reviewText, member, createdAt } = review;
 
   const renderRating = () => {
     const ratingStars = new Array(5).fill("").map((_, index) => {
       const starClass = index < ratings ? "text-[#ffc363]" : "text-gray-300";
 
-      return <FaStar key={index} className={` ${starClass}`} />;
+      return <FaStar key={index} className={starClass} />;
     });
 
     return ratingStars;
+  };
+
+  const deleteMutation = useMutation({
+    mutationFn: deleteReview,
+  });
+
+  const handleDelete = () => {
+    const confirm = window.confirm("Are you sure you want to delete this?");
+    if (!confirm) return;
+
+    const toastId = toast.loading("Deleting Review...");
+    deleteMutation.mutate(review._id, {
+      onSuccess: (data) => {
+        if (data.status === "success") {
+          toast.success("Review deleted successfully", { id: toastId });
+          queryClient.invalidateQueries(["book", { bookId }]);
+        } else {
+          toast.error("Something went wrong! Please try again", {
+            id: toastId,
+          });
+        }
+      },
+      onError: (err) => {
+        toast.error(err.message, { id: toastId });
+      },
+    });
   };
 
   return (
@@ -43,7 +73,12 @@ const ReviewCard = ({ review, owner = false }) => {
         <div className="mt-3 flex items-center gap-3 text-sm text-gray-400">
           <button className="duration-300 hover:text-primary">Edit</button>
           <span className="block aspect-square w-0.5 rounded-full bg-gray-400"></span>
-          <button className="duration-300 hover:text-red-400">Delete</button>
+          <button
+            onClick={handleDelete}
+            className="duration-300 hover:text-red-400"
+          >
+            Delete
+          </button>
         </div>
       )}
     </div>
