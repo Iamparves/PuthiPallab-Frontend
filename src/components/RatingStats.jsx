@@ -18,14 +18,16 @@ const RatingStats = ({ reviews }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:gap-5">
-      <div className="flex flex-col justify-center rounded-sm border border-[#ebebeb] p-5 text-center">
+    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:gap-3">
+      <div className="flex flex-col justify-center rounded-md border border-[#ebebeb] p-5 text-center">
         <h3 className="mb-3 text-5xl font-bold text-[#333] lg:text-[52px]">
           {averageRating.toFixed(1)}
         </h3>
-        <p className="text-gray-500">Based on {reviews.length} reviews</p>
+        <p className="text-gray-500">
+          Based on {reviews.length} {reviews.length > 1 ? "reviews" : "review"}
+        </p>
       </div>
-      <div className="rounded-sm border border-[#ebebeb] p-5">
+      <div className="rounded-md border border-[#ebebeb] p-5">
         <div className="mx-auto grid max-w-sm grid-rows-[repeat(5,20px)] gap-1">
           <RatingPercentage title="5 Star" rating={getRatingPercentage(5)} />
           <RatingPercentage title="4 Star" rating={getRatingPercentage(4)} />
