@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useStore } from "../store";
 import RatingStats from "./RatingStats";
 import ReviewCard from "./ReviewCard";
+import ReviewForm from "./ReviewForm";
 
 const BookDetailsReviews = ({ book }) => {
   const user = useStore((state) => state.user);
   const reviews = book?.reviews || [];
+
+  const [form, setForm] = useState(false);
+  const [updateReview, setUpdateReview] = useState(null);
 
   let existingReview =
     reviews.length === 0
@@ -20,17 +24,30 @@ const BookDetailsReviews = ({ book }) => {
             Reviews
           </h2>
           {user.role === "member" && !existingReview && (
-            <button className="border-2 border-primary bg-primary px-2 py-1 text-xs font-medium text-white duration-300 hover:bg-transparent hover:text-primary sm:px-3 sm:py-2 sm:text-sm">
+            <button
+              className="border-2 border-primary bg-primary px-2 py-1 text-xs font-medium text-white duration-300 hover:bg-transparent hover:text-primary disabled:pointer-events-none disabled:opacity-50 sm:px-3 sm:py-2 sm:text-sm"
+              disabled={form}
+              onClick={() => setForm(true)}
+            >
               Add Review
             </button>
           )}
         </div>
         <RatingStats reviews={reviews} />
 
-        {!!existingReview && (
+        {!!existingReview && !form && (
           <div className="mt-2 md:mt-3">
             <ReviewCard owner={true} review={existingReview} />
           </div>
+        )}
+
+        {form && (
+          <ReviewForm
+            bookId={book._id}
+            updateReview={updateReview}
+            setForm={setForm}
+            setUpdateReview={setUpdateReview}
+          />
         )}
 
         <div className="mt-2 grid grid-cols-1 gap-2 md:mt-3 md:gap-3">
