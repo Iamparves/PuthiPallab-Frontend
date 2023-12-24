@@ -10,7 +10,7 @@ const RatingPercentage = ({ title, rating }) => {
       >
         {title}
       </p>
-      <div className="h-5 w-full overflow-hidden rounded-sm bg-gray-200">
+      <div className="h-5 w-full overflow-hidden rounded-sm bg-gray-200 shadow-inner">
         <div
           className={`h-full bg-gradient-to-b from-primary to-[#ff6e1a]`}
           style={{ width: rating }}
