@@ -328,6 +328,24 @@ export const getMyReviews = async () => {
   }
 };
 
+export const addReview = async (newReview) => {
+  try {
+    const res = await api.post("/reviews", newReview);
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
+export const updateReviewFn = async ({ reviewId, data }) => {
+  try {
+    const res = await api.patch(`/reviews/${reviewId}`, data);
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
 export const deleteReview = async (reviewId) => {
   try {
     const res = await api.delete(`/reviews/${reviewId}`);
