@@ -30,7 +30,7 @@ const RatingStats = ({ reviews }) => {
         </p>
       </div>
       <div className="rounded-md border border-[#ebebeb] p-5">
-        <div className="mx-auto grid max-w-sm grid-rows-[repeat(5,20px)] gap-1">
+        <div className="mx-auto grid max-w-[360px] grid-rows-[repeat(5,20px)] gap-1">
           <RatingPercentage title="5 Star" rating={getRatingPercentage(5)} />
           <RatingPercentage title="4 Star" rating={getRatingPercentage(4)} />
           <RatingPercentage title="3 Star" rating={getRatingPercentage(3)} />
