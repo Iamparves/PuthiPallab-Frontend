@@ -5,11 +5,13 @@ import HomeContact from "../components/HomeContact";
 import JoinLibrary from "../components/JoinLibrary";
 import NewestArrivals from "../components/NewestArrivals";
 import PopularBooks from "../components/PopularBooks";
+import ScrollToTop from "../components/ScrollToTop";
 import Services from "../components/Services";
 
 const Home = () => {
   return (
     <main className="bg-white">
+      <ScrollToTop />
       <Hero />
       <Services />
       <HomeAbout />

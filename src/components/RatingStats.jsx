@@ -10,6 +10,8 @@ const RatingStats = ({ reviews }) => {
         }, 0) / reviews.length;
 
   const getRatingPercentage = (rating) => {
+    if (reviews.length === 0) return (0).toFixed(0) + "%";
+
     const ratingCount = reviews.filter(
       (review) => review.ratings === rating,
     ).length;
