@@ -46,7 +46,11 @@ const ReviewCard = ({ review, owner = false, bookId, setUpdateReviewForm }) => {
   };
 
   return (
-    <div className="rounded-md border border-[#ebebeb] p-5">
+    <div
+      className={`rounded-md border p-5 ${
+        owner ? "border-primary/50" : "border-[#ebebeb]"
+      }`}
+    >
       <div className="mb-4 flex items-center gap-3 sm:mb-5">
         <div className="flex-shrink-0">
           <img

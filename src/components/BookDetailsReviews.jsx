@@ -14,7 +14,7 @@ const BookDetailsReviews = ({ book }) => {
   let existingReview =
     reviews.length === 0
       ? null
-      : reviews?.find((review) => review.member._id === user._id);
+      : reviews?.find((review) => review.member._id === user?._id);
 
   const setUpdateReviewForm = (review) => {
     setUpdateReview(review);
@@ -28,7 +28,7 @@ const BookDetailsReviews = ({ book }) => {
           <h2 className="text-lg font-semibold text-[#151515] sm:text-xl md:text-2xl">
             Reviews
           </h2>
-          {user.role === "member" && !existingReview && (
+          {user?.role === "member" && !existingReview && (
             <button
               className="border-2 border-primary bg-primary px-2 py-1 text-xs font-medium text-white duration-300 hover:bg-transparent hover:text-primary disabled:pointer-events-none disabled:opacity-50 sm:px-3 sm:py-2 sm:text-sm"
               disabled={form}
@@ -61,7 +61,7 @@ const BookDetailsReviews = ({ book }) => {
 
         <div className="mt-2 grid grid-cols-1 gap-2 md:mt-3 md:gap-3">
           {reviews.map((review) => {
-            if (review.member._id === user._id) return null;
+            if (review.member?._id === user?._id) return null;
             else
               return (
                 <ReviewCard
