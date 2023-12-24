@@ -6,8 +6,10 @@ import { addReview, updateReviewFn } from "../utils/apiRequest";
 import RatingStars from "./RatingStars";
 
 const ReviewForm = ({ bookId, updateReview, setForm, setUpdateReview }) => {
-  const [ratings, setRatings] = useState(0);
-  const [review, setReview] = useState("");
+  const [ratings, setRatings] = useState(
+    updateReview ? updateReview.ratings : 0,
+  );
+  const [review, setReview] = useState(updateReview ? updateReview.review : "");
 
   const queryClient = useQueryClient();
 
@@ -44,7 +46,7 @@ const ReviewForm = ({ bookId, updateReview, setForm, setUpdateReview }) => {
       });
     } else {
       updateMutation.mutate(
-        { reviewId: updateReview._id, reviewData },
+        { reviewId: updateReview._id, data: reviewData },
         {
           onSuccess: (data) => {
             if (data.status === "success") {
@@ -91,6 +93,7 @@ const ReviewForm = ({ bookId, updateReview, setForm, setUpdateReview }) => {
           required
           className="h-40 w-full resize-none border border-[#e1e1e1] p-4 text-[15px] transition-colors duration-200 focus:border-primary focus:outline-none sm:px-6 sm:py-5"
           onChange={(e) => setReview(e.target.value)}
+          defaultValue={updateReview ? updateReview.review : ""}
         ></textarea>
         <div className="mt-3 flex items-center gap-2">
           <button

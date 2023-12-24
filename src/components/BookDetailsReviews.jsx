@@ -16,6 +16,11 @@ const BookDetailsReviews = ({ book }) => {
       ? null
       : reviews?.find((review) => review.member._id === user._id);
 
+  const setUpdateReviewForm = (review) => {
+    setUpdateReview(review);
+    setForm(true);
+  };
+
   return (
     <div className="mt-3 bg-white px-5 py-7 shadow-sm md:px-10 md:py-10">
       <div className="lg:mx-auto lg:max-w-4xl">
@@ -37,7 +42,11 @@ const BookDetailsReviews = ({ book }) => {
 
         {!!existingReview && !form && (
           <div className="mt-2 md:mt-3">
-            <ReviewCard owner={true} review={existingReview} />
+            <ReviewCard
+              owner={true}
+              review={existingReview}
+              setUpdateReviewForm={setUpdateReviewForm}
+            />
           </div>
         )}
 

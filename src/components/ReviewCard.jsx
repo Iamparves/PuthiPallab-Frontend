@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { FaStar } from "react-icons/fa";
 import { deleteReview } from "../utils/apiRequest";
 
-const ReviewCard = ({ review, owner = false, bookId }) => {
+const ReviewCard = ({ review, owner = false, bookId, setUpdateReviewForm }) => {
   const queryClient = useQueryClient();
   const { ratings, review: reviewText, member, createdAt } = review;
 
@@ -71,7 +71,12 @@ const ReviewCard = ({ review, owner = false, bookId }) => {
       </p>
       {owner && (
         <div className="mt-3 flex items-center gap-3 text-sm text-gray-400">
-          <button className="duration-300 hover:text-primary">Edit</button>
+          <button
+            onClick={() => setUpdateReviewForm(review)}
+            className="duration-300 hover:text-primary"
+          >
+            Edit
+          </button>
           <span className="block aspect-square w-0.5 rounded-full bg-gray-400"></span>
           <button
             onClick={handleDelete}
