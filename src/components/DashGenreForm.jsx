@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { TbCategoryPlus } from "react-icons/tb";
 import { useNavigate, useParams } from "react-router-dom";
+import slugify from "slugify";
 import { addGenre, getAllGenres, updateGenre } from "../utils/apiRequest";
 import GenreImageUpload from "./GenreImageUpload";
 import Spinner from "./Spinner";
@@ -49,12 +50,12 @@ const DashGenreForm = () => {
     },
   });
 
-  const onGenreSubmit = ({ genreName }) => {
+  const onGenreSubmit = ({ genreName, slug }) => {
     if (!genreImg && !updateId) {
       return toast.error("Please upload genre image");
     }
 
-    const genreData = { genreName };
+    const genreData = { genreName, slug };
 
     if (!updateId) {
       genreData.imageUrl = genreImg;
@@ -67,10 +68,11 @@ const DashGenreForm = () => {
 
   useEffect(() => {
     if (genreQuery.data?.length === 1) {
-      const { genreName, imageUrl } = genreQuery.data[0];
+      const { genreName, imageUrl, slug } = genreQuery.data[0];
 
       reset({
         genreName,
+        slug,
       });
 
       setGenreImage(imageUrl);
@@ -99,6 +101,26 @@ const DashGenreForm = () => {
             id="genreName"
             name="genreName"
             placeholder="Enter genre name"
+            className="block w-full rounded-md border p-3 focus:outline-none"
+            required
+            onChange={(e) =>
+              reset({ slug: slugify(e.target.value, { lower: true }) })
+            }
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="slug"
+            className="mb-1 inline-block text-xs font-medium text-gray-400"
+          >
+            Slug
+          </label>
+          <input
+            {...register("slug")}
+            type="text"
+            id="slug"
+            name="slug"
+            placeholder="Enter genre slug"
             className="block w-full rounded-md border p-3 focus:outline-none"
             required
           />

@@ -30,6 +30,10 @@ const DashGenresTable = ({ data, onDelete }) => {
       header: "Genre",
     },
     {
+      accessorFn: (row) => (row.slug ? row.slug : "-"),
+      header: "Slug",
+    },
+    {
       accessorFn: (row) => moment.utc(row.createdAt).local().format("LLL"),
       header: "Created At",
     },
