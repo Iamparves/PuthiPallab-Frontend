@@ -103,7 +103,7 @@ export const uploadImage = async (imageFile) => {
     const ImageData = new FormData();
     ImageData.set("image", imageFile);
 
-    const res = await api.post(
+    const res = await axios.post(
       "https://api.imgbb.com/1/upload?key=96414755e81ac2a7e751fe0575e30c1b",
       ImageData,
       {
