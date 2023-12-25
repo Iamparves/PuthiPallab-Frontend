@@ -87,7 +87,7 @@ const DashBookForm = () => {
         title,
         author,
         publisher,
-        publicationdate,
+        publicationDate,
         bookLanguage,
         pageCount,
         totalCopies,
@@ -96,11 +96,12 @@ const DashBookForm = () => {
       } = booksQuery.data[0];
 
       const genresId = genres.map((genre) => genre._id);
+
       reset({
         title,
         author,
         publisher,
-        publicationDate: publicationdate,
+        publicationDate: publicationDate?.split("T")[0],
         bookLanguage,
         pageCount,
         totalCopies,

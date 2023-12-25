@@ -44,6 +44,12 @@
   min-width: 260px;
 }
 
+.books__table table :is(th, td):is(:nth-child(5)) {
+  white-space: wrap;
+  max-width: 250px;
+  min-width: 180px;
+}
+
 /* Homepage */
 .home__genres {
   clip-path: polygon(

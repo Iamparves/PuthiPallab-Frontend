@@ -176,6 +176,15 @@ export const updateUserRole = async (userId, data) => {
 };
 
 // Book
+export const getFilteredBooks = async (query) => {
+  try {
+    const res = await api.get(`/books${query ? query : ""}`);
+    return res.data;
+  } catch (error) {
+    return error.response?.data;
+  }
+};
+
 export const getAllBooks = async (query) => {
   try {
     const res = await api.get(`/books${query ? query : ""}`);

@@ -107,7 +107,7 @@ const TanstackTable = ({
           >
             <GoArrowLeft /> Prev
           </button>
-          <div className="flex gap-1.5">
+          <div className="hidden gap-1.5 sm:flex">
             {new Array(table.getPageCount()).fill().map((_, i) => (
               <button
                 onClick={() => table.setPageIndex(i)}

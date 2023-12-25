@@ -17,7 +17,7 @@ const VerifyEmail = () => {
 
     if (result?.status === "success") {
       toast.success("Account Verified Successfully", { id: toastId });
-      setIsVerified(true);
+      return setIsVerified(true);
     }
 
     toast.error(result?.message || "Something went wrong", { id: toastId });

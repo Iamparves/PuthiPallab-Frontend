@@ -23,7 +23,9 @@ const BookDetailsTop = ({ book }) => {
             {author}
           </span>
         </p>
-        <p className="text-[15px] text-[#1d1d1d] md:text-base">{summary}</p>
+        <p className="text-[15px] text-[#151515] md:text-base md:leading-[1.6]">
+          {summary}
+        </p>
         <hr className="mb-5 mt-5 border-[#ebebeb]" />
         <p className="text-sm text-gray-400 md:text-base">
           Availability:{" "}
