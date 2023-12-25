@@ -24,10 +24,10 @@ const SearchFilter = () => {
   };
 
   return (
-    <form onSubmit={handleSearch} className="relative mt-10">
+    <form onSubmit={handleSearch} className="relative my-5 pt-1 md:my-10">
       <input
         name="search"
-        className="block w-full bg-[#F3F3F3] py-5 pl-5 pr-16 focus:outline-none"
+        className="block w-full rounded-md bg-[#f4f4f4] py-4 pl-5 pr-16 focus:outline-none lg:py-5"
         type="text"
         placeholder="Search..."
         defaultValue={pSearch}

@@ -28,8 +28,8 @@ const Books = () => {
   return (
     <main className="bg-white">
       <TopBanner title="Books" background="bg-[url(/books-top.jpg)]" />
-      <section className="py-10">
-        <div className="container grid grid-cols-1 gap-5 md:grid-cols-[300px_1fr]">
+      <section className="py-8 lg:py-10">
+        <div className="container grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-5 lg:grid-cols-[290px_1fr] lg:gap-10">
           <BookListSidebar
             searchParams={searchParams}
             setSearchParams={setSearchParams}

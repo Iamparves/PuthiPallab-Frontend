@@ -1,21 +1,6 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-
-const Language = ({ language, handleBookLanguage, languages }) => {
-  return (
-    <label className="my-2 flex cursor-pointer items-center">
-      <input
-        type="checkbox"
-        name="bookLanguage"
-        value={language}
-        className="mr-2"
-        onChange={handleBookLanguage}
-        defaultChecked={languages.includes(language)}
-      />
-      {language}
-    </label>
-  );
-};
+import FilterCheckBox from "./FilterCheckBox";
 
 const LanguageFilter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -45,20 +30,20 @@ const LanguageFilter = () => {
   };
 
   return (
-    <div className="">
-      <h3 className="border-b border-[#e1e1e1] pb-5 text-lg tracking-wider ">
+    <div>
+      <h3 className="border-b border-[#e1e1e1] pb-2 font-semibold tracking-wider">
         Language
       </h3>
-      <div className="mt-5">
-        <Language
-          language="বাংলা"
-          handleBookLanguage={handleBookLanguage}
-          languages={languages}
+      <div className="mt-4 flex gap-x-10 gap-y-3 md:flex-col">
+        <FilterCheckBox
+          value="বাংলা"
+          handler={handleBookLanguage}
+          list={languages}
         />
-        <Language
-          language="English"
-          handleBookLanguage={handleBookLanguage}
-          languages={languages}
+        <FilterCheckBox
+          value="English"
+          handler={handleBookLanguage}
+          list={languages}
         />
       </div>
     </div>

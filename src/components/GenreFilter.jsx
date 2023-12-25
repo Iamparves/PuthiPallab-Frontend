@@ -2,22 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getAllGenres } from "../utils/apiRequest";
-
-const Genre = ({ genre, handleBookGenre, genres }) => {
-  return (
-    <label className="my-2 flex cursor-pointer items-center">
-      <input
-        type="checkbox"
-        name="bookLanguage"
-        value={genre._id}
-        className="mr-2"
-        onChange={handleBookGenre}
-        defaultChecked={genres.includes(genre._id)}
-      />
-      {genre.genreName}
-    </label>
-  );
-};
+import FilterCheckBox from "./FilterCheckBox";
 
 const GenreFilter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -58,17 +43,18 @@ const GenreFilter = () => {
 
   return (
     <div className="">
-      <h3 className="border-b border-[#e1e1e1] pb-5 text-lg tracking-wider ">
+      <h3 className="border-b border-[#e1e1e1] pb-2 font-semibold tracking-wider">
         Genres
       </h3>
-      <div className="mt-5">
+      <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-1">
         {genresQuery.isSuccess &&
           genresQuery.data?.map((genre) => (
-            <Genre
+            <FilterCheckBox
               key={genre._id}
-              genre={genre}
-              handleBookGenre={handleBookGenre}
-              genres={genres}
+              value={genre._id}
+              handler={handleBookGenre}
+              list={genres}
+              genre={genre.genreName}
             />
           ))}
       </div>
