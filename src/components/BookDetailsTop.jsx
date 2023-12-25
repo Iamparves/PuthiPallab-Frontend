@@ -6,7 +6,7 @@ const BookDetailsTop = ({ book }) => {
 
   return (
     <div className="grid grid-cols-1 items-start gap-10 bg-white px-5 py-10 shadow-sm sm:mx-auto sm:grid-cols-[auto_auto] sm:gap-5 md:gap-10 md:px-10 lg:items-center lg:gap-16 xl:gap-10">
-      <div className="mx-auto w-[280px] border border-[#ebebeb] p-2 sm:w-[220px] md:w-[calc(25vw+50px)] lg:w-[320px] lg:p-5">
+      <div className="mx-auto w-[280px] border border-[#ebebeb] p-2 sm:w-[220px] md:w-[calc(25vw+50px)] lg:w-[320px] lg:border-0 lg:p-0">
         <img
           src={coverImg}
           alt={title}
@@ -14,10 +14,10 @@ const BookDetailsTop = ({ book }) => {
         />
       </div>
       <div className="text-center sm:text-left">
-        <h2 className="mb-3 text-2xl font-bold text-[#151515] md:text-3xl lg:text-4xl">
+        <h2 className="mb-3 text-2xl font-bold text-[#151515] md:text-3xl lg:mb-4 lg:text-4xl">
           {title}
         </h2>
-        <p className="mb-3 text-[#999]">
+        <p className="mb-3 text-[#999] lg:mb-4">
           by{" "}
           <span className="text-[15px] text-primary md:text-base">
             {author}

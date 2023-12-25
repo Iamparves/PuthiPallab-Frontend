@@ -5,7 +5,10 @@ const BookCard = ({ book }) => {
   const { coverImg, title, _id: bookId, author, availableCopies } = book;
 
   return (
-    <Link to={`/books/${bookId}`} className="group block bg-transparent">
+    <Link
+      to={`/books/${bookId}`}
+      className="group block max-w-[250px] bg-transparent"
+    >
       <div className="mb-5">
         <img
           src={coverImg}

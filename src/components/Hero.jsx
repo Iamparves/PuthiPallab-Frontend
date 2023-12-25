@@ -8,6 +8,8 @@ const Hero = () => {
     e.preventDefault();
 
     const keyword = e.target.search.value;
+    if (keyword === "") return;
+
     navigate(`/books?search=${keyword}`);
   };
 

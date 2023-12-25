@@ -7,8 +7,8 @@ import { getAllGenres } from "../utils/apiRequest";
 
 const Genres = () => {
   const genresQuery = useQuery({
-    queryKey: ["genres"],
-    queryFn: () => getAllGenres(),
+    queryKey: ["genres", { sort: "genreName" }],
+    queryFn: () => getAllGenres("?sort=genreName"),
   });
   return (
     <main className="min-h-[calc(100vh-80px)] bg-white">
