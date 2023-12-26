@@ -3,10 +3,10 @@ import React, { useEffect } from "react";
 
 const getLocalDate = (date) => {
   if (!date) return "-";
-  return moment.utc(date).local().format("lll");
+  return moment(date).format("lll");
 };
 
-const getCurrentDate = () => moment().toISOString().slice(0, 16);
+const getCurrentDate = () => moment().toISOString();
 
 const ReturnBookDetails = ({ issue, setFine }) => {
   const { book, user } = issue;

@@ -17,7 +17,7 @@ const BookCard = ({ book }) => {
         />
       </div>
       <div className="">
-        <h3 className="mb-2 font-semibold leading-tight text-[#1a1668] duration-200 group-hover:text-primary sm:text-[20px]">
+        <h3 className="mb-2 font-semibold leading-tight text-[#1a1668] duration-200 group-hover:text-primary sm:text-[19px] sm:leading-snug">
           {title}
         </h3>
         <p className="mb-0.5 text-[15px] text-[#1d1d1d] sm:text-base">

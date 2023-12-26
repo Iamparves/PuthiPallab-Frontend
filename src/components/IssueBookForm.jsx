@@ -21,9 +21,9 @@ const style = {
     "inline-flex items-center justify-center gap-1 rounded-lg border-2 border-primary px-3 py-2.5 text-center text-sm font-medium text-primary disabled:pointer-events-none disabled:opacity-60",
 };
 
-const getCurrentDate = () => moment().toISOString().slice(0, 16);
+const getCurrentDate = () => moment().toISOString();
 const getReturnDate = () =>
-  moment().add(3, "days").add(2, "hours").toISOString().slice(0, 16);
+  moment().add(3, "days").add(2, "hours").toISOString();
 
 const IssueBookForm = ({ book, user, setBook, setUser }) => {
   const queryClient = useQueryClient();
@@ -197,9 +197,7 @@ const IssueBookForm = ({ book, user, setBook, setUser }) => {
               className={`${style.input} pointer-events-none opacity-70`}
               type="text"
               defaultValue={
-                dates.issueDate
-                  ? moment.utc(dates.issueDate).local().format("LLL")
-                  : ""
+                dates.issueDate ? moment(dates.issueDate).format("LLL") : ""
               }
               readOnly
               placeholder="Issue Date"
@@ -219,7 +217,7 @@ const IssueBookForm = ({ book, user, setBook, setUser }) => {
               type="text"
               defaultValue={
                 dates.estimatedReturnDate
-                  ? moment.utc(dates.estimatedReturnDate).local().format("LLL")
+                  ? moment(dates.estimatedReturnDate).format("LLL")
                   : ""
               }
               readOnly

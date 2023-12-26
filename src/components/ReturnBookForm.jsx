@@ -22,7 +22,7 @@ const style = {
     "inline-flex items-center justify-center gap-1 rounded-lg border-2 border-primary px-3 py-2.5 text-center text-sm font-medium text-primary disabled:pointer-events-none disabled:opacity-60",
 };
 
-const getCurrentDate = () => moment().toISOString().slice(0, 16);
+const getCurrentDate = () => moment().toISOString();
 
 const ReturnBookForm = ({ issue, setIssue, fine }) => {
   const queryClient = useQueryClient();
