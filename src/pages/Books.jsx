@@ -1,10 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import React, { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import BookList from "../components/BookList";
 import BookListSidebar from "../components/BookListSidebar";
 import TopBanner from "../components/TopBanner";
-import { getFilteredBooks } from "../utils/apiRequest";
+import { getBooksPaginated } from "../utils/apiRequest";
+import Pagination from "./Pagination";
 
 const Books = () => {
   const [searchParams, setSearchParams] = useSearchParams({
@@ -13,28 +14,42 @@ const Books = () => {
     limit: "12",
   });
 
-  // const page = parseInt(searchParams.get("page") || "1");
+  const search = searchParams.get("search") || "";
+  const page = parseInt(searchParams.get("page") || "1");
   const limit = parseInt(searchParams.get("limit") || "12");
-  // const bookLanguage = searchParams.get("bookLanguage") || "";
-  // const genres = searchParams.get("genres") || "";
+  const bookLanguage = searchParams.get("bookLanguage") || "";
+  const genres = searchParams.get("genres") || "";
+
+  const params = { search, page, limit, bookLanguage, genres };
 
   const booksQuery = useQuery({
-    queryKey: ["books", searchParams.toString()],
-    queryFn: () => getFilteredBooks(`?${searchParams.toString()}`),
+    queryKey: ["books", params],
+    queryFn: () => getBooksPaginated(params),
+    placeholderData: keepPreviousData,
   });
 
-  const totalPages = Math.ceil(booksQuery.data?.total / limit) || 1;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [booksQuery.data?.books?.[0]?._id]);
 
   return (
     <main className="bg-white">
       <TopBanner title="Books" background="bg-[url(/books-top.jpg)]" />
-      <section className="py-8 lg:py-10">
+      <section className="py-8 lg:py-10 xl:py-14">
         <div className="container grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-5 lg:grid-cols-[290px_1fr] lg:gap-10">
           <BookListSidebar
             searchParams={searchParams}
             setSearchParams={setSearchParams}
           />
-          <BookList booksQuery={booksQuery} />
+          <div className="">
+            <BookList page={page} limit={limit} booksQuery={booksQuery} />
+            <Pagination
+              hasNextPage={booksQuery.data?.hasNextPage}
+              hasPrevPage={booksQuery.data?.hasPrevPage}
+              lastPage={booksQuery.data?.totalPages}
+              currentPage={page}
+            />
+          </div>
         </div>
       </section>
     </main>

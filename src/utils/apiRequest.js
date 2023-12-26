@@ -176,10 +176,29 @@ export const updateUserRole = async (userId, data) => {
 };
 
 // Book
-export const getFilteredBooks = async (query) => {
+export const getBooksPaginated = async ({
+  search,
+  page,
+  limit,
+  bookLanguage,
+  genres,
+}) => {
   try {
-    const res = await api.get(`/books${query ? query : ""}`);
-    return res.data;
+    const queryString = `/books?search=${search}&page=${page}&limit=${limit}&bookLanguage=${bookLanguage}&genres=${genres}`;
+    const res = await api.get(queryString);
+
+    const totalPages = Math.ceil(res.data?.total / limit) || 1;
+    const hasNextPage = page < totalPages;
+    const hasPrevPage = page > 1;
+
+    return {
+      books: res.data.data?.books,
+      hasNextPage,
+      hasPrevPage,
+      totalPages,
+      results: res.data?.results,
+      totalBooks: res.data?.total,
+    };
   } catch (error) {
     return error.response?.data;
   }

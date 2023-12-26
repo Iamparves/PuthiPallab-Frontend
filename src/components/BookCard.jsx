@@ -13,7 +13,7 @@ const BookCard = ({ book }) => {
         <img
           src={coverImg}
           alt=""
-          className="mx-auto block aspect-[1/1.4] w-full rounded-md object-cover"
+          className="mx-auto block aspect-[1/1.4] w-full rounded-md bg-gray-200 object-cover"
         />
       </div>
       <div className="">
