@@ -32,7 +32,7 @@ const BookDetailsInfo = ({ book }) => {
           <BookInfoItem title="Title" value={title} />
           <BookInfoItem title="Author" value={author} />
           <BookInfoItem title="Publisher" value={publisher || "-"} />
-          <BookInfoItem title="Genres" value={genresList} />
+          <BookInfoItem title="Genres" value={genres} />
           <BookInfoItem
             title="Published at"
             value={getLocalDate(publicationDate)}
