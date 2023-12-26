@@ -39,6 +39,11 @@ const NewestArrivals = () => {
               <p className="text-gray-400">Books Loading...</p>
             </div>
           )}
+          {booksQuery.isSuccess && booksQuery.data?.length === 0 && (
+            <div className="pt-10 text-center">
+              <p className="text-gray-400">No books found</p>
+            </div>
+          )}
           {!booksQuery.isLoading && !booksQuery.isError && (
             <div className="">
               <Swiper
@@ -66,14 +71,16 @@ const NewestArrivals = () => {
             </div>
           )}
         </div>
-        <div className="mt-7 text-center">
-          <Link
-            className="inline-flex items-center gap-2 rounded-full border-2 border-primary bg-primary px-5 py-3.5 text-sm font-semibold uppercase text-white duration-300 hover:bg-transparent hover:text-primary sm:text-base"
-            to="/books"
-          >
-            View all Books <FaChevronRight />
-          </Link>
-        </div>
+        {booksQuery.isSuccess && booksQuery.data?.length > 0 && (
+          <div className="mt-7 text-center">
+            <Link
+              className="inline-flex items-center gap-2 rounded-full border-2 border-primary bg-primary px-5 py-3.5 text-sm font-semibold uppercase text-white duration-300 hover:bg-transparent hover:text-primary sm:text-base"
+              to="/books"
+            >
+              View all Books <FaChevronRight />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

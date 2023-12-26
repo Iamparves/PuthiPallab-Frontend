@@ -21,6 +21,11 @@ const Genres = () => {
               <p className="text-gray-400">Genres Loading...</p>
             </div>
           )}
+          {genresQuery.isSuccess && genresQuery.data?.length === 0 && (
+            <div className="mt-10 text-center">
+              <p className="text-gray-400">No genres found</p>
+            </div>
+          )}
           {!genresQuery.isLoading && !genresQuery.isError && (
             <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-1 sm:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]  md:gap-2 lg:grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
               {genresQuery.data?.map((genre) => (

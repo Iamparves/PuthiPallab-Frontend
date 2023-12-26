@@ -38,6 +38,11 @@ const PopularBooks = () => {
               <p className="text-gray-400">Books Loading...</p>
             </div>
           )}
+          {booksQuery.isSuccess && booksQuery.data?.length === 0 && (
+            <div className="pt-10 text-center">
+              <p className="text-gray-400">No books found</p>
+            </div>
+          )}
           {!booksQuery.isLoading && !booksQuery.isError && (
             <div className="">
               <Swiper
