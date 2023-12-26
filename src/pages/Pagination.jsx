@@ -10,7 +10,7 @@ import { useSearchParams } from "react-router-dom";
 const Button = ({ page, icon, disabled, handlePageChange }) => {
   return (
     <button
-      className="bg-primary p-3 text-lg text-white transition-all duration-200 first:rounded-l-md last:rounded-r-md hover:bg-[#3d3d3d] disabled:pointer-events-none disabled:opacity-50"
+      className="bg-primary p-3 text-lg text-white transition-all duration-200 first:rounded-l-md last:rounded-r-md hover:bg-[#3d3d3d] disabled:pointer-events-none disabled:opacity-50 sm:text-[19px]"
       disabled={disabled}
       onClick={() => handlePageChange(page)}
     >
@@ -19,7 +19,13 @@ const Button = ({ page, icon, disabled, handlePageChange }) => {
   );
 };
 
-const Pagination = ({ hasPrevPage, hasNextPage, currentPage, lastPage }) => {
+const Pagination = ({
+  hasPrevPage,
+  hasNextPage,
+  currentPage,
+  lastPage,
+  isFetching,
+}) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handlePageChange = (page) => {
@@ -35,28 +41,30 @@ const Pagination = ({ hasPrevPage, hasNextPage, currentPage, lastPage }) => {
         <Button
           page={1}
           icon={<FiChevronsLeft />}
-          disabled={!hasPrevPage}
+          disabled={!hasPrevPage || isFetching}
           handlePageChange={handlePageChange}
         />
         <Button
           page={currentPage - 1}
           icon={<FiChevronLeft />}
-          disabled={!hasPrevPage}
+          disabled={!hasPrevPage || isFetching}
           handlePageChange={handlePageChange}
         />
-        <p className="flex items-center justify-center bg-primary px-3 font-medium text-white sm:min-w-[100px]">
-          Page {currentPage}
+        <p className="flex items-center justify-center gap-1 bg-primary px-3 font-medium text-white sm:min-w-[80px]">
+          {currentPage}
+          <span className="opacity-80">/</span>
+          {lastPage}
         </p>
         <Button
           page={currentPage + 1}
           icon={<FiChevronRight />}
-          disabled={!hasNextPage}
+          disabled={!hasNextPage || isFetching}
           handlePageChange={handlePageChange}
         />
         <Button
           page={lastPage}
           icon={<FiChevronsRight />}
-          disabled={!hasNextPage}
+          disabled={!hasNextPage || isFetching}
           handlePageChange={handlePageChange}
         />
       </div>

@@ -48,6 +48,7 @@ const Books = () => {
               hasPrevPage={booksQuery.data?.hasPrevPage}
               lastPage={booksQuery.data?.totalPages}
               currentPage={page}
+              isFetching={booksQuery.isFetching}
             />
           </div>
         </div>
