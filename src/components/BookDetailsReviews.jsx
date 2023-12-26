@@ -34,7 +34,7 @@ const BookDetailsReviews = ({ book }) => {
               disabled={form}
               onClick={() => setForm(true)}
             >
-              Add Review
+              Write a Review
             </button>
           )}
         </div>

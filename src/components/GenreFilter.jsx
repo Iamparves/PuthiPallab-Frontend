@@ -37,30 +37,15 @@ const GenreFilter = () => {
     });
   };
 
-  const handleClearFilter = () => {
-    setSearchParams((prev) => {
-      prev.delete("genres");
-      prev.set("page", "1");
-
-      return prev;
-    });
-  };
-
   useEffect(() => {
     genresQuery.refetch();
   }, []);
 
   return (
-    <div className="">
-      <div className="flex items-center justify-between border-b border-[#e1e1e1] pb-2">
-        <h3 className="font-semibold tracking-wider">Genres</h3>
-        <button
-          onClick={handleClearFilter}
-          className="text-sm duration-200 hover:text-primary"
-        >
-          Clear Filter
-        </button>
-      </div>
+    <div>
+      <h3 className="border-b border-[#e1e1e1] pb-2 font-semibold tracking-wider">
+        Genres
+      </h3>
       <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-1">
         {genresQuery.isSuccess &&
           genresQuery.data?.map((genre) => (
