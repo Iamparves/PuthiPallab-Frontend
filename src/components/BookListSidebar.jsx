@@ -30,7 +30,7 @@ const BookListSidebar = ({ filter, setFilter }) => {
       }`}
       onClick={handleCloseFilter}
     >
-      <div className="max-h-[calc(100%-60px)] w-[calc(100%-40px)] max-w-md overflow-y-auto rounded-md bg-white p-5 text-[#151515] sm:max-w-xl sm:p-7 md:max-h-none md:w-full md:overflow-y-hidden md:p-0">
+      <div className="max-h-[calc(100%-100px)] w-[calc(100%-40px)] max-w-md overflow-y-auto rounded-md bg-white p-5 text-[#151515] sm:max-w-xl sm:p-7 md:max-h-none md:w-full md:overflow-y-hidden md:p-0">
         <div className="mb-5 flex items-center justify-between">
           <h3 className="text-xl font-semibold">Filters</h3>
           <button
