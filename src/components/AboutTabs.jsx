@@ -22,7 +22,7 @@ const contents = [
         indictio. Nunquam quaestio scutum. Valebats
       </span>
     ),
-    image: "/about/about-us.jpg",
+    image: "/about-us/about-us.jpg",
   },
   {
     title: "Providing access to the best books",
@@ -41,7 +41,7 @@ const contents = [
         indictio. Nunquam quaestio scutum. Valebats
       </span>
     ),
-    image: "/about/our-mission.jpg",
+    image: "/about-us/our-mission.jpg",
   },
   {
     title: "Educating the rising generation",
@@ -60,7 +60,7 @@ const contents = [
         indictio. Nunquam quaestio scutum. Valebats
       </span>
     ),
-    image: "/about/our-goals.jpg",
+    image: "/about-us/our-goals.jpg",
   },
   {
     title: "Join the readership community",
@@ -79,7 +79,7 @@ const contents = [
         indictio. Nunquam quaestio scutum. Valebats
       </span>
     ),
-    image: "/about/join-library.jpg",
+    image: "/about-us/join-library.jpg",
   },
 ];
 
