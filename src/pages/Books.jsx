@@ -1,5 +1,5 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import BookList from "../components/BookList";
 import BookListSidebar from "../components/BookListSidebar";
@@ -8,6 +8,8 @@ import { getBooksPaginated } from "../utils/apiRequest";
 import Pagination from "./Pagination";
 
 const Books = () => {
+  const [filter, setFilter] = useState(false);
+
   const [searchParams, setSearchParams] = useSearchParams({
     search: "",
     page: "1",
@@ -38,11 +40,18 @@ const Books = () => {
       <section className="py-8 lg:py-10 xl:py-14">
         <div className="container grid grid-cols-1 gap-10 md:grid-cols-[220px_1fr] md:gap-5 lg:grid-cols-[290px_1fr] lg:gap-10">
           <BookListSidebar
+            filter={filter}
+            setFilter={setFilter}
             searchParams={searchParams}
             setSearchParams={setSearchParams}
           />
-          <div className="">
-            <BookList page={page} limit={limit} booksQuery={booksQuery} />
+          <div>
+            <BookList
+              setFilter={setFilter}
+              page={page}
+              limit={limit}
+              booksQuery={booksQuery}
+            />
             <Pagination
               hasNextPage={booksQuery.data?.hasNextPage}
               hasPrevPage={booksQuery.data?.hasPrevPage}

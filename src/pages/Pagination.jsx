@@ -10,7 +10,7 @@ import { useSearchParams } from "react-router-dom";
 const Button = ({ page, icon, disabled, handlePageChange }) => {
   return (
     <button
-      className="bg-primary p-3 text-lg text-white transition-all duration-200 first:rounded-l-md last:rounded-r-md hover:bg-[#3d3d3d] disabled:pointer-events-none disabled:opacity-50 sm:text-[19px]"
+      className="bg-primary p-3 text-lg text-white transition-all duration-200 first:rounded-l-md last:rounded-r-md disabled:pointer-events-none disabled:opacity-50 sm:text-[19px] lg:hover:bg-[#3d3d3d]"
       disabled={disabled}
       onClick={() => handlePageChange(page)}
     >
