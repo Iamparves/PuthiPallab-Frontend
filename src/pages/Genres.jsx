@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import GenresCard from "../components/GenresCard";
+import ScrollToTop from "../components/ScrollToTop";
 import Spinner from "../components/Spinner";
 import TopBanner from "../components/TopBanner";
 import { getAllGenres } from "../utils/apiRequest";
@@ -12,6 +13,7 @@ const Genres = () => {
   });
   return (
     <main className="min-h-[calc(100vh-80px)] bg-white">
+      <ScrollToTop />
       <TopBanner title="Genres" background="bg-[url(/genres-top.jpg)]" />
       <section className="py-16 sm:py-20">
         <div className="container">

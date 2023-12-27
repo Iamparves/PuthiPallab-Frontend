@@ -1,10 +1,12 @@
 import React from "react";
 import HomeContact from "../components/HomeContact";
+import ScrollToTop from "../components/ScrollToTop";
 import TopBanner from "../components/TopBanner";
 
 const Contact = () => {
   return (
     <main className="bg-white">
+      <ScrollToTop />
       <TopBanner title="Contact" background="bg-[url(/contact-top.jpg)]" />
       <HomeContact />
       <section>

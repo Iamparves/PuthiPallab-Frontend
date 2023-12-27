@@ -10,7 +10,8 @@ const BookList = ({ booksQuery, page, limit }) => {
         <p className="mb-5 text-[15px] font-medium text-gray-400 md:text-base lg:text-lg xl:text-[19px]">
           Showing{" "}
           <span className="text-[#1d1d1d]">
-            {skip + 1}-{skip + booksQuery.data.results}{" "}
+            {booksQuery.data?.results > 0 ? skip + 1 : 0}-
+            {skip + booksQuery.data.results}{" "}
           </span>{" "}
           of{" "}
           <span className="text-[#1d1d1d]">{booksQuery.data.totalBooks}</span>{" "}
