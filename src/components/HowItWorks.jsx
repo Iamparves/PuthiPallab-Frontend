@@ -25,7 +25,6 @@ const HowItWorks = () => {
   return (
     <section className="bg-[#F6F7FB] py-12 md:py-20">
       <div className="container">
-        {/* <SectionTop title="How It Works" letter="W" /> */}
         <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-5">
           {steps.map(({ title, description, icon }, index) => (
             <div
