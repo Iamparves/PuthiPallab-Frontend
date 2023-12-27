@@ -10,6 +10,7 @@ const DashProfileGeneral = () => {
   const [photo, setPhoto] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const user = useStore((state) => state.user);
+  const setUser = useStore((state) => state.setUser);
 
   const userQuery = useQuery({
     queryKey: ["user", user?._id],
@@ -63,6 +64,8 @@ const DashProfileGeneral = () => {
       });
 
       if (user.photo) setPhoto(user.photo);
+
+      setUser(user);
     }
   }, [userQuery.data]);
 

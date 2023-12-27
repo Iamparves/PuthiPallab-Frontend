@@ -72,7 +72,7 @@ const NewestArrivals = () => {
           )}
         </div>
         {booksQuery.isSuccess && booksQuery.data?.length > 0 && (
-          <div className="mt-7 text-center">
+          <div className="mt-10 text-center">
             <Link
               className="inline-flex items-center gap-2 rounded-full border-2 border-primary bg-primary px-5 py-3.5 text-sm font-semibold uppercase text-white duration-300 hover:bg-transparent hover:text-primary sm:text-base"
               to="/books"
