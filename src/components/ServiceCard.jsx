@@ -1,45 +1,26 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const ServiceCard = ({ service }) => {
-  const { title, description, youtubeUrl } = service;
-  const [thumbnailUrl, setThumbnailUrl] = useState('');
-
-  useEffect(() => {
-    const getYouTubeThumbnail = async () => {
-      try {
-        const response = await fetch(`https://noembed.com/embed?url=${encodeURIComponent(youtubeUrl)}`);
-        const data = await response.json();
-        setThumbnailUrl(data.thumbnail_url);
-      } catch (error) {
-        console.error('Error fetching YouTube thumbnail:', error);
-      }
-    };
-
-    if (youtubeUrl) {
-      getYouTubeThumbnail();
-    }
-  }, [youtubeUrl]);
+  const { img, title, description } = service;
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="border-[#ebebeb] bg-white px-5 py-8 duration-300 sm:py-10 md:hover:scale-[calc(101%)] md:hover:border-transparent md:hover:shadow-[0_0_20px_0_rgba(0,0,0,0.03)] xl:py-12 [&:not(:last-child)]:border-b md:[&:not(:nth-child(3n))]:border-r sm:[&:nth-child(2n-1)]:border-r md:[&:nth-child(3)]:border-r-0 md:[&:nth-child(4)]:border-b-0 sm:[&:nth-child(5)]:border-b-0">
-      <div className="mx-auto max-w-[260px] text-center sm:text-left">
-        {thumbnailUrl && (
-          <a href={youtubeUrl} target="_blank" rel="noopener noreferrer">
-            <span className="mx-auto inline-block aspect-square w-36 sm:w-25 sm:mx-0">
-              {/* Ajustei a classe da miniatura (w-24) para aumentar o tamanho */}
-              <img src={thumbnailUrl} alt={title} />
-            </span>
-          </a>
+    <div
+      className={`border-[#ebebeb] bg-white px-5 py-8 duration-300 sm:py-10 md:hover:scale-[calc(101%)] md:hover:border-transparent md:hover:shadow-[0_0_20px_0_rgba(0,0,0,0.03)] xl:py-12 [&:not(:last-child)]:border-b md:[&:not(:nth-child(3n))]:border-r sm:[&:nth-child(2n-1)]:border-r md:[&:nth-child(3)]:border-r-0 md:[&:nth-child(4)]:border-b-0 sm:[&:nth-child(5)]:border-b-0`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="mx-auto max-w-[300px] text-center sm:text-left">
+        <span className="mx-auto inline-block w-full aspect-square sm:mx-0">
+          <img
+            src={img}
+            alt={title}
+            className="w-full h-full object-cover"
+          />
+        </span>
+        {isHovered && (
+          <p className="text-[5px] text-gray-400 sm:text-base">{description}</p>
         )}
-        <h3 className="my-3 text-base font-bold lg:text-lg">
-          {/* Ajustei a classe do título (text-base, lg:text-lg) para diminuir o tamanho */}
-          {title}
-        </h3>
-        <p className="text-sm text-gray-500 sm:text-xs">
-          {/* Ajustei a classe da descrição (text-sm, sm:text-xs) para diminuir o tamanho */}
-          {description}
-        </p>
       </div>
     </div>
   );
