@@ -1,15 +1,11 @@
 import React from "react";
 import toast from "react-hot-toast";
 import { MdAlternateEmail } from "react-icons/md";
-import { sendContactMessage } from "../utils/apiRequest";
 import { AddDocument } from "../utils/firebaseRequest";
 
 const SubscribeForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e)
-    //const toastId = toast.loading("Sending message...");
-
     const data = {
       wifeName: e.target.wifeName.value,
       wifeBirthdate: e.target.wifeBirthdate.value,
@@ -44,21 +40,19 @@ const SubscribeForm = () => {
       observations: e.target.observations.value,
     };
 
-    const result = await AddDocument("TesteForm", data);
-
-    if (result?.status === "success") {
-      toast.success(result.message, { id: toastId });
-    } else {
-      toast.error(result.message, { id: toastId });
+    try {
+      await AddDocument("TesteForm", data);
+      toast.success("Incrição realizada com sucesso!");
+    } catch (error) {
+      toast.error("Erro ao realizar inscrição!");
     }
 
-    //e.target.reset();
+    e.target.reset();
   };
 
   return (
     <form onSubmit={handleSubmit} className="max-w-3xl space-y-3 sm:space-y-5">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5 md:grid-cols-1">
-        {/* Make a card using a div */}
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5 md:grid-cols-1 border-2 border-primary rounded-lg p-8">
           <h2 className="text-3xl font-semibold">Esposa</h2>
           <input
