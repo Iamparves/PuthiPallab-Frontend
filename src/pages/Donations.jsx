@@ -17,9 +17,9 @@ const Donations = () => {
             height="315"
             src={`https://www.ibfarol.com.br/storage/videos/release_retorno_cultos_ibfarol.mp4`}
             title="YouTube video player"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
         </div>
         <div className="lg:col-span-2 justify-center items-center">
