@@ -24,7 +24,7 @@ const Genres = () => {
           <iframe
             width="100%"
             height="315"
-            src={`https://www.ibfarol.com.br/storage/videos/release_retorno_cultos_ibfarol.mp4`}
+            src={`https://youtu.be/Yhp7DX8t660`}
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

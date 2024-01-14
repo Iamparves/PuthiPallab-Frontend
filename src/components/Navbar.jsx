@@ -12,17 +12,29 @@ const menuItems = [
     name: "Sobre Nós",
     path: "/about",
   },
-  // {
-  //   name: "Eventos",
-  //   path: "/genres",
-  // },
+  {
+    name: "Como Tornar-se Membro",
+    path: "/genres",
+  },
+  {
+    name: "Ministérios",
+    path: "/about",
+  },
+  {
+    name: "Farol em Ação (Programação)",
+    path: "/contact",
+  },
+  {
+    name: "Galeria de Fotos",
+    path: "/about",
+  },
   {
     name: "Doações",
     path: "/genres",
   },
   {
-    name: "Contato",
-    path: "/contact",
+    name: "Culto Online",
+    path: "/about",
   },
 ];
 
@@ -72,16 +84,10 @@ const Navbar = () => {
             >
               {showMenu ? <CgClose /> : <CgMenu />}
             </button>
-            <nav className="hidden items-center gap-2 md:flex">
+            <nav className="hidden items-center gap-4 md:flex">
               {menuItems.map(({ name, path }, index) => (
                 <MenuLink name={name} path={path} key={index} />
-              ))}
-              {!loading &&
-                (!user ? (
-                  <MenuLink name="Login" path="/login" />
-                ) : (
-                  <MenuLink name="Dashboard" path="/dashboard" />
-                ))}
+              ))} 
             </nav>
           </div>
         </div>
