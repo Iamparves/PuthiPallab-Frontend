@@ -13,29 +13,20 @@ const menuItems = [
     path: "/about",
   },
   {
-<<<<<<< HEAD
-    name: "Como Tornar-se Membro",
-    path: "/genres",
-=======
-    name: "Doações",
-    path: "/donations",
->>>>>>> 1e0931c101f3ff61fa51446d1ab423926ae426d6
+    name: "Como Tornar-se um Membro",
+    path: "/contact",
   },
   {
     name: "Ministérios",
     path: "/about",
   },
   {
-    name: "Farol em Ação (Programação)",
-    path: "/contact",
+    name: "Doações",
+    path: "/donations",
   },
   {
     name: "Galeria de Fotos",
     path: "/about",
-  },
-  {
-    name: "Doações",
-    path: "/genres",
   },
   {
     name: "Culto Online",
