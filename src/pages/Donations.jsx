@@ -6,7 +6,7 @@ import Spinner from "../components/Spinner";
 import TopBanner from "../components/TopBanner";
 import { getAllGenres } from "../utils/apiRequest";
 
-const Genres = () => {
+const Donations = () => {
   const genresQuery = useQuery({
     queryKey: ["genres", { sort: "genreName" }],
     queryFn: () => getAllGenres("?sort=genreName"),
@@ -78,4 +78,4 @@ const Genres = () => {
   );
 };
 
-export default Genres;
+export default Donations;

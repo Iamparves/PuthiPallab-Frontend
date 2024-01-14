@@ -18,7 +18,7 @@ const menuItems = [
   // },
   {
     name: "Doações",
-    path: "/genres",
+    path: "/donations",
   },
   {
     name: "Contato",
