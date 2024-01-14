@@ -1,6 +1,7 @@
 import React from "react";
 import ContactForm from "./ContactForm";
 import ContactInfo from "./ContactInfo";
+import SubscribeForm from "./SubscribeForm";
 
 const HomeContact = () => {
   return (
@@ -11,7 +12,7 @@ const HomeContact = () => {
             <h2 className="mb-8 text-3xl font-bold text-[#151515] md:text-[32px] lg:mb-12 lg:text-4xl">
               Get in Touch
             </h2>
-            <ContactForm />
+            <SubscribeForm />
           </div>
           <ContactInfo />
         </div>
