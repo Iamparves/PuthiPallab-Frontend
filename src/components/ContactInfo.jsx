@@ -7,7 +7,7 @@ import {
 } from "react-icons/fa";
 import { IoMdCall } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
-import { MdOutlineMail } from "react-icons/md";
+import { MdOutlineMail, MdOutlinePhone, MdOutlineWhatsapp } from "react-icons/md";
 
 const ContactInfo = () => {
   return (
@@ -52,13 +52,23 @@ const ContactInfo = () => {
           Phone
         </h4>
         <a
-          href="tel:#"
+          href="tel:8292210070"
           className="inline-flex items-center gap-3 duration-300 hover:text-primary"
         >
           <span className="text-xl text-primary">
-            <IoMdCall />
+            <MdOutlinePhone />
           </span>
-          +8801723-4567890
+          (82) 3221-0070
+        </a>
+        <a
+          href="https://api.whatsapp.com/send?1=pt_BR&phone=5582999330577"
+          target="_blank"
+          className="inline-flex items-center gap-3 duration-300 hover:text-primary"
+        >
+          <span className="text-xl text-primary">
+            <MdOutlineWhatsapp />
+          </span>
+          (82) 99933-0577
         </a>
       </div>
       <div className="mx-auto max-w-xs border-b border-[#ebebeb] py-7">
@@ -66,13 +76,14 @@ const ContactInfo = () => {
           E-mail
         </h4>
         <a
-          href="mailto:#"
+          href="mailto:faleconosco@ibfarol.com.br"
           className="inline-flex items-center gap-3 duration-300 hover:text-primary"
         >
           <span className="text-xl text-primary">
             <MdOutlineMail />
+            
           </span>
-          info@puthipallab.com
+          faleconosco@ibfarol.com.br
         </a>
       </div>
       <div className="mx-auto max-w-xs pt-7">
@@ -83,7 +94,7 @@ const ContactInfo = () => {
           <span className="text-xl text-primary">
             <IoLocationSharp />
           </span>
-          Sopura, Boalia, Rajshahi
+          AV DOM ANTÔNIO BRANDÃO, 90, FAROL
         </p>
       </div>
     </div>
