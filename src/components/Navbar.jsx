@@ -5,23 +5,23 @@ import useAuth from "../hooks/useAuth";
 
 const menuItems = [
   {
-    name: "Home",
+    name: "Início",
     path: "/",
   },
   {
-    name: "About",
+    name: "Sobre Nós",
     path: "/about",
   },
+  // {
+  //   name: "Eventos",
+  //   path: "/genres",
+  // },
   {
-    name: "Genres",
+    name: "Doações",
     path: "/genres",
   },
   {
-    name: "Books",
-    path: "/books",
-  },
-  {
-    name: "Contact",
+    name: "Contato",
     path: "/contact",
   },
 ];
@@ -63,7 +63,7 @@ const Navbar = () => {
       <div className="bg-white drop-shadow-sm">
         <div className="container flex h-16 items-center justify-between md:h-20">
           <NavLink onClick={closeMenu} to="/">
-            <img src="/logo.svg" alt="Puthi Pallab" className="h-10 md:h-12" />
+            <img src="/logo.png" alt="Puthi Pallab" className="h-10 md:h-12" />
           </NavLink>
           <div>
             <button

@@ -4,40 +4,40 @@ import ServiceCard from "./ServiceCard";
 
 const services = [
   {
-    icon: "/services/service-01.png",
-    title: "Ask a Librarian",
+    title: "10.01.2024",
     description:
-      "Feel free to ask our librarians about any book located at our library storage.",
+    "Culto de Oração e Louvor (Acessível em Libras).",
+    youtubeUrl: "https://www.youtube.com/watch?v=w3mFGG8j7MQ",
   },
   {
-    icon: "/services/service-02.png",
-    title: "Meeting Rooms",
+    title: "07.01.2024",
     description:
-      "Our library provides well-equipped meeting rooms ranging in size from 12 to 40.",
+    "Culto de Domingo - Noite (Acessível em Libras)",
+    youtubeUrl: "https://www.youtube.com/watch?v=8zHVfZD1E9I",
   },
   {
-    icon: "/services/service-03.png",
-    title: "Study Rooms",
+    title: "07.01.2024",
     description:
-      "Our study rooms located in library spaces can be reserved up to two weeks in advance.",
+    "Culto de Domingo (Acessível em Libras)",
+    youtubeUrl: "https://www.youtube.com/watch?v=38nV3eRAU8E",
   },
   {
-    icon: "/services/service-04.png",
-    title: "Research",
+    title: "03.01.2024",
     description:
-      "MagicBook library offers various set of resources for researchers and scholars.",
+    "Culto de Oração e Louvor (Acessível em Libras)",
+    youtubeUrl: "https://www.youtube.com/watch?v=h1NJubCt9O8",
   },
   {
-    icon: "/services/service-05.png",
-    title: "Exhibitions",
+    title: "31.12.2023",
     description:
-      "Feel free to visit any of our regular book exhibitions featuring popular authors.",
+    "Culto de Ano Novo - Noite (Acessível em Libras)",
+    youtubeUrl: "https://www.youtube.com/watch?v=8hNDLUsh974",
   },
   {
-    icon: "/services/service-06.png",
-    title: "Computer Classes",
+    title: "31.12.2023",
     description:
-      "Gain access to the immense eBook database using our computer classes.",
+    "Culto de Domingo - Manhã (Acessível em Libras)",
+    youtubeUrl: "https://www.youtube.com/watch?v=Egz-JwjT2Js",
   },
 ];
 
@@ -45,7 +45,7 @@ const Services = () => {
   return (
     <section className="pb-10 pt-16 lg:pt-10">
       <div className="sm:container">
-        <SectionTop title="Our Services" letter="S" />
+        <SectionTop title="Assista aos nosso cultos" letter="IBF" />
         <div className="mx-auto mt-5 grid grid-cols-1 sm:mt-10 sm:grid-cols-2 md:grid-cols-3 xl:max-w-6xl">
           {services.map((service, i) => (
             <ServiceCard key={i} service={service} />

@@ -2,7 +2,7 @@ import React from "react";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
-import DashBookForm from "./components/DashBookForm";
+// import DashBookForm from "./components/DashBookForm";
 import DashGenreForm from "./components/DashGenreForm";
 import DashProfileGeneral from "./components/DashProfileGeneral";
 import DashProfileSecurity from "./components/DashProfileSecurity";
@@ -10,8 +10,8 @@ import Layout from "./components/Layout";
 import Modal from "./components/Modal";
 import ProtectedRoute from "./components/ProtectedRoute";
 import About from "./pages/About";
-import BookDetails from "./pages/BookDetails";
-import Books from "./pages/Books";
+// import BookDetails from "./pages/BookDetails";
+// import Books from "./pages/Books";
 import Contact from "./pages/Contact";
 import Dashboard from "./pages/Dashboard";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -24,7 +24,7 @@ import Signup from "./pages/Signup";
 import Unauthorized from "./pages/Unauthorized";
 import UnverifiedAccount from "./pages/UnverifiedAccount";
 import VerifyEmail from "./pages/VerifyEmail";
-import DashBooks from "./pages/dashboard/Books";
+// import DashBooks from "./pages/dashboard/Books";
 import Genres from "./pages/dashboard/Genres";
 import IssueBook from "./pages/dashboard/IssueBook";
 import IssueRecords from "./pages/dashboard/IssueRecords";
@@ -45,8 +45,8 @@ const App = () => {
             <Route path="" index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="genres" element={<HomeGenres />} />
-            <Route path="books" element={<Books />} />
-            <Route path="books/:bookId" element={<BookDetails />} />
+            {/* <Route path="books" element={<Books />} /> */}
+            {/* <Route path="books/:bookId" element={<BookDetails />} /> */}
             <Route path="contact" element={<Contact />} />
           </Route>
 
@@ -82,7 +82,7 @@ const App = () => {
               <Route path="issue-records" element={<IssueRecords />} />
               <Route path="users" element={<Users />} />
 
-              <Route path="books" element={<DashBooks />}>
+              {/* <Route path="books" element={<DashBooks />}>
                 <Route
                   path="new"
                   element={
@@ -99,7 +99,7 @@ const App = () => {
                     </Modal>
                   }
                 />
-              </Route>
+              </Route> */}
 
               <Route path="genres" element={<Genres />}>
                 <Route

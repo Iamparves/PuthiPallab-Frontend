@@ -3,8 +3,8 @@ import Hero from "../components/Hero";
 import HomeAbout from "../components/HomeAbout";
 import HomeContact from "../components/HomeContact";
 import JoinLibrary from "../components/JoinLibrary";
-import NewestArrivals from "../components/NewestArrivals";
-import PopularBooks from "../components/PopularBooks";
+// import NewestArrivals from "../components/NewestArrivals";
+// import PopularBooks from "../components/PopularBooks";
 import ScrollToTop from "../components/ScrollToTop";
 import Services from "../components/Services";
 
@@ -15,9 +15,9 @@ const Home = () => {
       <Hero />
       <Services />
       <HomeAbout />
-      <PopularBooks />
-      <NewestArrivals />
-      <JoinLibrary />
+      {/* <PopularBooks /> */}
+      {/* <NewestArrivals /> */}
+      {/* <JoinLibrary /> */}
       <HomeContact />
     </main>
   );

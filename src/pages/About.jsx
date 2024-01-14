@@ -9,10 +9,10 @@ const About = () => {
   return (
     <main className="bg-white">
       <ScrollToTop />
-      <TopBanner title="About us" background="bg-[url(/about-top.jpg)]" />
+      <TopBanner title="Sobre nós" background="bg-[url(/igreja/igreja_completa_facebook.jpg)]" />
       <AboutTabs />
-      <HowItWorks />
-      <OurTeam />
+      {/* <HowItWorks /> */}
+      {/* <OurTeam /> */}
     </main>
   );
 };

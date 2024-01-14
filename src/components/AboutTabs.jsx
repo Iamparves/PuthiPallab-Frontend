@@ -2,35 +2,24 @@ import moment from "moment";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const tabs = ["About us", "Our mission", "Our goals", "Join the library"];
+const tabs = ["Sobre nós", "Minstério", "Ações Sociais"];
 
 const contents = [
   {
-    title: "Puthi Pallab Library was founded in 2019",
+    title: "A Igreja Batista do Farol foi fundada em 1917",
     description: (
       <span>
-        Albus, dexter particulas grauiter consumere de ferox, bi-color abactus.
-        Impositios studere, tanquam mirabilis hippotoxota. Cur torus manducare?
-        Pol, vox! Cum barcas nocere, omnes specieses contactus
+        Situada no encantador estado de Alagoas, destaca-se como um lugar de comunhão, adoração e crescimento espiritual. Fundada com a missão de proclamar os ensinamentos cristãos e promover o amor de Deus, a igreja desempenha um papel vital na vida espiritual da comunidade local.
         <br />
-        <br />
-        Lotus advenas ducunt ad gemna. Ubi est domesticus domina? Heu, barbatus
-        mens! Cum elogium favere, omnes lubaes tractare talis, barbatus
-        adiuratores. Mirabilis hydras ducunt ad danista. Dominas sunt accentors
-        de germanus cacula. Amicitias prarere in alta muta! Ecce, bubo! Nunquam
-        promissio verpa. Talis, primus fugas recte consumere de audax, festus
-        indictio. Nunquam quaestio scutum. Valebats
       </span>
     ),
-    image: "/about-us/about-us.jpg",
+    image: "/igreja/frente_igreja.jpg",
   },
   {
-    title: "Providing access to the best books",
+    title: "Pr. Roberto",
     description: (
       <span>
-        Albus, dexter particulas grauiter consumere de ferox, bi-color abactus.
-        Impositios studere, tanquam mirabilis hippotoxota. Cur torus manducare?
-        Pol, vox! Cum barcas nocere, omnes specieses contactus
+        Atual pastor da Igreja Batista do Farol, Roberto...
         <br />
         <br />
         Lotus advenas ducunt ad gemna. Ubi est domesticus domina? Heu, barbatus
@@ -41,10 +30,10 @@ const contents = [
         indictio. Nunquam quaestio scutum. Valebats
       </span>
     ),
-    image: "/about-us/our-mission.jpg",
+    image: "/igreja/pastor_roberto.jpg",
   },
   {
-    title: "Educating the rising generation",
+    title: "Cristolândia",
     description: (
       <span>
         Albus, dexter particulas grauiter consumere de ferox, bi-color abactus.
@@ -60,26 +49,7 @@ const contents = [
         indictio. Nunquam quaestio scutum. Valebats
       </span>
     ),
-    image: "/about-us/our-goals.jpg",
-  },
-  {
-    title: "Join the readership community",
-    description: (
-      <span>
-        Albus, dexter particulas grauiter consumere de ferox, bi-color abactus.
-        Impositios studere, tanquam mirabilis hippotoxota. Cur torus manducare?
-        Pol, vox! Cum barcas nocere, omnes specieses contactus
-        <br />
-        <br />
-        Lotus advenas ducunt ad gemna. Ubi est domesticus domina? Heu, barbatus
-        mens! Cum elogium favere, omnes lubaes tractare talis, barbatus
-        adiuratores. Mirabilis hydras ducunt ad danista. Dominas sunt accentors
-        de germanus cacula. Amicitias prarere in alta muta! Ecce, bubo! Nunquam
-        promissio verpa. Talis, primus fugas recte consumere de audax, festus
-        indictio. Nunquam quaestio scutum. Valebats
-      </span>
-    ),
-    image: "/about-us/join-library.jpg",
+    image: "/igreja/cristolandia.jpg",
   },
 ];
 
@@ -87,7 +57,7 @@ const AboutTabs = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   const experience = Math.floor(
-    moment.duration(moment().diff(new Date("2019-03-16"))).asYears(),
+    moment.duration(moment().diff(new Date("1917-08-19"))).asYears(),
   );
 
   return (
@@ -95,7 +65,7 @@ const AboutTabs = () => {
       <div className="container flex flex-col gap-14 text-[#151515] lg:flex-row-reverse lg:gap-6 xl:gap-16">
         <div className="mx-auto flex w-full flex-shrink-0 flex-col items-center md:max-w-3xl md:items-start lg:w-[300px]">
           <h4 className="font-semibold uppercase tracking-widest md:text-lg lg:leading-[1.75] lg:tracking-[4px]">
-            {experience}+ years of experience
+            Mais de {experience} anos de história
           </h4>
           <div className="mt-5 flex flex-wrap justify-center gap-x-6 gap-y-2 lg:w-full lg:flex-col lg:gap-y-0">
             {tabs.map((tab, index) => (
@@ -111,12 +81,12 @@ const AboutTabs = () => {
               </button>
             ))}
           </div>
-          <Link
+          {/* <Link
             className="mt-9 inline-block border-2 border-primary bg-primary px-12 py-5 text-sm font-semibold uppercase tracking-widest text-white duration-300 hover:bg-transparent hover:text-primary md:mt-12 lg:w-full lg:py-6 lg:text-center lg:text-base"
             to="/contact"
           >
             Contact us
-          </Link>
+          </Link> */}
         </div>
         <div className="mx-auto w-full max-w-[485px] text-center md:max-w-3xl md:text-left lg:max-w-none">
           {contents.map(({ title, description, image }, index) => (

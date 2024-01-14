@@ -4,20 +4,20 @@ import { Link } from "react-router-dom";
 
 const contents = [
   {
-    image: "/home-about/about-us.jpg",
-    title: "A Few Words About Our Library",
+    image: "/igreja/igreja_completa.jpg",
+    title: "Uma Igreja Forte e Ativa",
     description:
-      "Puthi Pallab Library was founded in 2019 to provide access to books, the world’s most valuable source of knowledge.",
+      "Deseja contribuir para nossa comunidade?",
   },
   {
-    image: "/home-about/our-goals.jpg",
-    title: "What We Want to Achieve",
+    image: "/igreja/criancas.jpg",
+    title: "Projetos",
     description:
       "Our global goals are to help our visitors and readers discover more great books and learn about young and popular authors.",
   },
   {
-    image: "/home-about/join-library.jpg",
-    title: "Join Our Readership Community",
+    image: "/igreja/ministerio.jpg",
+    title: "Ministérios",
     description:
       "We are always glad to welcome new library members to our community, which unites writers, poets, readers, and book enthusiasts.",
   },
@@ -60,12 +60,12 @@ const HomeAbout = () => {
                 className="inline-flex items-center gap-3 border-2 border-primary bg-primary px-8 py-3.5 font-semibold uppercase text-white duration-300 hover:gap-4 hover:bg-transparent hover:text-primary"
                 to="/about"
               >
-                Read more <FaChevronRight />
+                Contribua aqui <FaChevronRight />
               </Link>
             </div>
           </div>
           <div className="flex min-w-[230px] flex-wrap divide-y divide-[#555] text-center sm:w-[40%] sm:max-w-[290px]">
-            {["about us", "our goals", "join the library"].map((title, i) => (
+            {["Sobre nós", "Projetos", "Ministérios"].map((title, i) => (
               <button
                 key={i}
                 onClick={() => setCurrent(i)}

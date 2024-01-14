@@ -14,7 +14,7 @@ export default {
         poppins: ["Poppins", "sans-serif"],
       },
       colors: {
-        primary: "#F59115",
+        primary: "#4169E1",
       },
       fontSize: {
         xs: "13px",
