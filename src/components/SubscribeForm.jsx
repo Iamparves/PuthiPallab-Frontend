@@ -80,6 +80,7 @@ const SubscribeForm = () => {
             name="wifeCpf"
             type="text"
             placeholder="CPF"
+            mask="999.999.999-99"
             className="w-full border border-[#e1e1e1] px-6 py-5 text-[15px] transition-colors duration-200 focus:border-primary focus:outline-none"
           />
           <input
