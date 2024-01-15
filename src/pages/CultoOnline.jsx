@@ -51,7 +51,7 @@ const CultoOnline = () => {
           <h2 className="text-black text-2xl mr-4">Assista aqui:</h2>
           <a href="https://www.youtube.com/@IgrejaBatistadoFarol/streams" target="_blank" rel="noopener noreferrer">
             <img
-              src="public/logo_youtube.jpg"
+              src="/logo_youtube.jpg"
               alt="Logo do YouTube"
               className="w-32 h-16"
             />

@@ -38,6 +38,8 @@ import Waitlist from "./pages/dashboard/Waitlist";
 import TornarMembro from "./pages/TornarMembro";
 import GaleriaFotos from "./pages/GaleriaFotos";
 
+import SubscribeToEvent from "./pages/SubscribeToEvent";
+
 const App = () => {
   return (
     <>
@@ -54,6 +56,8 @@ const App = () => {
             {/* <Route path="books" element={<Books />} /> */}
             {/* <Route path="books/:bookId" element={<BookDetails />} /> */}
             <Route path="cultoonline" element={<CultoOnline />} />
+            {/* <Route path="contact" element={<Contact />} />
+            <Route path="subscribe" element={<SubscribeToEvent />} /> */}
           </Route>
 
           <Route path="/login" element={<Login />} />
