@@ -33,14 +33,14 @@ const ContactForm = () => {
         <input
           name="name"
           type="text"
-          placeholder="Your Name*"
+          placeholder="Nome*"
           required
           className="w-full border border-[#e1e1e1] px-6 py-5 text-[15px] transition-colors duration-200 focus:border-primary focus:outline-none"
         />
         <input
           name="email"
           type="email"
-          placeholder="Your Email*"
+          placeholder="Email*"
           required
           className="w-full border border-[#e1e1e1] px-6 py-5 text-[15px] transition-colors duration-200 focus:border-primary focus:outline-none"
         />
@@ -48,12 +48,12 @@ const ContactForm = () => {
       <input
         name="subject"
         type="text"
-        placeholder="Subject"
+        placeholder="Assunto"
         className="w-full border border-[#e1e1e1] px-6 py-5 text-[15px] transition-colors duration-200 focus:border-primary focus:outline-none"
       />
       <textarea
         name="message"
-        placeholder="Message*"
+        placeholder="Mensagem*"
         required
         className="h-40 w-full resize-none border border-[#e1e1e1] px-6 py-5 text-[15px] transition-colors duration-200 focus:border-primary focus:outline-none"
       ></textarea>
@@ -65,7 +65,7 @@ const ContactForm = () => {
           <span className="text-xl">
             <MdAlternateEmail />
           </span>
-          Contact us
+          Contacte-nos
         </button>
       </div>
     </form>

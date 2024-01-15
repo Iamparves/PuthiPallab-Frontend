@@ -9,7 +9,7 @@ const HomeContact = () => {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[1fr_auto] md:gap-8 lg:items-start">
           <div>
             <h2 className="mb-8 text-3xl font-bold text-[#151515] md:text-[32px] lg:mb-12 lg:text-4xl">
-              Get in Touch
+              Contacte-nos
             </h2>
             <ContactForm />
           </div>

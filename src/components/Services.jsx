@@ -48,10 +48,7 @@ const Services = () => {
         <SectionTop title="Como tudo começou" letter="IBF" />
         <div className="max-w-xl mx-auto text-center lg:text-center mt-8">
           <p className="mb-20 text-base text-gray-500 xl:text-lg">
-            Come, let the pages turn, and let the words weave their magic.
-            Discover, learn, and find inspiration within the walls of our
-            library - a place where stories come alive and knowledge knows no
-            bounds.
+            O primeiro pastor batista brasileiro, Antônio Teixeira de Albuquerque, foi batizado e ordenado na igreja em Santa Bárbara...
           </p>
         </div>
         <SectionTop title="Cultos" letter="IBF" />

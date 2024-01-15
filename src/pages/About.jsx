@@ -1,7 +1,5 @@
 import React from "react";
 import AboutTabs from "../components/AboutTabs";
-import HowItWorks from "../components/HowItWorks";
-import OurTeam from "../components/OurTeam";
 import ScrollToTop from "../components/ScrollToTop";
 import TopBanner from "../components/TopBanner";
 

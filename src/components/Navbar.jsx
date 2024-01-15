@@ -14,11 +14,11 @@ const menuItems = [
   },
   {
     name: "Como Tornar-se um Membro",
-    path: "/contact",
+    path: "/tornarmembro",
   },
   {
     name: "Ministérios",
-    path: "/about",
+    path: "/ministerios",
   },
   {
     name: "Doações",
@@ -26,18 +26,18 @@ const menuItems = [
   },
   {
     name: "Galeria de Fotos",
-    path: "/about",
+    path: "/galeria",
   },
   {
     name: "Culto Online",
-    path: "/about",
+    path: "/cultoonline",
   },
 ];
 
 const MenuLink = ({ name, path }) => {
   return (
     <NavLink
-      className="rounded-md px-3 py-2.5 text-sm font-medium text-[#1d1d1d] duration-300 hover:bg-[#FEF2E2] hover:text-primary [&.active]:bg-[#FEF2E2] [&.active]:text-primary"
+      className="rounded-md px-1 py-2.5 text-xs font-medium text-[#1d1d1d] duration-300 hover:bg-[#F3F3F3] hover:text-primary [&.active]:bg-[#F3F3F3] [&.active]:text-primary"
       to={path}
     >
       {name}
@@ -47,7 +47,7 @@ const MenuLink = ({ name, path }) => {
 
 const MobileMenuLink = ({ name, path }) => (
   <NavLink
-    className="rounded-md px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-[#FEF2E2] hover:text-primary [&.active]:bg-[#FEF2E2] [&.active]:text-primary"
+    className="rounded-md px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-[#F3F3F3] hover:text-primary [&.active]:bg-[#F3F3F3] [&.active]:text-primary"
     to={path}
   >
     {name}

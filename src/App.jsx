@@ -12,10 +12,11 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import About from "./pages/About";
 // import BookDetails from "./pages/BookDetails";
 // import Books from "./pages/Books";
-import Contact from "./pages/Contact";
+import CultoOnline from "./pages/CultoOnline";
 import Dashboard from "./pages/Dashboard";
 import ForgotPassword from "./pages/ForgotPassword";
 import Donations from "./pages/Donations";
+import Ministerios from "./pages/Ministerios";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
@@ -34,6 +35,8 @@ import ReturnBook from "./pages/dashboard/ReturnBook";
 import Reviews from "./pages/dashboard/Reviews";
 import Users from "./pages/dashboard/Users";
 import Waitlist from "./pages/dashboard/Waitlist";
+import TornarMembro from "./pages/TornarMembro";
+import GaleriaFotos from "./pages/GaleriaFotos";
 
 const App = () => {
   return (
@@ -45,9 +48,12 @@ const App = () => {
             <Route path="" index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="donations" element={<Donations />} />
+            <Route path="ministerios" element={<Ministerios />} />
+            <Route path="tornarmembro" element={<TornarMembro />} />
+            <Route path="galeria" element={<GaleriaFotos />} />
             {/* <Route path="books" element={<Books />} /> */}
             {/* <Route path="books/:bookId" element={<BookDetails />} /> */}
-            <Route path="contact" element={<Contact />} />
+            <Route path="cultoonline" element={<CultoOnline />} />
           </Route>
 
           <Route path="/login" element={<Login />} />
