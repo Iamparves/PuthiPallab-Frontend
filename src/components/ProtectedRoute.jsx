@@ -15,15 +15,18 @@ const ProtectedRoute = ({ allowedRoles }) => {
 
   if (loading) return <FullpageSpinner />;
 
-  return !!user ? (
-    allowedRoles?.includes(user.role) ? (
-      <Outlet context={context} />
-    ) : (
-      <Navigate to="/unauthorized" state={{ from: location }} replace />
-    )
-  ) : (
+  // return !!user ? (
+  //   allowedRoles?.includes(user.role) ? (
+  //     <Outlet context={context} />
+  //   ) : (
+  //     <Navigate to="/unauthorized" state={{ from: location }} replace />
+  //   )
+  // ) : (
+  //   <Navigate to="/login" state={{ from: location }} replace />
+  // );
+  return (
     <Navigate to="/login" state={{ from: location }} replace />
-  );
+  )
 };
 
 export default ProtectedRoute;

@@ -8,6 +8,8 @@ import FullpageSpinner from "../components/FullpageSpinner";
 import useAuth from "../hooks/useAuth";
 import { useStore } from "../store";
 import { login } from "../utils/apiRequest";
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+
 
 const style = {
   input:
@@ -19,7 +21,8 @@ const style = {
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/dashboard";
+  // const from = location.state?.from?.pathname || "/dashboard";
+  const from = location.state?.from?.pathname;
   const { user, loading } = useAuth();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -31,31 +34,39 @@ const Login = () => {
     formState: { errors },
     reset,
   } = useForm();
-
-  const onLogin = async (data) => {
-    setIsLoading(true);
-    const toastId = toast.loading("Logging in...");
-    const result = await login(data);
-    setIsLoading(false);
-
-    if (result?.status === "fail" && result?.isVerified === false) {
-      toast.error(result?.message, { id: toastId });
-
-      return navigate("/unverified-account", { state: { email: data.email } });
-    }
-
-    if (result?.status === "success") {
-      setUser(result.data.user);
+  
+  const auth = getAuth();
+  
+  const loginFirebase = async (data) => {
+    try {
+      setIsLoading(true);
+      const toastId = toast.loading("Logging in...");
+      const userCredential = await signInWithEmailAndPassword(auth, data.email, data.password);
+      const result = userCredential.user;
+      setIsLoading(false);
+      
+      console.log(result)
+  
+      setUser(data.email);
       reset();
-
+  
       toast.success("Login successful", { id: toastId });
       return navigate(from, { replace: true });
-    }
+      
+    } catch (error) {
+        toast.error(error.message, { id: toastId });
+  
+        // return navigate("/unverified-account", { state: { email: data.email } });
+      }
+  
+  
+      toast.error(result?.message || "Something went wrong", {
+        id: toastId,
+      });
+    };
 
-    toast.error(result?.message || "Something went wrong", {
-      id: toastId,
-    });
-  };
+
+  
 
   if (loading) return <FullpageSpinner />;
   if (user) return <Navigate to={from} replace />;
@@ -73,7 +84,7 @@ const Login = () => {
         <form
           aria-disabled={isLoading}
           className="text-[#1d1d1d] aria-disabled:pointer-events-none aria-disabled:opacity-60"
-          onSubmit={handleSubmit(onLogin)}
+          onSubmit={handleSubmit(loginFirebase)}
         >
           <div className="mb-3">
             <div className="relative">

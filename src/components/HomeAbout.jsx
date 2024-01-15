@@ -5,21 +5,21 @@ import { Link } from "react-router-dom";
 const contents = [
   {
     image: "/igreja/igreja_completa.jpg",
-    title: "Uma Igreja Forte e Ativa",
+    title: "Encontro de Casais IBF",
     description:
-      "Deseja contribuir para nossa comunidade?",
+      "Inscreva-se aqui",
   },
   {
     image: "/igreja/criancas.jpg",
-    title: "Projetos",
+    title: "Farol em Ação",
     description:
-      "Our global goals are to help our visitors and readers discover more great books and learn about young and popular authors.",
+      "Acesse a programação da semana e novidades aqui",
   },
   {
     image: "/igreja/ministerio.jpg",
-    title: "Ministérios",
+    title: "Doações",
     description:
-      "We are always glad to welcome new library members to our community, which unites writers, poets, readers, and book enthusiasts.",
+      "Deseja fazer uma contribuição? Saiba como:",
   },
 ];
 
@@ -49,23 +49,41 @@ const HomeAbout = () => {
         </div>
         <div className="flex flex-col-reverse justify-between sm:flex-row">
           <div className="px-4 py-12 text-center sm:self-center sm:text-left md:w-full xl:w-[calc(100%-280px)] 2xl:pr-20">
-            <div className="md:mx-auto md:max-w-[380px]">
-              <h2 className="mb-8 text-3xl font-bold text-[#151515] md:text-2xl lg:text-3xl xl:text-4xl xl:leading-tight">
-                {contents[current].title}
-              </h2>
-              <p className="mb-8 text-[#777]">
-                {contents[current].description}
-              </p>
+          <div className="md:mx-auto md:max-w-[380px]">
+            <h2 className="mb-8 text-3xl font-bold text-[#151515] md:text-2xl lg:text-3xl xl:text-4xl xl:leading-tight">
+              {contents[current].title}
+            </h2>
+            <p className="mb-8 text-[#777]">
+              {contents[current].description}
+            </p>
+            {contents[current].title === 'Encontro de Casais IBF' && (
               <Link
                 className="inline-flex items-center gap-3 border-2 border-primary bg-primary px-8 py-3.5 font-semibold uppercase text-white duration-300 hover:gap-4 hover:bg-transparent hover:text-primary"
-                to="/about"
+                to="/subscribe"
               >
-                Contribua aqui <FaChevronRight />
+                Inscreva-se <FaChevronRight />
               </Link>
-            </div>
+            )}
+            {contents[current].title === 'Farol em Ação' && (
+              <Link
+                className="inline-flex items-center gap-3 border-2 border-primary bg-primary px-8 py-3.5 font-semibold uppercase text-white duration-300 hover:gap-4 hover:bg-transparent hover:text-primary"
+                to="/programacao"
+              >
+                Saiba mais <FaChevronRight />
+              </Link>
+            )}
+            {contents[current].title === 'Doações' && (
+              <Link
+                className="inline-flex items-center gap-3 border-2 border-primary bg-primary px-8 py-3.5 font-semibold uppercase text-white duration-300 hover:gap-4 hover:bg-transparent hover:text-primary"
+                to="/donations"
+              >
+                Saiba mais <FaChevronRight />
+              </Link>
+            )}
+          </div>
           </div>
           <div className="flex min-w-[230px] flex-wrap divide-y divide-[#555] text-center sm:w-[40%] sm:max-w-[290px]">
-            {["Sobre nós", "Projetos", "Ministérios"].map((title, i) => (
+            {["ENCIBAF", "Programação", "Doações"].map((title, i) => (
               <button
                 key={i}
                 onClick={() => setCurrent(i)}

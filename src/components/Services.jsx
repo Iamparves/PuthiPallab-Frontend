@@ -48,7 +48,7 @@ const Services = () => {
         <SectionTop title="Como tudo começou" letter="IBF" />
         <div className="max-w-xl mx-auto text-center lg:text-center mt-8">
           <p className="mb-20 text-base text-gray-500 xl:text-lg">
-            O primeiro pastor batista brasileiro, Antônio Teixeira de Albuquerque, foi batizado e ordenado na igreja em Santa Bárbara...
+            O primeiro pastor batista brasileiro, Antônio Teixeira de Albuquerque, foi batizado e ordenado na igreja em Santa Bárbara
           </p>
         </div>
         <SectionTop title="Cultos" letter="IBF" />

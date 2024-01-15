@@ -39,6 +39,8 @@ import TornarMembro from "./pages/TornarMembro";
 import GaleriaFotos from "./pages/GaleriaFotos";
 
 import SubscribeToEvent from "./pages/SubscribeToEvent";
+import ConfirmacaoPagamento from "./pages/ConfirmacaoPagamento";
+import PagamentoPendente from "./pages/PagamentoPendente";
 
 const App = () => {
   return (
@@ -53,11 +55,10 @@ const App = () => {
             <Route path="ministerios" element={<Ministerios />} />
             <Route path="tornarmembro" element={<TornarMembro />} />
             <Route path="galeria" element={<GaleriaFotos />} />
-            {/* <Route path="books" element={<Books />} /> */}
-            {/* <Route path="books/:bookId" element={<BookDetails />} /> */}
             <Route path="cultoonline" element={<CultoOnline />} />
-            {/* <Route path="contact" element={<Contact />} />
-            <Route path="subscribe" element={<SubscribeToEvent />} /> */}
+            <Route path="subscribe" element={<SubscribeToEvent />} />
+            <Route path="confpag" element={<ConfirmacaoPagamento />} />
+            <Route path="pagamentopendente" element={<PagamentoPendente />} />
           </Route>
 
           <Route path="/login" element={<Login />} />

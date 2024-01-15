@@ -9,7 +9,7 @@ const SubscribeToEvent = () => {
   return (
     <main className="bg-white">
       <ScrollToTop />
-      <Hero />
+      {/* <Hero /> */}
 
       <div className="flex flex-col items-center justify-center p-10">
         <h1 className="text-3xl font-bold mb-8 uppercase">Inscrição: Encontro de casais</h1>

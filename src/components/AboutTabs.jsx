@@ -1,8 +1,8 @@
 import moment from "moment";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
-const tabs = ["Sobre nós", "Minstério", "Ações Sociais"];
+const tabs = ["Sobre nós"];
 
 const contents = [
   {

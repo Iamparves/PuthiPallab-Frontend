@@ -41,7 +41,7 @@ const ContactInfo = () => {
       </div>
       <div className="mx-auto max-w-xs border-b border-[#ebebeb] py-7">
         <h4 className="mb-5 text-xs font-semibold uppercase tracking-widest">
-          Phone
+          Telefone/WhatsApp
         </h4>
         <a
           href="tel:8292210070"
@@ -80,7 +80,7 @@ const ContactInfo = () => {
       </div>
       <div className="mx-auto max-w-xs pt-7">
         <h4 className="mb-5 text-xs font-semibold uppercase tracking-widest">
-          Address
+          Endereço
         </h4>
         <p className="inline-flex items-center gap-3">
           <span className="text-xl text-primary">

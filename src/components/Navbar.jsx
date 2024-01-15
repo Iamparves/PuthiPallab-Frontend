@@ -12,9 +12,13 @@ const menuItems = [
     name: "Sobre Nós",
     path: "/about",
   },
+  // {
+  //   name: "Como Tornar-se um Membro",
+  //   path: "/tornarmembro",
+  // },
   {
     name: "Como Tornar-se um Membro",
-    path: "/tornarmembro",
+    path: "/",
   },
   {
     name: "Ministérios",
@@ -26,7 +30,7 @@ const menuItems = [
   },
   {
     name: "Galeria de Fotos",
-    path: "/galeria",
+    path: "/",
   },
   {
     name: "Culto Online",
@@ -108,12 +112,6 @@ const Navbar = () => {
             {menuItems.map(({ name, path }, index) => (
               <MobileMenuLink name={name} path={path} key={index} />
             ))}
-            {!loading &&
-              (!user ? (
-                <MobileMenuLink name="Login" path="/login" />
-              ) : (
-                <MobileMenuLink name="Dashboard" path="/dashboard" />
-              ))}
           </nav>
         </div>
       </div>

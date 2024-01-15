@@ -141,21 +141,27 @@ const MinisterioTabs = () => {
               </button>
             ))}
           </div>
-          {/* <Link
-            className="mt-9 inline-block border-2 border-primary bg-primary px-12 py-5 text-sm font-semibold uppercase tracking-widest text-white duration-300 hover:bg-transparent hover:text-primary md:mt-12 lg:w-full lg:py-6 lg:text-center lg:text-base"
-            to="/contact"
-          >
-            Contact us
-          </Link> */}
         </div>
         <div className="mx-auto w-full max-w-[485px] text-center md:max-w-3xl md:text-left lg:max-w-none">
           {contents.map(({ title, description, image }, index) => (
             <div
-              className={`invisible h-0 overflow-hidden opacity-0 duration-1000 [&.active]:visible [&.active]:h-auto [&.active]:opacity-100 ${
-                activeTab === index ? "active" : ""
-              }`}
-              key={index}
+            className={`invisible h-0 overflow-hidden opacity-0 duration-1000 [&.active]:visible [&.active]:h-auto [&.active]:opacity-100 ${
+              activeTab === index ? "active" : ""
+            }`}
+            key={index}
             >
+              {title === 'Famílias' && (
+                <div className="mb-8">
+                  <h2 className="mb-6 text-2xl font-bold">Inscrições para o ENCIBAF</h2>
+                  <p className="mb-2 text-[15px] text-[#777]">Para participar do Encontro de Casais da Igreja Batista do Farol inscreva-se clicando no botão abaixo</p>
+                  <Link
+                  className="inline-flex items-center gap-3 border-2 border-primary bg-primary px-8 py-3.5 font-semibold uppercase text-white duration-300 hover:gap-4 hover:bg-transparent hover:text-primary"
+                  to="/subscribe"
+                  >
+                    Inscreva-se
+                  </Link>
+                </div>
+              )}
               <h2 className="mb-6 text-3xl font-bold">{title}</h2>
               <p className="mb-8 text-[15px] text-[#777]">{description}</p>
               <img className="apect-[2/1] w-full" src={image} />
