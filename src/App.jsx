@@ -35,6 +35,8 @@ import Reviews from "./pages/dashboard/Reviews";
 import Users from "./pages/dashboard/Users";
 import Waitlist from "./pages/dashboard/Waitlist";
 
+import SubscribeToEvent from "./pages/SubscribeToEvent";
+
 const App = () => {
   return (
     <>
@@ -48,6 +50,7 @@ const App = () => {
             {/* <Route path="books" element={<Books />} /> */}
             {/* <Route path="books/:bookId" element={<BookDetails />} /> */}
             <Route path="contact" element={<Contact />} />
+            <Route path="subscribe" element={<SubscribeToEvent />} />
           </Route>
 
           <Route path="/login" element={<Login />} />
