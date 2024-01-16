@@ -42,12 +42,15 @@ const SubscribeForm = () => {
       ride: e.target.ride.value,
       busTransport: e.target.busTransport.value,
       observations: e.target.observations.value,
+      inscricaoPaga: false,
+      token: token
     };
 
     try {
-      await AddDocument("TesteForm", data);
+      const docRef = await AddDocument("TesteForm", data);
+      const docId = docRef.id;
       toast.success("Incrição realizada com sucesso!");
-      navigate(`/pagamentopendente?token=${token}`);
+      navigate(`/pagamentopendente?token=${docId}`);
     } catch (error) {
       toast.error("Erro ao realizar inscrição!");
     }

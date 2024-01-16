@@ -18,7 +18,7 @@ const menuItems = [
   // },
   {
     name: "Como Tornar-se um Membro",
-    path: "/",
+    path: "/tornarmembro",
   },
   {
     name: "Ministérios",
@@ -30,7 +30,7 @@ const menuItems = [
   },
   {
     name: "Galeria de Fotos",
-    path: "/",
+    path: "/galeria",
   },
   {
     name: "Culto Online",

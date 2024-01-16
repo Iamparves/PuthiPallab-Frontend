@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ScrollToTop from "../components/ScrollToTop";
 import TopBanner from "../components/TopBanner";
+import toast from "react-hot-toast";
+import { useLocation } from 'react-router-dom';
 import { FaCheckCircle } from 'react-icons/fa';
+import { GetDocumentById, UpdateDocument } from "../utils/firebaseRequest";
 
 const ConfirmacaoPagamento = () => {
+  const location = useLocation();
+  const token = new URLSearchParams(location.search).get('token');
+  console.log(token)
+  useEffect(() => {
+    const processarInscricao = async () => {
+      try {
+        const documentSnapshot = await GetDocumentById("TesteForm", token);
+        console.log(documentSnapshot)
+
+        const editedData = {
+          inscricaoPaga: true,
+        };
+        await UpdateDocument("TesteForm", token, editedData);
+        toast.success("Inscrição marcada como paga.");
+      } catch (error) {
+        console.error("Erro ao processar a inscrição:", error);
+      }
+    };
+
+    if (token) {
+      processarInscricao();
+    } else {
+      console.error("Token não encontrado na URL.");
+    }
+  }, [token]);
   return (
     <main className="bg-white">
       <ScrollToTop />
