@@ -36,6 +36,10 @@ const menuItems = [
     name: "Culto Online",
     path: "/cultoonline",
   },
+  {
+    name: "Login",
+    path: "/login",
+  },
 ];
 
 const MenuLink = ({ name, path }) => {

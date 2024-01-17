@@ -1,15 +1,13 @@
 import React from "react";
 import toast from "react-hot-toast";
 import { MdAlternateEmail } from "react-icons/md";
-import { AddDocument } from "../utils/firebaseRequest";
-import { v4 as uuidv4 } from 'uuid';
+import { AddDocumentWithId } from "../utils/firebaseRequest";
 import { useNavigate } from 'react-router-dom';
 
 const SubscribeForm = () => {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = uuidv4();
     const data = {
       wifeName: e.target.wifeName.value,
       wifeBirthdate: e.target.wifeBirthdate.value,
@@ -42,20 +40,20 @@ const SubscribeForm = () => {
       ride: e.target.ride.value,
       busTransport: e.target.busTransport.value,
       observations: e.target.observations.value,
-      inscricaoPaga: false,
-      token: token
+      inscricaoPaga: false
     };
 
     try {
-      const docRef = await AddDocument("TesteForm", data);
-      const docId = docRef.id;
+      // const docRef = await AddDocument("TesteForm", data);
+      const docId = await AddDocumentWithId("TesteForm", data, 'joaolevi777@gmail.com');
+      // const docId = docRef.id;
       toast.success("Incrição realizada com sucesso!");
       navigate(`/pagamentopendente?token=${docId}`);
     } catch (error) {
       toast.error("Erro ao realizar inscrição!");
     }
 
-    e.target.reset();
+    // e.target.reset();
   };
 
   return (

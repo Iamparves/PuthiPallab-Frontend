@@ -37,10 +37,12 @@ import Users from "./pages/dashboard/Users";
 import Waitlist from "./pages/dashboard/Waitlist";
 import TornarMembro from "./pages/TornarMembro";
 import GaleriaFotos from "./pages/GaleriaFotos";
+import Perfil from "./pages/Perfil";
 
 import SubscribeToEvent from "./pages/SubscribeToEvent";
 import ConfirmacaoPagamento from "./pages/ConfirmacaoPagamento";
 import PagamentoPendente from "./pages/PagamentoPendente";
+import CadastroConta from "./pages/CadastroConta";
 
 const App = () => {
   return (
@@ -59,6 +61,8 @@ const App = () => {
             <Route path="subscribe" element={<SubscribeToEvent />} />
             <Route path="confpag" element={<ConfirmacaoPagamento />} />
             <Route path="pagamentopendente" element={<PagamentoPendente />} />
+            <Route path="cadastro" element={<CadastroConta />} />
+            <Route path="perfil" element={<Perfil />} />
           </Route>
 
           <Route path="/login" element={<Login />} />

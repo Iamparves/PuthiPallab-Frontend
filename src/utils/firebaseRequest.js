@@ -1,10 +1,16 @@
-import { collection, addDoc, getDocs  } from "firebase/firestore"; 
+import { collection, addDoc, setDoc, getDocs  } from "firebase/firestore"; 
 import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
 
 import { db } from "./firebaseSetup";
 
 export const AddDocument = async (users, data) => {
   const docRef = await addDoc(collection(db, users), data);
+  return docRef;
+}
+
+export const AddDocumentWithId = async (users, data, token) => {
+  // const docRef = await addDoc(collection(db, users), data);
+  const docRef = await setDoc(doc(db, users, token), data);
   return docRef;
 }
 
