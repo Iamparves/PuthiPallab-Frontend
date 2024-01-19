@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 import toast from "react-hot-toast";
 import { MdAlternateEmail } from "react-icons/md";
 import { AddDocumentWithId } from "../utils/firebaseRequest";
 import { useNavigate } from 'react-router-dom';
+import { auth } from '../utils/firebaseSetup';
+
 
 const SubscribeForm = () => {
   const navigate = useNavigate();
+  const [userEmail, setUserEmail] = useState('');
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUserEmail(user.email);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
@@ -45,7 +58,7 @@ const SubscribeForm = () => {
 
     try {
       // const docRef = await AddDocument("TesteForm", data);
-      const docId = await AddDocumentWithId("TesteForm", data, 'joaolevi777@gmail.com');
+      const docId = await AddDocumentWithId("TesteForm", data, userEmail);
       // const docId = docRef.id;
       toast.success("Incrição realizada com sucesso!");
       navigate(`/pagamentopendente?token=${docId}`);
@@ -68,6 +81,7 @@ const SubscribeForm = () => {
             required
             className="w-full border border-[#e1e1e1] px-6 py-5 text-[15px] transition-colors duration-200 focus:border-primary focus:outline-none"
           />
+          <p>Data de nascimento</p>
           <input
             name="wifeBirthdate"
             type="date"
@@ -145,6 +159,7 @@ const SubscribeForm = () => {
             required
             className="w-full border border-[#e1e1e1] px-6 py-5 text-[15px] transition-colors duration-200 focus:border-primary focus:outline-none"
           />
+          <p>Data de nascimento</p>
           <input
             name="husbandBirthdate"
             type="date"

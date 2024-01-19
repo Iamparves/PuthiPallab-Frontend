@@ -7,14 +7,16 @@ import { MdDashboard, MdOutlineReviews } from "react-icons/md";
 import { TbBookOff, TbBookUpload, TbBooks, TbLogout2 } from "react-icons/tb";
 import { TfiLayoutListThumb, TfiList } from "react-icons/tfi";
 import { NavLink, useLocation } from "react-router-dom";
-import { useStore } from "../store";
+import { signOut } from "firebase/auth";
+import useAuth from "../hooks/useAuth";
 import { getAuth } from 'firebase/auth';
 import Spinner from "./Spinner";
+import { useNavigate } from "react-router-dom";
 
 const memberMenuItems = [
   {
     title: "Inscrições",
-    path: "overview",
+    path: "#",
     icon: <MdDashboard />,
   },
 ];
@@ -81,8 +83,9 @@ const MenuLink = ({ path, title, icon }) => (
 
 const PerfilSidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
-  const user = useStore((state) => state.user);
-  const setUser = useStore((state) => state.setUser);
+  const { user } = useAuth()
+  const toastId = React.useRef(null);
+  const navigate = useNavigate();
 
   const queryClient = useQueryClient();
 
@@ -91,7 +94,7 @@ const PerfilSidebar = ({ sidebarOpen, setSidebarOpen }) => {
     
     if (auth.currentUser) {
       try {
-        await auth.signOut();
+        await signOut(auth);
         navigate('/login');
         toast.success("Deslogado", { id: toastId });
       } catch (error) {
@@ -117,9 +120,6 @@ const PerfilSidebar = ({ sidebarOpen, setSidebarOpen }) => {
       onClick={(e) => e.target.classList.contains("group") && closeSidebar()}
     >
       <aside className="sidebar h-full w-64 -translate-x-full bg-white duration-300 group-[&.active]:-translate-x-0 lg:w-full lg:-translate-x-0 lg:border-r lg:border-[#eee]/70">
-        <div className="flex h-16 items-center overflow-hidden border-b border-[#eee]/70 px-8 sm:h-20">
-              <h2>{user.email}</h2>
-        </div>
         <div className="sidebarContent h-[calc(100vh-64px)] overflow-y-auto pb-5 sm:h-[calc(100vh-80px)] sm:pb-10">
           {user && (
             <>
@@ -134,7 +134,7 @@ const PerfilSidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   <MenuLink path={path} title={title} icon={icon} key={index} />
                 ))}
                 <hr className="border-gray-200/70" />
-                <MenuLink path="profile" title="Profile" icon={<FiUser />} />
+                <MenuLink path="#" title="Perfil" icon={<FiUser />} />
 
                 <button
                   className="flex items-center gap-3 px-8 py-3 text-[#808080] duration-300 hover:text-primary"

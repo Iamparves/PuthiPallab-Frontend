@@ -4,37 +4,37 @@ import ServiceCard from "./ServiceCard";
 
 const services = [
   {
-    img: "/igreja/imagem_do_banco.jpg",
+    img: "/igreja/imagem_do_banco.webp",
     title: "Culto da Manhã aos Domingos",
     description:
     "Culto da Manhã aos Domingos - 9:00 (Acessível em Libras).",
   },
   {
-    img: "/igreja/pr_luiz_cruz.jpg",
+    img: "/igreja/pr_luiz_cruz.webp",
     title: "Culto da Noite aos Domingos",
     description:
     "Culto da Noite aos Domingos - 18:00 (Acessível em Libras).",
   },
   {
-    img: "/igreja/irma_loira.jpeg",
+    img: "/igreja/irma_loira.webp",
     title: "Culto de Louvor e Oração",
     description:
     "Culto de Louvor e Oração - 19:30 (Acessível em Libras).",
   },
   {
-    img: "/igreja/culto_juventude.jpg",
+    img: "/igreja/culto_juventude.webp",
     title: "Culto da Juventude",
     description:
     "Culto da Juventude",
   },
   {
-    img: "/igreja/pastor_roberto.jpg",
+    img: "/igreja/pastor_roberto.webp",
     title: "31.12.2023",
     description:
     "Nós Dois - Culto dedicado aos casais (Acessível em Libras)",
   },
   {
-    img: "/igreja/biblia.jpg",
+    img: "/igreja/biblia.webp",
     title: "EBD",
     description:
     "Escola Bíblica Dominical - 10:30 (Após o culto matutino)",

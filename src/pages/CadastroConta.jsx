@@ -51,7 +51,7 @@ const Login = () => {
       reset();
   
       toast.success("Cadastro bem sucedido!", { id: toastId });
-      return navigate(from, { replace: true });
+      return navigate('/', { replace: true });
       
     } catch (error) {
         toast.error(error.message, { id: toastId });
@@ -63,7 +63,7 @@ const Login = () => {
     };
 
   if (loading) return <FullpageSpinner />;
-  if (user) return <Navigate to={from} replace />;
+  if (user) return <Navigate to={'/'} replace />;
 
   return (
     <AuthWrapper>
@@ -72,7 +72,7 @@ const Login = () => {
           <img src="/logo.svg" alt="" />
         </Link>
         <h1 className="mb-9 mt-14 text-2xl font-semibold text-[#1d1d1d]">
-          Log in to your account
+          Entre com sua conta
         </h1>
 
         <form
@@ -125,6 +125,12 @@ const Login = () => {
             Cadastrar
           </button>
         </form>
+        <p className="mt-8 text-center text-xs font-medium text-[#898989]">
+          Já tem uma conta?{" "}
+          <Link to="/login" className="text-primary hover:underline">
+            Login
+          </Link>
+        </p>
       </div>
     </AuthWrapper>
   );

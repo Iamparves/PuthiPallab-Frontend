@@ -17,7 +17,7 @@ const Hero = () => {
 
   return (
 <section>
-  <TopBanner title="Igreja Batista do Farol" background="bg-[url(/igreja/frente_igreja_completo.jpeg)]" />
+  <TopBanner title="Igreja Batista do Farol" background="bg-[url(/igreja/frente_igreja_completo.webp)]" />
 </section>
 
   );

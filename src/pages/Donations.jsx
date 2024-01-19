@@ -12,7 +12,7 @@ const Donations = () => {
 
       <div className="grid lg:grid-cols-3 gap-8 p-8">
         <div className="col-span-1">
-          <iframe width="100%" height="315" src="https://www.youtube.com/embed/Yhp7DX8t660" title="Como entregar dízimos e ofertas neste período de quarentena." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <iframe width="90%%" height="315" src="https://www.youtube.com/embed/Yhp7DX8t660" title="Como entregar dízimos e ofertas neste período de quarentena." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <div className="lg:col-span-2 justify-center items-center">
           <h2 className="text-3xl font-bold text-center mb-8">Transferência</h2>
@@ -27,8 +27,8 @@ const Donations = () => {
               <p className="text-lg mb-4">
                 Conta: 348-4
               </p>
-              <p className="text-lg mb-4">
-                CNPJ: 12.376.976/001-42
+              <p className="text-3sm mb-4">
+                CNPJ: 12.376.976/0001-42
               </p>
             </div>
             <div className="flex justify-center">
@@ -52,7 +52,7 @@ const Donations = () => {
               <p className="text-xl lg:text-xl mb-4 font-bold text-center">
                 PIX
               </p>
-              <p className="text-lg mb-4 text-center">
+              <p className="text-3sm mb-4 text-center">
                 CNPJ: 12.376.976/0001-42
               </p>
             </div>

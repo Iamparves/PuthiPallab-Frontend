@@ -51,7 +51,7 @@ const Login = () => {
 
   const onLogin = async (data) => {
     setIsLoading(true);
-    const toastId = toast.loading("Logging in...");
+    const toastId = toast.loading("Acessando sua conta...");
 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, data.email, data.password);
@@ -61,7 +61,7 @@ const Login = () => {
       reset();
       setIsLoading(false);
 
-      toast.success("Login successful", { id: toastId });
+      toast.success("Conta acessada!", { id: toastId });
       navigate(from, { replace: true });
     } catch (error) {
       setIsLoading(false);

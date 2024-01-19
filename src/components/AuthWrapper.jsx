@@ -11,7 +11,7 @@ const AuthWrapper = ({ children }) => {
           <div className="hidden p-3 pl-0 sm:block md:p-0">
             <img
               className="h-full w-full rounded-xl object-cover md:rounded-none"
-              src="/login-banner.jpg"
+              src="/igreja/frente_igreja_vertical.webp"
             />
           </div>
         </div>

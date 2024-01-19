@@ -6,7 +6,8 @@ import { Link, Navigate } from "react-router-dom";
 import AuthWrapper from "../components/AuthWrapper";
 import FullpageSpinner from "../components/FullpageSpinner";
 import useAuth from "../hooks/useAuth";
-import { forgotPassword } from "../utils/apiRequest";
+import { auth } from "../utils/firebaseSetup"
+import { sendPasswordResetEmail } from "firebase/auth";
 
 const style = {
   input:
@@ -25,23 +26,29 @@ const ForgotPassword = () => {
     formState: { errors },
     reset,
   } = useForm();
-
+  
   const onForgotPassword = async (data) => {
     setIsLoading(true);
-    const toastId = toast.loading("Sending reset password link...");
-    const result = await forgotPassword(data);
-    setIsLoading(false);
-
-    if (result?.status === "success") {
+    const toastId = toast.loading("Enviando um link de recuperação para seu email...");
+    try {
+      sendPasswordResetEmail(auth, data.email)
+        .then(() => {
+          // Password reset email sent!
+          // ..
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+        });
       reset();
-
-      toast.success(result?.message, { id: toastId });
-      return;
+      toast.success("Link enviado. Verifique seu email!", { id: toastId });
+      
+    } catch (error) {
+      toast.error(error.message || "Algo de errado ocorreu. Contate a administração do site", { id: toastId });
+    } finally {
+      setIsLoading(false);
     }
-
-    toast.error(result?.message || "Something went wrong", {
-      id: toastId,
-    });
   };
 
   if (loading) return <FullpageSpinner />;
@@ -54,7 +61,7 @@ const ForgotPassword = () => {
           <img src="/logo.svg" alt="" />
         </Link>
         <h1 className="mb-9 mt-14 text-2xl font-semibold text-[#1d1d1d]">
-          Forgot Password?
+          Esqueceu a senha?
         </h1>
 
         <form
@@ -86,12 +93,12 @@ const ForgotPassword = () => {
             type="submit"
             className="mt-6 block w-full rounded-lg bg-primary p-4 text-center font-semibold text-white duration-300"
           >
-            Reset Password
+            Resetar minha senha
           </button>
         </form>
 
         <p className="mt-8 text-center text-xs font-medium text-[#898989]">
-          Remembered your password?{" "}
+          Conseguiu lembrar da sua senha?{" "}
           <Link to="/login" className="text-primary hover:underline">
             Login
           </Link>
