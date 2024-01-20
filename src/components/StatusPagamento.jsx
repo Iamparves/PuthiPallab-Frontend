@@ -20,11 +20,11 @@ const StatusPagamento = ({ inscricaoPaga }) => {
           <>
             Aguardando pagamento
             <p className="mb-2 text-[15px] text-[#777]">
-              Para confirmar sua inscrição você deve efetuar o pagamento no link do PagSeguro logo abaixo
+              Efetue o pagamento através do link do PagSeguro logo abaixo
             </p>
             <div className="flex items-center justify-center">
               <a
-                href="https://pag.ae/7-9LSKbS2/button"
+                href="https://pag.ae/7-ayfcYCM/button"
                 target="_blank"
                 title="Pagar com PagSeguro"
               >

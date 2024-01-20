@@ -21,7 +21,7 @@ const menuItems = [
     path: "/tornarmembro",
   },
   {
-    name: "Ministérios",
+    name: "ENCIBAF",
     path: "/ministerios",
   },
   {

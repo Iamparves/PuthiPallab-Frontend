@@ -17,7 +17,7 @@ const PagamentoPendente = () => {
         <p className="mb-2 text-[15px] text-[#777]">Clique abaixo para continuar seu pagamento.</p>
         <div className="flex items-center justify-center">
             <a 
-            href="https://pag.ae/7-ay2AcEr/button" 
+            href="https://pag.ae/7-ayfcYCM/button" 
             target="_blank" 
             title="Pagar com PagSeguro"
             >

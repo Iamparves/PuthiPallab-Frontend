@@ -42,12 +42,12 @@ const Perfil = () => {
   }, [navigate]);
 
   return (
-    <main className="grid h-screen grid-cols-1 bg-[#F6F7FB] lg:grid-cols-[280px_1fr]">
+    <main className="grid grid-cols-1 lg:grid-cols-[280px_1fr] mt-10">
       <PerfilSidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
       />
-      <div className="h-full w-full mb-16">
+      <div className="h-full w-full mb-10 pr-10 pl-2 max-w-[1900px]">
         {/* Renderize o DadosInscricaoEncibaf e passe o docSnap como propriedade */}
         <DadosInscricaoEncibaf docSnap={docSnap} />
 
