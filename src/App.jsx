@@ -52,17 +52,17 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route path="" index element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="donations" element={<Donations />} />
-            <Route path="ministerios" element={<Ministerios />} />
-            <Route path="tornarmembro" element={<TornarMembro />} />
-            <Route path="galeria" element={<GaleriaFotos />} />
-            <Route path="cultoonline" element={<CultoOnline />} />
-            <Route path="subscribe" element={<SubscribeToEvent />} />
-            <Route path="confpag" element={<ConfirmacaoPagamento />} />
-            <Route path="pagamentopendente" element={<PagamentoPendente />} />
-            <Route path="cadastro" element={<CadastroConta />} />
-            <Route path="perfil" element={<Perfil />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/donations" element={<Donations />} />
+            <Route path="/ministerios" element={<Ministerios />} />
+            <Route path="/tornarmembro" element={<TornarMembro />} />
+            <Route path="/galeria" element={<GaleriaFotos />} />
+            <Route path="/cultoonline" element={<CultoOnline />} />
+            <Route path="/subscribe" element={<SubscribeToEvent />} />
+            <Route path="/confpag" element={<ConfirmacaoPagamento />} />
+            <Route path="/pagamentopendente" element={<PagamentoPendente />} />
+            <Route path="/cadastro" element={<CadastroConta />} />
+            <Route path="/perfil" element={<Perfil />} />
           </Route>
 
           <Route path="/login" element={<Login />} />
