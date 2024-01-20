@@ -24,7 +24,7 @@ const StatusPagamento = ({ inscricaoPaga }) => {
             </p>
             <div className="flex items-center justify-center">
               <a
-                href="https://pag.ae/7-9LSKbS2/button"
+                href="https://pag.ae/7-ayfcYCM/button"
                 target="_blank"
                 title="Pagar com PagSeguro"
               >
