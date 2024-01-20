@@ -23,7 +23,7 @@ const DadosInscricaoEncibaf = ({ docSnap }) => {
   const userData = docSnap.data();
 
   return (
-    <div className="border border-gray-300 rounded p-4 my-4 shadow-md overflow-auto">
+    <div className="border border-gray-300 rounded p-4 my-4 shadow-md overflow-auto bg-[#F6F7FB]">
         <StatusPagamento inscricaoPaga={userData.inscricaoPaga} />
       <h2 className="text-2xl font-bold mb-4">Dados da Inscrição</h2>
       <div className="ml-4">
