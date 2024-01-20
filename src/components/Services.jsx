@@ -45,12 +45,12 @@ const Services = () => {
   return (
     <section className="pb-10 pt-16 lg:pt-10">
       <div className="sm:container">
-        <SectionTop title="Como tudo começou" letter="IBF" />
-        <div className="max-w-xl mx-auto text-center lg:text-center mt-8">
+        {/* <SectionTop title="Como tudo começou" letter="IBF" /> */}
+        {/* <div className="max-w-xl mx-auto text-center lg:text-center mt-8">
           <p className="mb-20 text-base text-gray-500 xl:text-lg">
             O primeiro pastor batista brasileiro, Antônio Teixeira de Albuquerque, foi batizado e ordenado na igreja em Santa Bárbara
           </p>
-        </div>
+        </div> */}
         <SectionTop title="Cultos" letter="IBF" />
         <div className="mx-auto mt-5 grid grid-cols-1 sm:mt-10 sm:grid-cols-2 md:grid-cols-3 xl:max-w-6xl">
           {services.map((service, i) => (

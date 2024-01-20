@@ -8,9 +8,7 @@ const About = () => {
     <main className="bg-white">
       <ScrollToTop />
       <TopBanner title="Sobre nós" background="bg-[url(/igreja/igreja_completa_facebook.jpg)]" />
-      <AboutTabs />
-      {/* <HowItWorks /> */}
-      {/* <OurTeam /> */}
+      {/* <AboutTabs /> */}
     </main>
   );
 };

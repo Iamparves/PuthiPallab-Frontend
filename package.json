@@ -7,7 +7,8 @@
     "dev": "vite",
     "host": "vite --host",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "aws s3 sync dist/ s3://ibfarol.com.br"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",

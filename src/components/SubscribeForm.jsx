@@ -237,7 +237,7 @@ const SubscribeForm = () => {
             required
             className="w-full border border-[#e1e1e1] px-6 py-5 text-[15px] transition-colors duration-200 focus:border-primary focus:outline-none"
           />
-
+          <p>Data do casamento</p>
           <input
             name="weddingDate"
             type="date"
@@ -269,7 +269,7 @@ const SubscribeForm = () => {
               </span>
               <span className="flex gap-1">
                 <input type="radio" id="payment-1" name="paymentType" value="2" />
-                <label htmlFor="payment-1">PIX (em até 2x)</label>
+                <label htmlFor="payment-1">PIX (em até 10x)</label>
               </span>
               <span className="flex gap-1">
                 <input type="radio" id="payment-2" name="paymentType" value="3" />
@@ -281,11 +281,11 @@ const SubscribeForm = () => {
               </span>
               <span className="flex gap-1">
                 <input type="radio" id="payment-4" name="paymentType" value="5" />
-                <label htmlFor="payment-4">Boleto (em até 2x)</label>
+                <label htmlFor="payment-4">Boleto (em até 10x)</label>
               </span>
               <span className="flex gap-1">
                 <input type="radio" id="payment-5" name="paymentType" value="6" />
-                <label htmlFor="payment-5">Cheque (em até 2x)</label>
+                <label htmlFor="payment-5">Cheque (em até 10x)</label>
               </span>
             </div>
           </fieldset>
@@ -300,6 +300,38 @@ const SubscribeForm = () => {
               <span className="flex gap-1">
                 <input type="radio" id="parcels-2" name="parcels" value="2" />
                 <label htmlFor="parcels-2">2</label>
+              </span>
+              <span className="flex gap-1">
+                <input type="radio" id="parcels-3" name="parcels" value="3" />
+                <label htmlFor="parcels-3">3</label>
+              </span>
+              <span className="flex gap-1">
+                <input type="radio" id="parcels-4" name="parcels" value="4" />
+                <label htmlFor="parcels-4">4</label>
+              </span>
+              <span className="flex gap-1">
+                <input type="radio" id="parcels-5" name="parcels" value="5" />
+                <label htmlFor="parcels-5">5</label>
+              </span>
+              <span className="flex gap-1">
+                <input type="radio" id="parcels-6" name="parcels" value="6" />
+                <label htmlFor="parcels-6">6</label>
+              </span>
+              <span className="flex gap-1">
+                <input type="radio" id="parcels-7" name="parcels" value="7" />
+                <label htmlFor="parcels-7">7</label>
+              </span>
+              <span className="flex gap-1">
+                <input type="radio" id="parcels-8" name="parcels" value="8" />
+                <label htmlFor="parcels-8">8</label>
+              </span>
+              <span className="flex gap-1">
+                <input type="radio" id="parcels-9" name="parcels" value="9" />
+                <label htmlFor="parcels-9">9</label>
+              </span>
+              <span className="flex gap-1">
+                <input type="radio" id="parcels-10" name="parcels" value="10" />
+                <label htmlFor="parcels-10">10</label>
               </span>
             </div>
           </fieldset>

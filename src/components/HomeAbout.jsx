@@ -67,7 +67,7 @@ const HomeAbout = () => {
             {contents[current].title === 'Farol em Ação' && (
               <Link
                 className="inline-flex items-center gap-3 border-2 border-primary bg-primary px-8 py-3.5 font-semibold uppercase text-white duration-300 hover:gap-4 hover:bg-transparent hover:text-primary"
-                to="/programacao"
+                to="#"
               >
                 Saiba mais <FaChevronRight />
               </Link>

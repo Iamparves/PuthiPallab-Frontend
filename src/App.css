@@ -15,7 +15,7 @@
   text-align: center;
 }
 
-.genres__table table :is(th, td):is(:nth-child(5), :nth-child(6), ) {
+.genres__table table :is(th, td):is(:nth-child(5), :nth-child(6)) {
   text-align: center;
 }
 

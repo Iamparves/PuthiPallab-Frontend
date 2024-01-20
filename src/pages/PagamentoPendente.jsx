@@ -13,13 +13,11 @@ const PagamentoPendente = () => {
       <ScrollToTop />
       <TopBanner title="Inscrição ENCIBAF" background="bg-[url(/igreja/igreja_completa_facebook.jpg)]" />
       <div className="mb-8 mt-10 text-center">
-        <h2 className="mb-6 text-2xl font-bold">Só mais um passo...</h2>
-        <p className="mb-2 text-[15px] text-[#777]">Para confirmar sua inscrição você deve efetuar o pagamento no link do PagSeguro logo abaixo.</p>
-        <p className="mb-2 text-[15px] text-[#777]">Caso prefira, você também pode efetuar o pagamento presencialmente em nossa igreja.</p>
-        <p className="mb-2 text-[15px] text-[#777]">Informe seu email de cadastro no site e peça para que o responsável confirme.</p>
+        <h2 className="mb-6 text-2xl font-bold">Que bom ter vocês fazendo parte do ENCIBAF 2024!</h2>
+        <p className="mb-2 text-[15px] text-[#777]">Clique abaixo para continuar seu pagamento.</p>
         <div className="flex items-center justify-center">
             <a 
-            href="https://pag.ae/7-9LSKbS2/button" 
+            href="https://pag.ae/7-ay2AcEr/button" 
             target="_blank" 
             title="Pagar com PagSeguro"
             >
