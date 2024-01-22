@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import TopBanner from "../components/TopBanner";
+// import TopBanner from "../components/TopBanner";
+import Carrossel from "../components/Carrossel";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Hero = () => {
 
   return (
 <section>
-  <TopBanner title="Igreja Batista do Farol" background="bg-[url(/igreja/frente_igreja_completo.webp)]" />
+  <Carrossel />
 </section>
 
   );
