@@ -61,7 +61,10 @@ const BookDetailsWaitlist = ({ waitlist, bookId }) => {
   return (
     <div className="mt-3 text-sm md:text-base">
       <p className="mb-3 text-gray-400">
-        Waiting: <span className="text-primary">{waitlist.length} people</span>
+        Waiting:{" "}
+        <span className="text-primary">
+          {waitlist[0]?.waitingList?.length || 0} people
+        </span>
       </p>
       {user && user.role === "member" && !isAlreadyInWaitlist && (
         <button
