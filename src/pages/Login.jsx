@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { MdOutlineLock, MdOutlineMailOutline } from "react-icons/md";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import AuthWrapper from "../components/AuthWrapper";
+import DemoLogin from "../components/DemoLogin";
 import FullpageSpinner from "../components/FullpageSpinner";
 import useAuth from "../hooks/useAuth";
 import { useStore } from "../store";
@@ -23,6 +24,7 @@ const Login = () => {
   const { user, loading } = useAuth();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
   const setUser = useStore((state) => state.setUser);
 
   const {
@@ -62,6 +64,7 @@ const Login = () => {
 
   return (
     <AuthWrapper>
+      <DemoLogin isDemoOpen={isDemoOpen} setIsDemoOpen={setIsDemoOpen} />
       <div>
         <Link className="inline-block" to="/">
           <img src="/logo.svg" alt="" />
@@ -129,6 +132,13 @@ const Login = () => {
             className="mt-6 block w-full rounded-lg bg-primary p-4 text-center font-semibold text-white duration-300"
           >
             Log In
+          </button>
+          <button
+            type="button"
+            onClick={() => setIsDemoOpen(true)}
+            className="mt-2 block w-full rounded-lg bg-emerald-500 p-4 text-center font-semibold text-white duration-300"
+          >
+            View Demo Accounts
           </button>
         </form>
 
