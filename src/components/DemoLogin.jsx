@@ -10,7 +10,7 @@ const demoAccounts = {
 const DemoLogin = ({ isDemoOpen, setIsDemoOpen }) => {
   return (
     <div
-      className={`fixed left-0 top-0 z-[9999] flex h-screen w-screen items-center justify-center bg-black/50 px-3 py-10 duration-300 ${
+      className={`fixed left-0 top-0 z-[999] flex min-h-screen w-screen items-center justify-center bg-black/50 px-3 py-10 duration-300 ${
         isDemoOpen ? "visible opacity-100" : "invisible opacity-0"
       }`}
       onClick={(e) => {
@@ -29,7 +29,7 @@ const DemoLogin = ({ isDemoOpen, setIsDemoOpen }) => {
             <MdClose className="text-2xl" />
           </button>
         </div>
-        <div className="flex flex-col gap-10 p-3 sm:p-5">
+        <div className="flex flex-col gap-8 p-3 sm:p-5">
           <DemoAccount
             title="Guest Librarian"
             credentials={demoAccounts["librarian"]}
