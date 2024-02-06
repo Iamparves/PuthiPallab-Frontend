@@ -1,6 +1,6 @@
 import React from "react";
 
-const DemoLogin = ({visible}) => {
+const DemoLogin = ({ visible }) => {
   return <div>DemoLogin</div>;
 };
 

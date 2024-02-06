@@ -28,7 +28,7 @@ export const login = async (credentials) => {
 };
 
 export const logout = async () => {
-  const res = await api.get("/users/logout");
+  const res = await api.post("/users/logout");
 
   return res.data;
 };
